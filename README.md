@@ -8,7 +8,7 @@
 | **Оригинал** | [spotbye/SpotiFLAC](https://github.com/spotbye/SpotiFLAC) |
 | **Этот проект** | [krwg/SpotiFLACNeo](https://github.com/krwg/SpotiFLACNeo) |
 | **Стек** | Go (Wails v2) + React + TypeScript |
-| **Платформы** | Windows · macOS · Linux |
+| **Платформы** | Windows |
 
 ![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6?style=flat-square)
 ![macOS](https://img.shields.io/badge/macOS-10.13%2B-000000?style=flat-square)
