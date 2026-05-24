@@ -53,7 +53,11 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
             await ClearAllDownloads();
             const info = await GetDownloadQueue();
             setQueueInfo(info);
+<<<<<<< HEAD
             toast.success("Очередь загрузок сброшена");
+=======
+            toast.success("Download queue reset");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         catch (error) {
             console.error("Failed to reset queue:", error);
@@ -63,15 +67,25 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         try {
             const message = await ExportFailedDownloads();
             if (message.startsWith("Successfully")) {
+<<<<<<< HEAD
                 toast.success("Успешно экспортировано");
             }
             else if (message !== "Export cancelled" && message !== "Экспорт отменен") {
+=======
+                toast.success(message);
+            }
+            else if (message !== "Export cancelled") {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 toast.info(message);
             }
         }
         catch (error) {
             console.error("Failed to export:", error);
+<<<<<<< HEAD
             toast.error(`Ошибка экспорта: ${error}`);
+=======
+            toast.error(`Failed to export: ${error}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const getStatusIcon = (status: string) => {
@@ -98,6 +112,7 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
             skipped: "secondary",
             queued: "outline",
         };
+<<<<<<< HEAD
         const STATUS_TRANSLATIONS: Record<string, string> = {
             downloading: "Скачивание",
             completed: "Завершено",
@@ -107,6 +122,10 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         };
         return (<Badge variant={variants[status] || "outline"} className="text-xs">
       {STATUS_TRANSLATIONS[status] || status}
+=======
+        return (<Badge variant={variants[status] || "outline"} className="text-xs">
+      {status}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     </Badge>);
     };
     const formatDuration = (startTimestamp: number) => {
@@ -118,6 +137,7 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         const minutes = Math.floor((durationSeconds % 3600) / 60);
         const seconds = durationSeconds % 60;
         if (hours > 0) {
+<<<<<<< HEAD
             return `${hours}ч ${minutes}м ${seconds}с`;
         }
         else if (minutes > 0) {
@@ -125,6 +145,15 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         }
         else {
             return `${seconds}с`;
+=======
+            return `${hours}h ${minutes}m ${seconds}s`;
+        }
+        else if (minutes > 0) {
+            return `${minutes}m ${seconds}s`;
+        }
+        else {
+            return `${seconds}s`;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const [filterStatus, setFilterStatus] = useState<string>("all");
@@ -140,6 +169,7 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
     <DialogContent className="max-w-[1200px] w-[95vw] max-h-[80vh] flex flex-col p-0 gap-0 [&>button]:hidden">
       <DialogHeader className="px-6 pt-6 pb-4 border-b space-y-0">
         <div className="flex items-center justify-between mb-4">
+<<<<<<< HEAD
           <DialogTitle className="text-lg font-semibold hover:text-primary transition-colors cursor-pointer" onClick={handleReset}>Очередь загрузок</DialogTitle>
           <div className="flex items-center gap-2">
             {(queueInfo.completed_count > 0 || queueInfo.failed_count > 0 || queueInfo.skipped_count > 0) && (<Button variant="ghost" size="sm" className="h-7 text-xs gap-1.5" onClick={handleClearHistory}>
@@ -149,6 +179,17 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
             {queueInfo.failed_count > 0 && (<Button variant="ghost" size="sm" className="h-7 text-xs gap-1.5" onClick={handleExportFailed}>
               <FileDown className="h-3 w-3"/>
               Экспорт ошибок
+=======
+          <DialogTitle className="text-lg font-semibold hover:text-primary transition-colors cursor-pointer" onClick={handleReset}>Download Queue</DialogTitle>
+          <div className="flex items-center gap-2">
+            {(queueInfo.completed_count > 0 || queueInfo.failed_count > 0 || queueInfo.skipped_count > 0) && (<Button variant="ghost" size="sm" className="h-7 text-xs gap-1.5" onClick={handleClearHistory}>
+              <Trash2 className="h-3 w-3"/>
+              Clear History
+            </Button>)}
+            {queueInfo.failed_count > 0 && (<Button variant="ghost" size="sm" className="h-7 text-xs gap-1.5" onClick={handleExportFailed}>
+              <FileDown className="h-3 w-3"/>
+              Export Failures
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </Button>)}
             <Button variant="ghost" size="icon" className="h-7 w-7 rounded-full hover:bg-muted" onClick={onClose}>
               <X className="h-4 w-4"/>
@@ -160,22 +201,38 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         <div className="flex items-center gap-4 text-sm">
           <div className={`flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-all select-none ${filterStatus === 'queued' ? 'bg-secondary px-2 py-0.5 rounded-md ring-1 ring-border' : ''}`} onClick={() => toggleFilter('queued')}>
             <Clock className="h-3.5 w-3.5 text-muted-foreground"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">В очереди:</span>
+=======
+            <span className="text-muted-foreground">Queued:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold">{queueInfo.queued_count}</span>
           </div>
           <div className={`flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-all select-none ${filterStatus === 'completed' ? 'bg-green-500/10 px-2 py-0.5 rounded-md ring-1 ring-green-500/20' : ''}`} onClick={() => toggleFilter('completed')}>
             <CheckCircle2 className="h-3.5 w-3.5 text-green-500"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">Завершено:</span>
+=======
+            <span className="text-muted-foreground">Completed:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold">{queueInfo.completed_count}</span>
           </div>
           <div className={`flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-all select-none ${filterStatus === 'skipped' ? 'bg-yellow-500/10 px-2 py-0.5 rounded-md ring-1 ring-yellow-500/20' : ''}`} onClick={() => toggleFilter('skipped')}>
             <FileCheck className="h-3.5 w-3.5 text-yellow-500"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">Пропущено:</span>
+=======
+            <span className="text-muted-foreground">Skipped:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold">{queueInfo.skipped_count}</span>
           </div>
           <div className={`flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-all select-none ${filterStatus === 'failed' ? 'bg-red-500/10 px-2 py-0.5 rounded-md ring-1 ring-red-500/20' : ''}`} onClick={() => toggleFilter('failed')}>
             <XCircle className="h-3.5 w-3.5 text-red-500"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">Ошибки:</span>
+=======
+            <span className="text-muted-foreground">Failed:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold">{queueInfo.failed_count}</span>
           </div>
         </div>
@@ -184,14 +241,22 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         <div className="flex items-center gap-4 text-sm pt-3 mt-3 border-t">
           <div className="flex items-center gap-1.5">
             <HardDrive className="h-3.5 w-3.5 text-muted-foreground"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">Скачано:</span>
+=======
+            <span className="text-muted-foreground">Downloaded:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold font-mono">
               {queueInfo.total_downloaded > 0 ? `${queueInfo.total_downloaded.toFixed(2)} MB` : "0.00 MB"}
             </span>
           </div>
           <div className="flex items-center gap-1.5">
             <Zap className="h-3.5 w-3.5 text-muted-foreground"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">Скорость:</span>
+=======
+            <span className="text-muted-foreground">Speed:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold font-mono">
               {queueInfo.current_speed > 0 && queueInfo.is_downloading
             ? `${queueInfo.current_speed.toFixed(2)} MB/s`
@@ -200,7 +265,11 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
           </div>
           <div className="flex items-center gap-1.5">
             <Timer className="h-3.5 w-3.5 text-muted-foreground"/>
+<<<<<<< HEAD
             <span className="text-muted-foreground">Время:</span>
+=======
+            <span className="text-muted-foreground">Duration:</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <span className="font-semibold font-mono">
               {queueInfo.session_start_time > 0 ? formatDuration(queueInfo.session_start_time) : "—"}
             </span>
@@ -214,10 +283,17 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
         <div className="space-y-2 py-4">
           {queueInfo.queue.length === 0 ? (<div className="text-center py-12 text-muted-foreground">
             <Download className="h-12 w-12 mx-auto mb-3 opacity-20"/>
+<<<<<<< HEAD
             <p>Очередь загрузок пуста</p>
           </div>) : filteredQueue.length === 0 ? (<div className="text-center py-12 text-muted-foreground">
              <p>Нет загрузок со статусом "{filterStatus === "downloading" ? "Скачивание" : filterStatus === "completed" ? "Завершено" : filterStatus === "failed" ? "Ошибка" : filterStatus === "skipped" ? "Пропущено" : filterStatus === "queued" ? "В очереди" : filterStatus}"</p>
              <Button variant="link" onClick={() => setFilterStatus("all")}>Сбросить фильтр</Button>
+=======
+            <p>No downloads in queue</p>
+          </div>) : filteredQueue.length === 0 ? (<div className="text-center py-12 text-muted-foreground">
+             <p>No downloads with status "{filterStatus}"</p>
+             <Button variant="link" onClick={() => setFilterStatus("all")}>Clear filter</Button>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </div>) : (filteredQueue.map((item: any) => (<div key={item.id} className="border rounded-lg p-3 hover:bg-muted/30 transition-colors">
             <div className="flex items-start gap-3">
               <div className="mt-1">{getStatusIcon(item.status)}</div>
@@ -240,8 +316,13 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
                     {item.progress > 0
                     ? `${item.progress.toFixed(2)} MB`
                     : queueInfo.is_downloading && queueInfo.current_speed > 0
+<<<<<<< HEAD
                         ? "Скачивание..."
                         : "Запуск..."}
+=======
+                        ? "Downloading..."
+                        : "Starting..."}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </span>
                   <span>
                     {item.speed > 0
@@ -259,7 +340,11 @@ export function DownloadQueue({ isOpen, onClose }: DownloadQueueProps) {
 
 
                 {item.status === "skipped" && (<div className="mt-1.5 text-xs text-muted-foreground">
+<<<<<<< HEAD
                   Файл уже существует
+=======
+                  File already exists
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </div>)}
 
 

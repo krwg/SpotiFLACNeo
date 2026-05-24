@@ -76,18 +76,30 @@ jobs:
 
       - name: Compress with UPX
         run: |
+<<<<<<< HEAD
           upx --best --lzma "build\bin\SpotiFLACNeo.exe"
+=======
+          upx --best --lzma "build\bin\SpotiFLAC.exe"
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
       - name: Prepare artifacts
         run: |
           mkdir -p dist
+<<<<<<< HEAD
           Copy-Item -Path "build\bin\SpotiFLACNeo.exe" -Destination "dist\SpotiFLACNeo.exe"
+=======
+          Copy-Item -Path "build\bin\SpotiFLAC.exe" -Destination "dist\SpotiFLAC.exe"
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: windows-portable
+<<<<<<< HEAD
           path: dist/SpotiFLACNeo.exe
+=======
+          path: dist/SpotiFLAC.exe
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           retention-days: 7
 
   build-macos:
@@ -155,6 +167,7 @@ jobs:
 
           # Create DMG
           create-dmg \
+<<<<<<< HEAD
             --volname "SpotiFLACNeo" \
             --window-pos 200 120 \
             --window-size 600 400 \
@@ -166,12 +179,29 @@ jobs:
             "build/bin/SpotiFLACNeo.app" || \
           # Fallback to hdiutil if create-dmg fails
           hdiutil create -volname SpotiFLACNeo -srcfolder build/bin/SpotiFLACNeo.app -ov -format UDZO dist/SpotiFLACNeo.dmg
+=======
+            --volname "SpotiFLAC" \
+            --window-pos 200 120 \
+            --window-size 600 400 \
+            --icon-size 100 \
+            --icon "SpotiFLAC.app" 175 120 \
+            --hide-extension "SpotiFLAC.app" \
+            --app-drop-link 425 120 \
+            "dist/SpotiFLAC.dmg" \
+            "build/bin/SpotiFLAC.app" || \
+          # Fallback to hdiutil if create-dmg fails
+          hdiutil create -volname SpotiFLAC -srcfolder build/bin/SpotiFLAC.app -ov -format UDZO dist/SpotiFLAC.dmg
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: macos-portable
+<<<<<<< HEAD
           path: dist/SpotiFLACNeo.dmg
+=======
+          path: dist/SpotiFLAC.dmg
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           retention-days: 7
 
   build-linux:
@@ -185,7 +215,11 @@ jobs:
             runner: ubuntu-24.04
             wails_platform: linux/amd64
             artifact_name: linux-portable
+<<<<<<< HEAD
             output_name: SpotiFLACNeo.AppImage
+=======
+            output_name: SpotiFLAC.AppImage
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             appimage_arch: x86_64
             appimagetool_arch: x86_64
             pkgconfig_dir: /usr/lib/x86_64-linux-gnu/pkgconfig
@@ -193,7 +227,11 @@ jobs:
             runner: ubuntu-24.04-arm
             wails_platform: linux/arm64
             artifact_name: linux-portable-arm
+<<<<<<< HEAD
             output_name: SpotiFLACNeo-ARM.AppImage
+=======
+            output_name: SpotiFLAC-ARM.AppImage
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             appimage_arch: aarch64
             appimagetool_arch: aarch64
             pkgconfig_dir: /usr/lib/aarch64-linux-gnu/pkgconfig
@@ -261,7 +299,11 @@ jobs:
 
       - name: Compress with UPX
         run: |
+<<<<<<< HEAD
           upx --best --lzma build/bin/SpotiFLACNeo
+=======
+          upx --best --lzma build/bin/SpotiFLAC
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
       - name: Cache appimagetool
         id: cache-appimagetool
@@ -286,13 +328,22 @@ jobs:
           mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
 
           # Copy binary
+<<<<<<< HEAD
           cp build/bin/SpotiFLACNeo AppDir/usr/bin/
+=======
+          cp build/bin/SpotiFLAC AppDir/usr/bin/
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
           # Create desktop file
           cat > AppDir/spotiflac.desktop << 'EOF'
           [Desktop Entry]
+<<<<<<< HEAD
           Name=SpotiFLACNeo
           Exec=SpotiFLACNeo
+=======
+          Name=SpotiFLAC
+          Exec=SpotiFLAC
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           Icon=spotiflac
           Type=Application
           Categories=Audio;AudioVideo;
@@ -323,7 +374,11 @@ jobs:
           HERE=${SELF%/*}
           export PATH="${HERE}/usr/bin/:${PATH}"
           export LD_LIBRARY_PATH="${HERE}/usr/lib/:${LD_LIBRARY_PATH}"
+<<<<<<< HEAD
           exec "${HERE}/usr/bin/SpotiFLACNeo" "$@"
+=======
+          exec "${HERE}/usr/bin/SpotiFLAC" "$@"
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           EOF
           chmod +x AppDir/AppRun
 
@@ -374,10 +429,17 @@ jobs:
 
             ## Downloads
 
+<<<<<<< HEAD
             - `SpotiFLACNeo.exe` - Windows
             - `SpotiFLACNeo.dmg` - macOS
             - `SpotiFLACNeo.AppImage` - Linux AMD64
             - `SpotiFLACNeo-ARM.AppImage` - Linux ARM64
+=======
+            - `SpotiFLAC.exe` - Windows
+            - `SpotiFLAC.dmg` - macOS
+            - `SpotiFLAC.AppImage` - Linux AMD64
+            - `SpotiFLAC-ARM.AppImage` - Linux ARM64
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
             <details>
             <summary><b>Linux Requirements</b></summary>
@@ -401,21 +463,38 @@ jobs:
 
             After installing the dependency, make the AppImage executable:
             ```bash
+<<<<<<< HEAD
             chmod +x SpotiFLACNeo.AppImage
             ./SpotiFLACNeo.AppImage
+=======
+            chmod +x SpotiFLAC.AppImage
+            ./SpotiFLAC.AppImage
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             ```
 
             For ARM64:
             ```bash
+<<<<<<< HEAD
             chmod +x SpotiFLACNeo-ARM.AppImage
             ./SpotiFLACNeo-ARM.AppImage
+=======
+            chmod +x SpotiFLAC-ARM.AppImage
+            ./SpotiFLAC-ARM.AppImage
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             ```
 
             </details>
           files: |
+<<<<<<< HEAD
             artifacts/windows-portable/SpotiFLACNeo.exe
             artifacts/macos-portable/SpotiFLACNeo.dmg
             artifacts/linux-portable/SpotiFLACNeo.AppImage
             artifacts/linux-portable-arm/SpotiFLACNeo-ARM.AppImage
+=======
+            artifacts/windows-portable/SpotiFLAC.exe
+            artifacts/macos-portable/SpotiFLAC.dmg
+            artifacts/linux-portable/SpotiFLAC.AppImage
+            artifacts/linux-portable-arm/SpotiFLAC-ARM.AppImage
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -180,7 +180,11 @@ func queryMusicBrainzRecordings(client *http.Client, query string) (*MusicBrainz
 		return nil, err
 	}
 
+<<<<<<< HEAD
 	req.Header.Set("User-Agent", fmt.Sprintf("SpotiFLACNeo/%s ( support@spotbye.qzz.io )", AppVersion))
+=======
+	req.Header.Set("User-Agent", fmt.Sprintf("SpotiFLAC/%s ( support@spotbye.qzz.io )", AppVersion))
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 	req.Header.Set("Accept", "application/json")
 
 	var lastErr error

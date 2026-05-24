@@ -98,7 +98,11 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="space-y-1">
               <div>
+<<<<<<< HEAD
                 <p className="text-xs text-muted-foreground">Альбом</p>
+=======
+                <p className="text-xs text-muted-foreground">Album</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <p className="font-medium truncate">{hasAlbumClick ? (<span className="cursor-pointer hover:underline" onClick={() => onAlbumClick?.({
                 id: track.album_id!,
                 name: track.album_name,
@@ -108,17 +112,29 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
                   </span>) : (track.album_name)}</p>
               </div>
               {track.plays && (<div>
+<<<<<<< HEAD
                 <p className="text-xs text-muted-foreground">Прослушиваний</p>
+=======
+                <p className="text-xs text-muted-foreground">Total Plays</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <p className="font-medium">{formatPlays(track.plays)}</p>
               </div>)}
             </div>
             <div className="space-y-1">
               <div>
+<<<<<<< HEAD
                 <p className="text-xs text-muted-foreground">Дата выпуска</p>
                 <p className="font-medium">{track.release_date}</p>
               </div>
               {track.copyright && (<div>
                 <p className="text-xs text-muted-foreground">Авторские права</p>
+=======
+                <p className="text-xs text-muted-foreground">Release Date</p>
+                <p className="font-medium">{track.release_date}</p>
+              </div>
+              {track.copyright && (<div>
+                <p className="text-xs text-muted-foreground">Copyright</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <p className="font-medium truncate" title={track.copyright}>
                   {track.copyright}
                 </p>
@@ -129,7 +145,11 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
             <Button onClick={() => onDownload(track.spotify_id || "", track.name, track.artists, track.album_name, track.spotify_id, undefined, track.duration_ms, track.track_number, track.album_artist, track.release_date, track.images, track.track_number, track.disc_number, track.total_tracks, track.total_discs, track.copyright, track.publisher)} disabled={isDownloading || downloadingTrack === track.spotify_id}>
               {downloadingTrack === track.spotify_id ? (<Spinner />) : (<>
                 <Download className="h-4 w-4"/>
+<<<<<<< HEAD
                 Скачать
+=======
+                Download
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </>)}
             </Button>
             {track.spotify_id && (<Tooltip>
@@ -139,7 +159,11 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
+<<<<<<< HEAD
                 <p>{playingTrack === track.spotify_id ? "Остановить предпросмотр" : "Слушать предпросмотр"}</p>
+=======
+                <p>{playingTrack === track.spotify_id ? "Stop Preview" : "Play Preview"}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </TooltipContent>
             </Tooltip>)}
             {track.spotify_id && onDownloadLyrics && (<Tooltip>
@@ -149,7 +173,11 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
+<<<<<<< HEAD
                 <p>Скачать текст отдельно</p>
+=======
+                <p>Download Separate Lyric</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </TooltipContent>
             </Tooltip>)}
             {track.images && onDownloadCover && (<Tooltip>
@@ -159,7 +187,11 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
+<<<<<<< HEAD
                 <p>Скачать обложку отдельно</p>
+=======
+                <p>Download Separate Cover</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </TooltipContent>
             </Tooltip>)}
             {track.spotify_id && onCheckAvailability && (<Tooltip>
@@ -179,7 +211,11 @@ export function TrackInfo({ track, isDownloading, downloadingTrack, isDownloaded
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
+<<<<<<< HEAD
                 <p>Открыть папку</p>
+=======
+                <p>Open Folder</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </TooltipContent>
             </Tooltip>)}
           </div>)}

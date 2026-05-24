@@ -34,7 +34,11 @@ func main() {
 	app := NewApp()
 
 	err := wails.Run(&options.App{
+<<<<<<< HEAD
 		Title:     "SpotiFLACNeo",
+=======
+		Title:     "SpotiFLAC",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 		Width:     1024,
 		Height:    600,
 		MinWidth:  1024,

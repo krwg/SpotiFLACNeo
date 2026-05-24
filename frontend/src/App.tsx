@@ -24,15 +24,25 @@ import { AudioResamplerPage } from "@/components/AudioResamplerPage";
 import { FileManagerPage } from "@/components/FileManagerPage";
 import { SettingsPage } from "@/components/SettingsPage";
 import { DebugLoggerPage } from "@/components/DebugLoggerPage";
+<<<<<<< HEAD
 import { AboutPage } from "@/components/AboutPage";
 import { HistoryPage } from "@/components/HistoryPage";
+=======
+import { OtherProjects } from "@/components/OtherProjects";
+import { HistoryPage } from "@/components/HistoryPage";
+import { SupportPage } from "@/components/SupportPage";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 import type { HistoryItem } from "@/components/FetchHistory";
 import { useDownload } from "@/hooks/useDownload";
 import { useMetadata } from "@/hooks/useMetadata";
 import { useLyrics } from "@/hooks/useLyrics";
 import { useCover } from "@/hooks/useCover";
 import { useAvailability } from "@/hooks/useAvailability";
+<<<<<<< HEAD
 import { ensureSpotiFLACNextStatusCheckStarted } from "@/lib/api-status";
+=======
+import { ensureApiStatusCheckStarted } from "@/lib/api-status";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 import { useDownloadQueueDialog } from "@/hooks/useDownloadQueueDialog";
 import { useDownloadProgress } from "@/hooks/useDownloadProgress";
 import { buildPlaylistFolderName } from "@/lib/playlist";
@@ -198,7 +208,11 @@ function App() {
         };
         mediaQuery.addEventListener("change", handleChange);
         checkForUpdates();
+<<<<<<< HEAD
         ensureSpotiFLACNextStatusCheckStarted();
+=======
+        ensureApiStatusCheckStarted();
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         void loadHistory();
         return () => {
             mediaQuery.removeEventListener("change", handleChange);
@@ -237,7 +251,11 @@ function App() {
     }, [metadata.metadata]);
     const checkForUpdates = async () => {
         try {
+<<<<<<< HEAD
             const response = await fetch("https://api.github.com/repos/krwg/SpotiFLACNeo/releases/latest");
+=======
+            const response = await fetch("https://api.github.com/repos/afkarxyz/SpotiFLAC/releases/latest");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             const data = await response.json();
             const latestVersion = data.tag_name?.replace(/^v/, "") || "";
             if (data.published_at) {
@@ -295,16 +313,28 @@ function App() {
             EventsOff("ffmpeg:progress");
             EventsOff("ffmpeg:status");
             if (response.success) {
+<<<<<<< HEAD
                 toast.success("FFmpeg успешно установлен!");
                 setIsFFmpegInstalled(true);
             }
             else {
                 toast.error(`Не удалось установить FFmpeg: ${response.error}`);
+=======
+                toast.success("FFmpeg installed successfully!");
+                setIsFFmpegInstalled(true);
+            }
+            else {
+                toast.error(`Failed to install FFmpeg: ${response.error}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
         }
         catch (error) {
             console.error("Error installing FFmpeg:", error);
+<<<<<<< HEAD
             toast.error(`Ошибка при установке FFmpeg: ${error}`);
+=======
+            toast.error(`Error during FFmpeg installation: ${error}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setIsInstallingFFmpeg(false);
@@ -370,7 +400,11 @@ function App() {
                 url: spotifyUrl,
                 type: "album",
                 name: album_info.name,
+<<<<<<< HEAD
                 artist: `${album_info.total_tracks.toLocaleString()} треков`,
+=======
+                artist: `${album_info.total_tracks.toLocaleString()} tracks`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 image: album_info.images,
             };
         }
@@ -380,7 +414,11 @@ function App() {
                 url: spotifyUrl,
                 type: "playlist",
                 name: playlist_info.owner.name,
+<<<<<<< HEAD
                 artist: `${playlist_info.tracks.total.toLocaleString()} треков`,
+=======
+                artist: `${playlist_info.tracks.total.toLocaleString()} tracks`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 image: playlist_info.cover || playlist_info.owner.images || "",
             };
         }
@@ -390,7 +428,11 @@ function App() {
                 url: spotifyUrl,
                 type: "artist",
                 name: artist_info.name,
+<<<<<<< HEAD
                 artist: `${artist_info.total_albums.toLocaleString()} альбомов`,
+=======
+                artist: `${artist_info.total_albums.toLocaleString()} albums`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 image: artist_info.images,
             };
         }
@@ -420,7 +462,11 @@ function App() {
     const handleOpenFolder = async () => {
         const settings = getSettings();
         if (!settings.downloadPath) {
+<<<<<<< HEAD
             toast.error("Путь для загрузки не установлен");
+=======
+            toast.error("Download path not set");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         try {
@@ -428,7 +474,11 @@ function App() {
         }
         catch (error) {
             console.error("Error opening folder:", error);
+<<<<<<< HEAD
             toast.error(`Ошибка при открытии папки: ${error}`);
+=======
+            toast.error(`Error opening folder: ${error}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const renderMetadata = () => {
@@ -528,8 +578,15 @@ function App() {
                 return <SettingsPage onUnsavedChangesChange={setHasUnsavedSettings} onResetRequest={setResetSettingsFn}/>;
             case "debug":
                 return <DebugLoggerPage />;
+<<<<<<< HEAD
             case "about":
                 return <AboutPage />;
+=======
+            case "projects":
+                return <OtherProjects />;
+            case "support":
+                return <SupportPage />;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             case "history":
                 return <HistoryPage onHistorySelect={(cachedData) => {
                         metadata.loadFromCache(cachedData);
@@ -557,16 +614,26 @@ function App() {
                                     <X className="h-4 w-4"/>
                                 </Button>
                             </div>
+<<<<<<< HEAD
                             <DialogTitle className="text-sm font-medium">Получить альбом</DialogTitle>
                             <DialogDescription>
                                 Вы точно хотите получить метаданные для этого альбома?
+=======
+                            <DialogTitle className="text-sm font-medium">Fetch Album</DialogTitle>
+                            <DialogDescription>
+                                Do you want to fetch metadata for this album?
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </DialogDescription>
                             {metadata.selectedAlbum && (<div className="py-2">
                                 <p className="font-medium bg-muted/50 rounded-md px-3 py-2">{metadata.selectedAlbum.name}</p>
                             </div>)}
                             <DialogFooter>
                                 <Button variant="outline" onClick={() => metadata.setShowAlbumDialog(false)}>
+<<<<<<< HEAD
                                     Отмена
+=======
+                                    Cancel
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </Button>
                                 <Button onClick={async () => {
                         const pendingAlbumUrl = metadata.selectedAlbum?.external_urls;
@@ -579,7 +646,11 @@ function App() {
                         }
                     }}>
                                     <Search className="h-4 w-4"/>
+<<<<<<< HEAD
                                     Искать альбом
+=======
+                                    Fetch Album
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </Button>
                             </DialogFooter>
                         </DialogContent>
@@ -618,25 +689,44 @@ function App() {
             <DownloadQueue isOpen={downloadQueue.isOpen} onClose={downloadQueue.closeQueue}/>
 
 
+<<<<<<< HEAD
             {showScrollTop && (<Button onClick={scrollToTop} className="fixed bottom-6 right-6 z-50 h-11 w-11 rounded-full shadow-lg glass-panel border border-border/60" size="icon">
+=======
+            {showScrollTop && (<Button onClick={scrollToTop} className="fixed bottom-6 right-6 z-50 h-10 w-10 rounded-full shadow-lg" size="icon">
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <ArrowUp className="h-5 w-5"/>
             </Button>)}
 
 
             <Dialog open={showUnsavedChangesDialog} onOpenChange={setShowUnsavedChangesDialog}>
+<<<<<<< HEAD
                 <DialogContent className="sm:max-w-[425px] [&>button]:hidden">
                     <DialogHeader>
                         <DialogTitle>Несохраненные изменения</DialogTitle>
                         <DialogDescription>
                             У вас есть несохраненные изменения в Настройках. Вы уверены, что хотите выйти? Все изменения будут потеряны.
+=======
+                <DialogContent className="sm:max-w-106.25 [&>button]:hidden">
+                    <DialogHeader>
+                        <DialogTitle>Unsaved Changes</DialogTitle>
+                        <DialogDescription>
+                            You have unsaved changes in Settings. Are you sure you want to leave? Your changes will be lost.
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
                         <Button variant="outline" onClick={handleCancelNavigation}>
+<<<<<<< HEAD
                             Отмена
                         </Button>
                         <Button variant="destructive" onClick={handleDiscardChanges}>
                             Сбросить изменения
+=======
+                            Cancel
+                        </Button>
+                        <Button variant="destructive" onClick={handleDiscardChanges}>
+                            Discard Changes
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -645,6 +735,7 @@ function App() {
             <Dialog open={metadata.showVpnAdviceDialog} onOpenChange={metadata.setShowVpnAdviceDialog}>
                 <DialogContent className="max-w-md [&>button]:hidden">
                     <DialogHeader>
+<<<<<<< HEAD
                         <DialogTitle>Ошибка получения</DialogTitle>
                         <DialogDescription className="space-y-3">
                             <span className="block">
@@ -659,18 +750,39 @@ function App() {
                             <span className="block">
                                 Если вы уже используете VPN, попробуйте переключиться на другой 
                                 сервер и повторите запрос.
+=======
+                        <DialogTitle>Fetch Failed</DialogTitle>
+                        <DialogDescription className="space-y-3">
+                            <span className="block">
+                                Metadata fetch failed. Try using a high-quality VPN such as
+                                Surfshark, ExpressVPN, Proton VPN, or a similar service.
+                            </span>
+                            <span className="block">
+                                Choose a location that is not blocked by Spotify or the
+                                related service, such as the USA, UK, Germany, Netherlands,
+                                or Singapore.
+                            </span>
+                            <span className="block">
+                                If you are already using a VPN, try switching to another
+                                server and fetch again.
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </span>
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
                         <Button onClick={() => metadata.setShowVpnAdviceDialog(false)}>
+<<<<<<< HEAD
                             Закрыть
+=======
+                            Close
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
 
             <Dialog open={isFFmpegInstalled === false} onOpenChange={() => { }}>
+<<<<<<< HEAD
                 <DialogContent className="max-w-[450px] [&>button]:hidden p-6 gap-5">
                     <DialogHeader className="space-y-2">
                         <DialogTitle className="text-lg font-bold tracking-tight">
@@ -680,6 +792,17 @@ function App() {
                             SpotiFLACNeo сначала проверяет вашу систему на наличие FFmpeg и FFprobe.
                             Если их найти не удастся, необходимые файлы будут скачаны с GitHub.
                             Установка скачает примерно <span className="text-foreground font-semibold">30-40MB</span> данных.
+=======
+                <DialogContent className="max-w-112.5 [&>button]:hidden p-6 gap-5">
+                    <DialogHeader className="space-y-2">
+                        <DialogTitle className="text-lg font-bold tracking-tight">
+                            FFmpeg Required
+                        </DialogTitle>
+                        <DialogDescription className="text-sm text-foreground/70 leading-relaxed font-normal">
+                            SpotiFLAC checks your system for FFmpeg and FFprobe first.
+                            If they are not available, the required binaries will be downloaded from GitHub.
+                            This setup downloads about <span className="text-foreground font-semibold">30-40MB</span> of data.
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </DialogDescription>
                     </DialogHeader>
 
@@ -687,6 +810,7 @@ function App() {
                             {ffmpegInstallStatus === "extracting" ? (<div className="flex flex-col items-center justify-center py-2 animate-in fade-in duration-500">
                                     <div className="flex items-center gap-3">
                                         <div className="h-4 w-4 border-2 border-primary border-t-transparent rounded-full animate-spin"/>
+<<<<<<< HEAD
                                         <span className="text-sm font-bold tracking-tight">Извлечение...</span>
                                     </div>
                                     <span className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold mt-2">Завершение установки</span>
@@ -694,6 +818,15 @@ function App() {
                                     <div className="flex justify-between text-[11px] font-bold">
                                         <div className="flex flex-col gap-0.5">
                                             <span className="text-muted-foreground uppercase tracking-wider">Загрузка...</span>
+=======
+                                        <span className="text-sm font-bold tracking-tight">Extracting...</span>
+                                    </div>
+                                    <span className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-bold mt-2">Finalizing setup</span>
+                                </div>) : (<div className="space-y-3">
+                                    <div className="flex justify-between text-[11px] font-bold">
+                                        <div className="flex flex-col gap-0.5">
+                                            <span className="text-muted-foreground uppercase tracking-wider">Downloading...</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                             {downloadProgress.is_downloading && downloadProgress.mb_downloaded > 0 && (<span className="text-primary font-mono tabular-nums">
                                                     {downloadProgress.mb_downloaded.toFixed(1)}MB
                                                     {downloadProgress.speed_mbps > 0 && ` @ ${downloadProgress.speed_mbps.toFixed(1)}MB/s`}
@@ -709,10 +842,17 @@ function App() {
 
                     <DialogFooter className="flex-row gap-3 pt-2">
                         {!isInstallingFFmpeg && (<Button variant="outline" className="flex-1 h-11 text-sm font-bold transition-colors" onClick={() => Quit()}>
+<<<<<<< HEAD
                                 Выйти
                             </Button>)}
                         <Button className={`${isInstallingFFmpeg ? 'w-full' : 'flex-1'} h-11 text-sm font-bold shadow-lg shadow-primary/10`} onClick={handleInstallFFmpeg} disabled={isInstallingFFmpeg}>
                                 {isInstallingFFmpeg ? "Установка..." : "Установить сейчас"}
+=======
+                                Exit
+                            </Button>)}
+                        <Button className={`${isInstallingFFmpeg ? 'w-full' : 'flex-1'} h-11 text-sm font-bold shadow-lg shadow-primary/10`} onClick={handleInstallFFmpeg} disabled={isInstallingFFmpeg}>
+                                {isInstallingFFmpeg ? "Installing..." : "Install now"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </Button>
                     </DialogFooter>
                 </DialogContent>

@@ -154,8 +154,13 @@ export function AudioResamplerPage() {
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка выбора файлов", {
                 description: err instanceof Error ? err.message : "Не удалось выбрать файлы",
+=======
+            toast.error("File Selection Failed", {
+                description: err instanceof Error ? err.message : "Failed to select files",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
     };
@@ -168,15 +173,25 @@ export function AudioResamplerPage() {
                     addFiles(folderFiles.map((f) => f.path));
                 }
                 else {
+<<<<<<< HEAD
                     toast.info("Аудиофайлы не найдены", {
                         description: "Файлы FLAC не найдены в выбранной папке.",
+=======
+                    toast.info("No audio files found", {
+                        description: "No FLAC files found in the selected folder.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     });
                 }
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка выбора папки", {
                 description: err instanceof Error ? err.message : "Не удалось выбрать папку",
+=======
+            toast.error("Folder Selection Failed", {
+                description: err instanceof Error ? err.message : "Failed to select folder",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
     };
@@ -187,8 +202,13 @@ export function AudioResamplerPage() {
             return !validExtensions.includes(ext);
         });
         if (invalidFiles.length > 0) {
+<<<<<<< HEAD
             toast.error("Неподдерживаемый формат", {
                 description: "Только файлы FLAC поддерживаются для изменения частоты дискретизации.",
+=======
+            toast.error("Unsupported format", {
+                description: "Only FLAC files are supported for resampling.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
         const GetFileSizes = (files: string[]): Promise<Record<string, number>> => (window as any)["go"]["main"]["App"]["GetFileSizes"](files);
@@ -216,15 +236,25 @@ export function AudioResamplerPage() {
             if (newFiles.length > 0) {
                 if (paths.length > newFiles.length + invalidFiles.length) {
                     const skipped = paths.length - newFiles.length - invalidFiles.length;
+<<<<<<< HEAD
                     toast.info("Некоторые файлы пропущены", {
                         description: `${skipped} файл(ов) уже добавлены`,
+=======
+                    toast.info("Some files skipped", {
+                        description: `${skipped} file(s) were already added`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     });
                 }
                 return [...prev, ...newFiles];
             }
             if (validPaths.length > 0 && newFiles.length === 0) {
+<<<<<<< HEAD
                 toast.info("Новые файлы не добавлены", {
                     description: "Все подходящие файлы уже добавлены",
+=======
+                toast.info("No new files added", {
+                    description: "All valid files were already added",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
             }
             return prev;
@@ -257,8 +287,13 @@ export function AudioResamplerPage() {
     };
     const handleResample = async () => {
         if (files.length === 0) {
+<<<<<<< HEAD
             toast.error("Файлы не выбраны", {
                 description: "Пожалуйста, добавьте файлы FLAC для изменения частоты дискретизации",
+=======
+            toast.error("No files selected", {
+                description: "Please add FLAC files to resample",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
@@ -291,6 +326,7 @@ export function AudioResamplerPage() {
             const successCount = results.filter((r: any) => r.success).length;
             const failCount = results.filter((r: any) => !r.success).length;
             if (successCount > 0) {
+<<<<<<< HEAD
                 toast.success("Изменение частоты дискретизации завершено", {
                     description: `Успешно изменена частота дискретизации для ${successCount} файл(ов)${failCount > 0 ? `, ${failCount} с ошибкой` : ""}`,
                 });
@@ -298,14 +334,30 @@ export function AudioResamplerPage() {
             else if (failCount > 0) {
                 toast.error("Ошибка изменения частоты дискретизации", {
                     description: `Для всех ${failCount} файл(ов) не удалось изменить частоту дискретизации`,
+=======
+                toast.success("Resampling Complete", {
+                    description: `Successfully resampled ${successCount} file(s)${failCount > 0 ? `, ${failCount} failed` : ""}`,
+                });
+            }
+            else if (failCount > 0) {
+                toast.error("Resampling Failed", {
+                    description: `All ${failCount} file(s) failed to resample`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка изменения частоты дискретизации", {
                 description: err instanceof Error ? err.message : "Неизвестная ошибка",
             });
             setFiles((prev) => prev.map((f) => ({ ...f, status: "error" as const, error: "Не удалось изменить частоту дискретизации" })));
+=======
+            toast.error("Resampling Error", {
+                description: err instanceof Error ? err.message : "Unknown error",
+            });
+            setFiles((prev) => prev.map((f) => ({ ...f, status: "error" as const, error: "Resampling failed" })));
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setResampling(false);
@@ -328,6 +380,7 @@ export function AudioResamplerPage() {
     return (<div className={`space-y-6 ${isFullscreen ? "h-full flex flex-col" : ""}`}>
 
         <div className="flex items-center justify-between">
+<<<<<<< HEAD
             <h1 className="text-2xl font-bold">Аудио Ресемплер</h1>
             {files.length > 0 && (<div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={handleSelectFiles}>
@@ -341,6 +394,21 @@ export function AudioResamplerPage() {
                 <Button variant="outline" size="sm" onClick={clearFiles} disabled={resampling}>
                     <Trash2 className="h-4 w-4"/>
                     Очистить всё
+=======
+            <h1 className="text-2xl font-bold">Audio Resampler</h1>
+            {files.length > 0 && (<div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={handleSelectFiles}>
+                    <Upload className="h-4 w-4"/>
+                    Add Files
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleSelectFolder}>
+                    <Upload className="h-4 w-4"/>
+                    Add Folder
+                </Button>
+                <Button variant="outline" size="sm" onClick={clearFiles} disabled={resampling}>
+                    <Trash2 className="h-4 w-4"/>
+                    Clear All
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </Button>
             </div>)}
         </div>
@@ -363,12 +431,18 @@ export function AudioResamplerPage() {
                 </div>
                 <p className="text-sm text-muted-foreground mb-4 text-center">
                     {isDragging
+<<<<<<< HEAD
                 ? "Поместите сюда аудиофайлы"
                 : "Перетащите сюда аудиофайлы или нажмите кнопку ниже для выбора"}
+=======
+                ? "Drop your audio files here"
+                : "Drag and drop audio files here, or click the button below to select"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </p>
                 <div className="flex gap-3">
                     <Button onClick={handleSelectFiles} size="lg">
                         <Upload className="h-5 w-5"/>
+<<<<<<< HEAD
                         Выбрать файлы
                     </Button>
                     <Button onClick={handleSelectFolder} size="lg" variant="outline">
@@ -378,12 +452,27 @@ export function AudioResamplerPage() {
                 </div>
                 <p className="text-xs text-muted-foreground mt-4 text-center">
                     Поддерживаемый формат: FLAC
+=======
+                        Select Files
+                    </Button>
+                    <Button onClick={handleSelectFolder} size="lg" variant="outline">
+                        <Upload className="h-5 w-5"/>
+                        Select Folder
+                    </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4 text-center">
+                    Supported format: FLAC
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </p>
             </>) : (<div className="w-full h-full p-6 space-y-4 flex flex-col">
                 <div className="space-y-2 pb-4 border-b shrink-0">
                     <div className="flex flex-wrap items-center gap-4">
                         <div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <Label className="whitespace-nowrap">Битность:</Label>
+=======
+                            <Label className="whitespace-nowrap">Bit Depth:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             <ToggleGroup type="single" variant="outline" value={bitDepth} onValueChange={(value) => {
                 if (value)
                     setBitDepth(value);
@@ -395,7 +484,11 @@ export function AudioResamplerPage() {
                         </div>
 
                         <div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <Label className="whitespace-nowrap">Частота дискретизации:</Label>
+=======
+                            <Label className="whitespace-nowrap">Sample Rate:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             <ToggleGroup type="single" variant="outline" value={sampleRate} onValueChange={(value) => {
                 if (value)
                     setSampleRate(value);
@@ -410,7 +503,11 @@ export function AudioResamplerPage() {
 
                 <div className="flex items-center justify-between shrink-0">
                     <div className="text-sm text-muted-foreground">
+<<<<<<< HEAD
                         {files.length} файл(ов) • {successCount} изменены
+=======
+                        {files.length} file(s) • {successCount} resampled
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </div>
                 </div>
 
@@ -431,10 +528,17 @@ export function AudioResamplerPage() {
                                             </p>)}
                                     </div>
 
+<<<<<<< HEAD
                                         {srcSpec ? (<span className="text-xs font-medium text-primary bg-primary/10 rounded px-1.5 py-0.5 whitespace-nowrap shrink-0">
                                             {srcSpec}
                                         </span>) : file.status === "pending" ? (<span className="text-xs text-muted-foreground/50 whitespace-nowrap shrink-0">
                                             чтение...
+=======
+                                    {srcSpec ? (<span className="text-xs font-medium text-primary bg-primary/10 rounded px-1.5 py-0.5 whitespace-nowrap shrink-0">
+                                            {srcSpec}
+                                        </span>) : file.status === "pending" ? (<span className="text-xs text-muted-foreground/50 whitespace-nowrap shrink-0">
+                                            reading...
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                         </span>) : null}
 
                                     <span className="text-xs text-muted-foreground shrink-0">
@@ -454,11 +558,19 @@ export function AudioResamplerPage() {
                     <Button onClick={handleResample} disabled={resampling || resampleableCount === 0} size="lg">
                         {resampling ? (<>
                                 <Spinner className="h-4 w-4"/>
+<<<<<<< HEAD
                                 Изменение...
                             </>) : (<>
                                 <AudioLinesIcon size={16} className="text-primary-foreground"/>
                                 Изменить{" "}
                                 {resampleableCount > 0 ? `${resampleableCount} файл(ов)` : ""}
+=======
+                                Resampling...
+                            </>) : (<>
+                                <AudioLinesIcon size={16} className="text-primary-foreground"/>
+                                Resample{" "}
+                                {resampleableCount > 0 ? `${resampleableCount} File(s)` : ""}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </>)}
                     </Button>
                 </div>

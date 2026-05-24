@@ -68,19 +68,30 @@ export function DebugLoggerPage() {
         try {
             const message = await ExportFailedDownloads();
             if (message.startsWith("Successfully")) {
+<<<<<<< HEAD
                 toast.success("Успешно экспортировано");
             }
             else if (message !== "Export cancelled" && message !== "Экспорт отменен") {
+=======
+                toast.success(message);
+            }
+            else if (message !== "Export cancelled") {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 toast.info(message);
             }
         }
         catch (error) {
             console.error("Failed to export:", error);
+<<<<<<< HEAD
             toast.error(`Ошибка экспорта: ${error}`);
+=======
+            toast.error(`Failed to export: ${error}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     return (<div className="space-y-6">
       <div className="flex items-center justify-between">
+<<<<<<< HEAD
         <h1 className="text-2xl font-bold">Журнал отладки</h1>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" className="gap-1.5" onClick={handleExportFailed} disabled={!canExportFailed}>
@@ -94,12 +105,31 @@ export function DebugLoggerPage() {
           <Button variant="outline" size="sm" className="gap-1.5" onClick={handleClear} disabled={logs.length === 0}>
             <Trash2 className="h-4 w-4"/>
             Очистить
+=======
+        <h1 className="text-2xl font-bold">Debug Logs</h1>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" className="gap-1.5" onClick={handleExportFailed} disabled={!canExportFailed}>
+            <FileDown className="h-4 w-4"/>
+            Export Failed
+          </Button>
+          <Button variant="outline" size="sm" className="gap-1.5" onClick={handleCopy} disabled={logs.length === 0}>
+            {copied ? <Check className="h-4 w-4"/> : <Copy className="h-4 w-4"/>}
+            Copy
+          </Button>
+          <Button variant="outline" size="sm" className="gap-1.5" onClick={handleClear} disabled={logs.length === 0}>
+            <Trash2 className="h-4 w-4"/>
+            Clear
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           </Button>
         </div>
       </div>
 
       <div ref={scrollRef} className="h-[calc(100vh-220px)] overflow-y-auto bg-muted/50 rounded-lg p-4 font-mono text-xs">
+<<<<<<< HEAD
         {logs.length === 0 ? (<p className="text-muted-foreground lowercase">журнал пуст...</p>) : (logs.map((log, i) => (<div key={i} className="flex gap-2 py-0.5">
+=======
+        {logs.length === 0 ? (<p className="text-muted-foreground lowercase">no logs yet...</p>) : (logs.map((log, i) => (<div key={i} className="flex gap-2 py-0.5">
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               <span className="text-muted-foreground shrink-0">
                 [{formatTime(log.timestamp)}]
               </span>

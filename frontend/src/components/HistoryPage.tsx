@@ -53,7 +53,11 @@ const getHistoryFormatLabel = (item: DownloadHistoryItem) => {
             return (item.format || "-").toUpperCase();
     }
 };
+<<<<<<< HEAD
 export interface DownloadHistoryItem {
+=======
+interface DownloadHistoryItem {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     id: string;
     spotify_id: string;
     title: string;
@@ -67,7 +71,11 @@ export interface DownloadHistoryItem {
     source: string;
     timestamp: number;
 }
+<<<<<<< HEAD
 export interface FetchHistoryItem {
+=======
+interface FetchHistoryItem {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     id: string;
     url: string;
     type: string;
@@ -77,7 +85,11 @@ export interface FetchHistoryItem {
     data: string;
     timestamp: number;
 }
+<<<<<<< HEAD
 export interface HistoryPageProps {
+=======
+interface HistoryPageProps {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     onHistorySelect?: (cachedData: string) => void;
 }
 export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
@@ -99,6 +111,7 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
     const ITEMS_PER_PAGE = 50;
     const getTrackLink = (spotifyId: string) => {
         if (spotifyId?.startsWith("tidal_"))
+<<<<<<< HEAD
             return { url: `https://listen.tidal.com/track/${spotifyId.replace("tidal_", "")}`, label: "Открыть в Tidal" };
         if (spotifyId?.startsWith("qobuz_"))
             return { url: `https://www.qobuz.com/track/${spotifyId.replace("qobuz_", "")}`, label: "Открыть в Qobuz" };
@@ -107,6 +120,16 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
         if (spotifyId?.startsWith("deezer_"))
             return { url: `https://www.deezer.com/track/${spotifyId.replace("deezer_", "")}`, label: "Открыть в Deezer" };
         return { url: `https://open.spotify.com/track/${spotifyId}`, label: "Открыть в Spotify" };
+=======
+            return { url: `https://listen.tidal.com/track/${spotifyId.replace("tidal_", "")}`, label: "Open in Tidal" };
+        if (spotifyId?.startsWith("qobuz_"))
+            return { url: `https://www.qobuz.com/track/${spotifyId.replace("qobuz_", "")}`, label: "Open in Qobuz" };
+        if (spotifyId?.startsWith("amazon_"))
+            return { url: `https://music.amazon.com/tracks/${spotifyId.replace("amazon_", "")}`, label: "Open in Amazon Music" };
+        if (spotifyId?.startsWith("deezer_"))
+            return { url: `https://www.deezer.com/track/${spotifyId.replace("deezer_", "")}`, label: "Open in Deezer" };
+        return { url: `https://open.spotify.com/track/${spotifyId}`, label: "Open in Spotify" };
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     };
     const getSourceIcon = (source: string) => {
         const s = source?.toLowerCase() || "";
@@ -301,19 +324,28 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                 <div className="flex flex-col gap-4">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
+<<<<<<< HEAD
                              <h2 className="text-xl font-bold tracking-tight">Загрузки</h2>
+=======
+                             <h2 className="text-xl font-bold tracking-tight">Downloads</h2>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                              {filteredDownloadHistory.length > 0 && (<Badge variant="secondary" className="font-mono">
                                     {filteredDownloadHistory.length.toLocaleString('en-US')}
                                 </Badge>)}
                         </div>
                         <Button variant="outline" size="sm" onClick={() => setShowClearDownloadConfirm(true)} disabled={downloadHistory.length === 0} className="cursor-pointer gap-2">
+<<<<<<< HEAD
                              <Trash2 className="h-4 w-4"/> Очистить все
+=======
+                             <Trash2 className="h-4 w-4"/> Clear All
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>
                     </div>
 
                      <div className="flex items-center gap-2">
                         <div className="relative flex-1">
                             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground"/>
+<<<<<<< HEAD
                             <Input placeholder="Поиск загрузок..." value={downloadSearchQuery} onChange={(e) => setDownloadSearchQuery(e.target.value)} className="pl-8 h-9"/>
                         </div>
                         <Select value={downloadSortBy} onValueChange={setDownloadSortBy}>
@@ -331,6 +363,25 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                 <SelectItem value="artist_desc">Исполнитель (Я-А)</SelectItem>
                                 <SelectItem value="duration_asc">Продолжительность (Короткие)</SelectItem>
                                 <SelectItem value="duration_desc">Продолжительность (Длинные)</SelectItem>
+=======
+                            <Input placeholder="Search downloads..." value={downloadSearchQuery} onChange={(e) => setDownloadSearchQuery(e.target.value)} className="pl-8 h-9"/>
+                        </div>
+                        <Select value={downloadSortBy} onValueChange={setDownloadSortBy}>
+                            <SelectTrigger className="w-45 h-9">
+                                <ArrowUpDown className="mr-2 h-4 w-4"/>
+                                <SelectValue placeholder="Sort by"/>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="default">Default</SelectItem>
+                                <SelectItem value="date_desc">Date (Newest)</SelectItem>
+                                <SelectItem value="date_asc">Date (Oldest)</SelectItem>
+                                <SelectItem value="title_asc">Title (A-Z)</SelectItem>
+                                <SelectItem value="title_desc">Title (Z-A)</SelectItem>
+                                <SelectItem value="artist_asc">Artist (A-Z)</SelectItem>
+                                <SelectItem value="artist_desc">Artist (Z-A)</SelectItem>
+                                <SelectItem value="duration_asc">Duration (Short)</SelectItem>
+                                <SelectItem value="duration_desc">Duration (Long)</SelectItem>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </SelectContent>
                         </Select>
                     </div>
@@ -342,13 +393,19 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                 <History className="h-10 w-10 opacity-40"/>
                             </div>
                             <div className="space-y-1">
+<<<<<<< HEAD
                                 <p className="font-medium text-foreground/80">Нет истории загрузок</p>
                                 <p className="text-sm">Скачанные вами треки появятся здесь.</p>
+=======
+                                <p className="font-medium text-foreground/80">No download history</p>
+                                <p className="text-sm">Your downloaded tracks will appear here.</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </div>
                         </div>) : (<table className="w-full table-fixed">
                              <thead>
                                 <tr className="border-b bg-muted/50">
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground w-12 text-xs uppercase">#</th>
+<<<<<<< HEAD
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground text-xs uppercase w-[35%]">Название</th>
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell text-xs uppercase w-48 lg:w-48 xl:w-56">Альбом</th>
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell w-32 text-xs uppercase">Формат</th>
@@ -356,6 +413,15 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell w-36 text-xs uppercase text-nowrap">Скачано в</th>
                                     <th className="h-10 px-4 text-center align-middle font-medium text-muted-foreground w-16 text-xs uppercase text-nowrap">Источник</th>
                                     <th className="h-10 px-4 text-center align-middle font-medium text-muted-foreground w-32 text-xs uppercase text-nowrap">Действия</th>
+=======
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground text-xs uppercase w-[35%]">Title</th>
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell text-xs uppercase w-48 lg:w-48 xl:w-56">Album</th>
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell w-32 text-xs uppercase">Format</th>
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden xl:table-cell w-16 text-xs uppercase text-nowrap">Dur</th>
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell w-36 text-xs uppercase text-nowrap">Downloaded At</th>
+                                    <th className="h-10 px-4 text-center align-middle font-medium text-muted-foreground w-16 text-xs uppercase text-nowrap">Source</th>
+                                    <th className="h-10 px-4 text-center align-middle font-medium text-muted-foreground w-32 text-xs uppercase text-nowrap">Actions</th>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </tr>
                             </thead>
                             <tbody>
@@ -402,7 +468,11 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                                             </div>
                                                         </TooltipTrigger>
                                                         <TooltipContent>
+<<<<<<< HEAD
                                                             <p className="capitalize">{item.source || "Неизвестно"}</p>
+=======
+                                                            <p className="capitalize">{item.source || "Unknown"}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </TooltipProvider>
@@ -418,7 +488,11 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                                                 </Button>
                                                             </TooltipTrigger>
                                                             <TooltipContent>
+<<<<<<< HEAD
                                                                 <p>{playingPreviewId === item.id ? "Пауза" : "Воспроизвести"}</p>
+=======
+                                                                <p>{playingPreviewId === item.id ? "Pause Preview" : "Play Preview"}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                                             </TooltipContent>
                                                         </Tooltip>
                                                     </TooltipProvider>)}
@@ -444,7 +518,11 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                                             </Button>
                                                         </TooltipTrigger>
                                                         <TooltipContent>
+<<<<<<< HEAD
                                                             <p>Удалить</p>
+=======
+                                                            <p>Delete</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </TooltipProvider>
@@ -495,13 +573,21 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                 <div className="flex flex-col gap-4">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
+<<<<<<< HEAD
                              <h2 className="text-xl font-bold tracking-tight">Запросы метаданных</h2>
+=======
+                             <h2 className="text-xl font-bold tracking-tight">Fetches</h2>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                              {fetchHistory.length > 0 && (<Badge variant="secondary" className="font-mono">
                                     {fetchHistory.length.toLocaleString('en-US')}
                                 </Badge>)}
                         </div>
                         <Button variant="outline" size="sm" onClick={() => setShowClearFetchConfirm(true)} disabled={fetchHistory.length === 0} className="cursor-pointer gap-2">
+<<<<<<< HEAD
                              <Trash2 className="h-4 w-4"/> Очистить все
+=======
+                             <Trash2 className="h-4 w-4"/> Clear All
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>
                     </div>
 
@@ -510,6 +596,7 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                         <div className="flex gap-2 border-b shrink-0">
                             <Button variant={activeFetchTab === "track" ? "default" : "ghost"} size="sm" onClick={() => setActiveFetchTab("track")} className="rounded-b-none">
                                 <Music2 className="h-4 w-4"/>
+<<<<<<< HEAD
                                 Треки
                             </Button>
                             <Button variant={activeFetchTab === "album" ? "default" : "ghost"} size="sm" onClick={() => setActiveFetchTab("album")} className="rounded-b-none">
@@ -523,13 +610,32 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                             <Button variant={activeFetchTab === "artist" ? "default" : "ghost"} size="sm" onClick={() => setActiveFetchTab("artist")} className="rounded-b-none">
                                 <UserRound className="h-4 w-4"/>
                                 Исполнители
+=======
+                                Tracks
+                            </Button>
+                            <Button variant={activeFetchTab === "album" ? "default" : "ghost"} size="sm" onClick={() => setActiveFetchTab("album")} className="rounded-b-none">
+                                <Disc3 className="h-4 w-4"/>
+                                Albums
+                            </Button>
+                            <Button variant={activeFetchTab === "playlist" ? "default" : "ghost"} size="sm" onClick={() => setActiveFetchTab("playlist")} className="rounded-b-none">
+                                <ListMusic className="h-4 w-4"/>
+                                Playlists
+                            </Button>
+                            <Button variant={activeFetchTab === "artist" ? "default" : "ghost"} size="sm" onClick={() => setActiveFetchTab("artist")} className="rounded-b-none">
+                                <UserRound className="h-4 w-4"/>
+                                Artists
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </Button>
                         </div>
 
                         <div className="flex items-center gap-2">
                             <div className="relative flex-1">
                                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground"/>
+<<<<<<< HEAD
                                 <Input placeholder="Поиск истории запросов..." value={fetchSearchQuery} onChange={(e) => setFetchSearchQuery(e.target.value)} className="pl-8 h-9"/>
+=======
+                                <Input placeholder="Search fetch history..." value={fetchSearchQuery} onChange={(e) => setFetchSearchQuery(e.target.value)} className="pl-8 h-9"/>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </div>
                         </div>
                     </div>
@@ -539,19 +645,32 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                    {paginated.length === 0 ? (<div className="flex flex-col items-center justify-center py-12 text-center text-muted-foreground gap-3"> 
                             <Database className="h-10 w-10 opacity-40"/>
                             <div className="space-y-1">
+<<<<<<< HEAD
                                 <p className="font-medium text-foreground/80">Нет истории запросов</p>
                                 <p className="text-sm">Полученные метаданные появятся здесь.</p>
+=======
+                                <p className="font-medium text-foreground/80">No fetch history</p>
+                                <p className="text-sm">Fetched metadata will appear here.</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             </div>
                        </div>) : (<table className="w-full table-fixed">
                             <thead>
                                 <tr className="border-b bg-muted/50">
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground w-12 text-xs uppercase">#</th>
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground text-xs uppercase w-1/3">
+<<<<<<< HEAD
                                         {activeFetchTab === 'artist' ? 'Имя' : 'Название'}
                                     </th>
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell text-xs uppercase">Детали</th>
                                     <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell w-40 text-xs uppercase text-nowrap">Получено в</th>
                                     <th className="h-10 px-4 text-center align-middle font-medium text-muted-foreground w-32 text-xs uppercase text-nowrap">Действия</th>
+=======
+                                        {activeFetchTab === 'artist' ? 'Name' : 'Title'}
+                                    </th>
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell text-xs uppercase">Details</th>
+                                    <th className="h-10 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell w-40 text-xs uppercase text-nowrap">Fetched At</th>
+                                    <th className="h-10 px-4 text-center align-middle font-medium text-muted-foreground w-32 text-xs uppercase text-nowrap">Actions</th>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </tr>
                             </thead>
                             <tbody>
@@ -588,7 +707,11 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                                             </Button>
                                                         </TooltipTrigger>
                                                         <TooltipContent>
+<<<<<<< HEAD
                                                             <p>Загрузить</p>
+=======
+                                                            <p>Load</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </TooltipProvider>
@@ -601,7 +724,11 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                                                             </Button>
                                                         </TooltipTrigger>
                                                         <TooltipContent>
+<<<<<<< HEAD
                                                             <p>Удалить</p>
+=======
+                                                            <p>Delete</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </TooltipProvider>
@@ -646,16 +773,27 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
     };
     return (<div className="space-y-6">
             <div className="flex items-center gap-4">
+<<<<<<< HEAD
                 <h1 className="text-2xl font-bold">История</h1>
+=======
+                <h1 className="text-2xl font-bold">History</h1>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </div>
 
             <div className="border-b">
                 <div className="flex gap-6">
                     <button onClick={() => setActiveTab("downloads")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "downloads" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
+<<<<<<< HEAD
                         Загрузки
                     </button>
                     <button onClick={() => setActiveTab("fetches")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "fetches" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
                         Запросы метаданных
+=======
+                        Downloads
+                    </button>
+                    <button onClick={() => setActiveTab("fetches")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "fetches" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
+                        Fetches
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </button>
                 </div>
             </div>
@@ -671,6 +809,7 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
             <Dialog open={showClearDownloadConfirm} onOpenChange={setShowClearDownloadConfirm}>
                 <DialogContent className="max-w-md [&>button]:hidden">
                     <DialogHeader>
+<<<<<<< HEAD
                         <DialogTitle>Очистить историю загрузок?</DialogTitle>
                         <DialogDescription>
                             Это удалит все записи из вашей истории загрузок. Это действие нельзя отменить.
@@ -681,6 +820,18 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                         <Button variant="outline" onClick={() => setShowClearDownloadConfirm(false)} className="cursor-pointer">Отмена</Button>
                         <Button variant="destructive" onClick={handleClearDownloadHistory} className="cursor-pointer">
                             Очистить историю
+=======
+                        <DialogTitle>Clear Download History?</DialogTitle>
+                        <DialogDescription>
+                            This will remove all entries from your download history. This action cannot be undone.
+                            Note: The actual downloaded files will NOT be deleted.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setShowClearDownloadConfirm(false)} className="cursor-pointer">Cancel</Button>
+                        <Button variant="destructive" onClick={handleClearDownloadHistory} className="cursor-pointer">
+                            Clear History
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -689,6 +840,7 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
             <Dialog open={showClearFetchConfirm} onOpenChange={setShowClearFetchConfirm}>
                 <DialogContent className="max-w-md [&>button]:hidden">
                     <DialogHeader>
+<<<<<<< HEAD
                         <DialogTitle>Очистить историю запросов ({activeFetchTab})?</DialogTitle>
                         <DialogDescription>
                             Это удалит все запросы ({activeFetchTab}) из истории.
@@ -698,6 +850,17 @@ export function HistoryPage({ onHistorySelect }: HistoryPageProps) {
                         <Button variant="outline" onClick={() => setShowClearFetchConfirm(false)} className="cursor-pointer">Отмена</Button>
                         <Button variant="destructive" onClick={handleClearFetchHistory} className="cursor-pointer">
                             Очистить историю
+=======
+                        <DialogTitle>Clear {activeFetchTab.charAt(0).toUpperCase() + activeFetchTab.slice(1)} History?</DialogTitle>
+                        <DialogDescription>
+                            This will remove all {activeFetchTab} entries from your fetch history cache.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setShowClearFetchConfirm(false)} className="cursor-pointer">Cancel</Button>
+                        <Button variant="destructive" onClick={handleClearFetchHistory} className="cursor-pointer">
+                            Clear History
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>
                     </DialogFooter>
                 </DialogContent>

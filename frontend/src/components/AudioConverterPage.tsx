@@ -147,8 +147,13 @@ export function AudioConverterPage() {
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка выбора файлов", {
                 description: err instanceof Error ? err.message : "Не удалось выбрать файлы",
+=======
+            toast.error("File Selection Failed", {
+                description: err instanceof Error ? err.message : "Failed to select files",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
     };
@@ -161,15 +166,25 @@ export function AudioConverterPage() {
                     addFiles(folderFiles.map((f) => f.path));
                 }
                 else {
+<<<<<<< HEAD
                     toast.info("Аудиофайлы не найдены", {
                         description: "Файлы FLAC или MP3 не найдены в выбранной папке.",
+=======
+                    toast.info("No audio files found", {
+                        description: "No FLAC or MP3 files found in the selected folder.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     });
                 }
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка выбора папки", {
                 description: err instanceof Error ? err.message : "Не удалось выбрать папку",
+=======
+            toast.error("Folder Selection Failed", {
+                description: err instanceof Error ? err.message : "Failed to select folder",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
     };
@@ -180,8 +195,13 @@ export function AudioConverterPage() {
             return ext === ".m4a";
         });
         if (m4aFiles.length > 0) {
+<<<<<<< HEAD
             toast.error("Файлы M4A не поддерживаются", {
                 description: "Только файлы FLAC и MP3 поддерживаются в качестве входных. Пожалуйста, сначала конвертируйте файлы M4A.",
+=======
+            toast.error("M4A files not supported", {
+                description: "Only FLAC and MP3 files are supported as input. Please convert M4A files first.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
         const GetFileSizes = (files: string[]): Promise<Record<string, number>> => (window as any)["go"]["main"]["App"]["GetFileSizes"](files);
@@ -207,15 +227,25 @@ export function AudioConverterPage() {
             if (newFiles.length > 0) {
                 if (paths.length > newFiles.length) {
                     const skipped = paths.length - newFiles.length;
+<<<<<<< HEAD
                     toast.info("Некоторые файлы пропущены", {
                         description: `${skipped} файл(ов) пропущено (неподдерживаемый формат или уже добавлены)`,
+=======
+                    toast.info("Some files skipped", {
+                        description: `${skipped} file(s) were skipped (unsupported format or already added)`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     });
                 }
                 return [...prev, ...newFiles];
             }
             if (paths.length > 0 && m4aFiles.length === 0) {
+<<<<<<< HEAD
                 toast.info("Новые файлы не добавлены", {
                     description: "Все файлы уже добавлены или имеют неподдерживаемый формат",
+=======
+                toast.info("No new files added", {
+                    description: "All files were already added or have unsupported format",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
             }
             return prev;
@@ -243,8 +273,13 @@ export function AudioConverterPage() {
     };
     const handleConvert = async () => {
         if (files.length === 0) {
+<<<<<<< HEAD
             toast.error("Файлы не выбраны", {
                 description: "Пожалуйста, добавьте аудиофайлы для конвертации",
+=======
+            toast.error("No files selected", {
+                description: "Please add audio files to convert",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
@@ -278,6 +313,7 @@ export function AudioConverterPage() {
             const successCount = results.filter((r) => r.success).length;
             const failCount = results.filter((r) => !r.success).length;
             if (successCount > 0) {
+<<<<<<< HEAD
                 toast.success("Конвертация завершена", {
                     description: `Успешно конвертировано ${successCount} файл(ов)${failCount > 0 ? `, ${failCount} с ошибкой` : ""}`,
                 });
@@ -285,14 +321,30 @@ export function AudioConverterPage() {
             else if (failCount > 0) {
                 toast.error("Ошибка конвертации", {
                     description: `Все ${failCount} файл(ов) завершились с ошибкой конвертации`,
+=======
+                toast.success("Conversion Complete", {
+                    description: `Successfully converted ${successCount} file(s)${failCount > 0 ? `, ${failCount} failed` : ""}`,
+                });
+            }
+            else if (failCount > 0) {
+                toast.error("Conversion Failed", {
+                    description: `All ${failCount} file(s) failed to convert`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка конвертации", {
                 description: err instanceof Error ? err.message : "Неизвестная ошибка",
             });
             setFiles((prev) => prev.map((f) => ({ ...f, status: "error" as const, error: "Конвертация не удалась" })));
+=======
+            toast.error("Conversion Error", {
+                description: err instanceof Error ? err.message : "Unknown error",
+            });
+            setFiles((prev) => prev.map((f) => ({ ...f, status: "error" as const, error: "Conversion failed" })));
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setConverting(false);
@@ -315,6 +367,7 @@ export function AudioConverterPage() {
     return (<div className={`space-y-6 ${isFullscreen ? "h-full flex flex-col" : ""}`}>
 
         <div className="flex items-center justify-between">
+<<<<<<< HEAD
             <h1 className="text-2xl font-bold">Аудио Конвертер</h1>
             {files.length > 0 && (<div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={handleSelectFiles}>
@@ -328,6 +381,21 @@ export function AudioConverterPage() {
                 <Button variant="outline" size="sm" onClick={clearFiles} disabled={converting}>
                     <Trash2 className="h-4 w-4"/>
                     Очистить всё
+=======
+            <h1 className="text-2xl font-bold">Audio Converter</h1>
+            {files.length > 0 && (<div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={handleSelectFiles}>
+                    <Upload className="h-4 w-4"/>
+                    Add Files
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleSelectFolder}>
+                    <Upload className="h-4 w-4"/>
+                    Add Folder
+                </Button>
+                <Button variant="outline" size="sm" onClick={clearFiles} disabled={converting}>
+                    <Trash2 className="h-4 w-4"/>
+                    Clear All
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </Button>
             </div>)}
         </div>
@@ -351,12 +419,18 @@ export function AudioConverterPage() {
                 </div>
                 <p className="text-sm text-muted-foreground mb-4 text-center">
                     {isDragging
+<<<<<<< HEAD
                 ? "Поместите сюда аудиофайлы"
                 : "Перетащите сюда аудиофайлы или нажмите кнопку ниже для выбора"}
+=======
+                ? "Drop your audio files here"
+                : "Drag and drop audio files here, or click the button below to select"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </p>
                 <div className="flex gap-3">
                     <Button onClick={handleSelectFiles} size="lg">
                         <Upload className="h-5 w-5"/>
+<<<<<<< HEAD
                         Выбрать файлы
                     </Button>
                     <Button onClick={handleSelectFolder} size="lg" variant="outline">
@@ -366,6 +440,17 @@ export function AudioConverterPage() {
                 </div>
                 <p className="text-xs text-muted-foreground mt-4 text-center">
                     Поддерживаемые форматы: FLAC, MP3
+=======
+                        Select Files
+                    </Button>
+                    <Button onClick={handleSelectFolder} size="lg" variant="outline">
+                        <Upload className="h-5 w-5"/>
+                        Select Folder
+                    </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4 text-center">
+                    Supported formats: FLAC, MP3
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </p>
             </>) : (<div className="w-full h-full p-6 space-y-4 flex flex-col">
 
@@ -373,7 +458,11 @@ export function AudioConverterPage() {
 
                     <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <Label className="whitespace-nowrap">Формат:</Label>
+=======
+                            <Label className="whitespace-nowrap">Format:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             <ToggleGroup type="single" variant="outline" value={outputFormat} onValueChange={(value) => {
                 if (value && !isFormatDisabled)
                     setOutputFormat(value as "mp3" | "m4a");
@@ -388,7 +477,11 @@ export function AudioConverterPage() {
                         </div>
 
                         {outputFormat === "m4a" && hasFlacFiles && (<div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <Label className="whitespace-nowrap">Кодек:</Label>
+=======
+                            <Label className="whitespace-nowrap">Codec:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             <ToggleGroup type="single" variant="outline" value={m4aCodec} onValueChange={(value) => {
                     if (value)
                         setM4aCodec(value as "aac" | "alac");
@@ -400,7 +493,11 @@ export function AudioConverterPage() {
                         </div>)}
 
                         {!(outputFormat === "m4a" && m4aCodec === "alac") && (<div className="flex items-center gap-2">
+<<<<<<< HEAD
                             <Label className="whitespace-nowrap">Битрейт:</Label>
+=======
+                            <Label className="whitespace-nowrap">Bitrate:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             <ToggleGroup type="single" variant="outline" value={bitrate} onValueChange={(value) => {
                     if (value)
                         setBitrate(value);
@@ -416,7 +513,11 @@ export function AudioConverterPage() {
 
                 <div className="flex items-center justify-between shrink-0">
                     <div className="text-sm text-muted-foreground">
+<<<<<<< HEAD
                         {files.length} файл(ов) • {successCount} сконвертировано
+=======
+                        {files.length} file(s) • {successCount} converted
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </div>
                 </div>
 
@@ -447,10 +548,17 @@ export function AudioConverterPage() {
                     <Button onClick={handleConvert} disabled={converting || convertableCount === 0} size="lg">
                         {converting ? (<>
                             <Spinner className="h-4 w-4"/>
+<<<<<<< HEAD
                             Конвертация...
                         </>) : (<>
                             <WandSparkles className="h-4 w-4"/>
                             Конвертировать {convertableCount > 0 ? `${convertableCount} файл(ов)` : ""}
+=======
+                            Converting...
+                        </>) : (<>
+                            <WandSparkles className="h-4 w-4"/>
+                            Convert {convertableCount > 0 ? `${convertableCount} File(s)` : ""}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </>)}
                     </Button>
                 </div>

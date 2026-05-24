@@ -183,7 +183,11 @@ export function FileManagerPage() {
         catch (err) {
             const errorMsg = err instanceof Error ? err.message : String(err || "");
             if (!errorMsg.toLowerCase().includes("empty") && !errorMsg.toLowerCase().includes("no file")) {
+<<<<<<< HEAD
                 toast.error("Не удалось загрузить файлы", { description: errorMsg || "Неизвестная ошибка" });
+=======
+                toast.error("Failed to load files", { description: errorMsg || "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
             setAllFiles([]);
             setSelectedFiles(new Set());
@@ -217,7 +221,11 @@ export function FileManagerPage() {
                 setRootPath(path);
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Не удалось выбрать папку", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Failed to select folder", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const toggleExpand = (path: string) => {
@@ -270,7 +278,11 @@ export function FileManagerPage() {
     const resetToDefault = () => { setFormatPreset(DEFAULT_PRESET); setCustomFormat(DEFAULT_CUSTOM_FORMAT); setShowResetConfirm(false); };
     const handlePreview = async (isPreviewOnly: boolean) => {
         if (selectedFiles.size === 0) {
+<<<<<<< HEAD
             toast.error("Файлы не выбраны");
+=======
+            toast.error("No files selected");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         try {
@@ -280,7 +292,11 @@ export function FileManagerPage() {
             setShowPreview(true);
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Не удалось создать предпросмотр", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Failed to generate preview", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const handleShowMetadata = async (filePath: string, e: React.MouseEvent) => {
@@ -293,7 +309,11 @@ export function FileManagerPage() {
             setShowMetadata(true);
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Не удалось прочитать метаданные", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Failed to read metadata", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             setMetadataInfo(null);
         }
         finally {
@@ -310,7 +330,11 @@ export function FileManagerPage() {
             setShowLyricsPreview(true);
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Не удалось прочитать файл текста", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Failed to read lyrics file", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const handleShowCover = async (filePath: string, e: React.MouseEvent) => {
@@ -322,7 +346,11 @@ export function FileManagerPage() {
             setShowCoverPreview(true);
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Не удалось загрузить изображение", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Failed to load image", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const getPlainLyrics = (content: string) => {
@@ -338,7 +366,11 @@ export function FileManagerPage() {
     };
     const renderSyncedLyrics = (content: string) => {
         if (!content)
+<<<<<<< HEAD
             return <div className="text-sm text-muted-foreground">Нет текста песни</div>;
+=======
+            return <div className="text-sm text-muted-foreground">No lyrics content</div>;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         const lines = content.split('\n');
         return lines.map((line, index) => {
             if (line.match(/^\[(ti|ar|al|by|length|offset):/i))
@@ -371,7 +403,11 @@ export function FileManagerPage() {
             setTimeout(() => setCopySuccess(false), 500);
         }
         catch {
+<<<<<<< HEAD
             toast.error("Не удалось скопировать текст песни");
+=======
+            toast.error("Failed to copy lyrics");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const handleManualRename = (filePath: string, e: React.MouseEvent) => {
@@ -388,12 +424,20 @@ export function FileManagerPage() {
         setManualRenaming(true);
         try {
             await RenameFileTo(manualRenameFile, manualRenameName.trim());
+<<<<<<< HEAD
             toast.success("Файл успешно переименован");
+=======
+            toast.success("File renamed successfully");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             setShowManualRename(false);
             loadFiles();
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Не удалось переименовать файл", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Failed to rename file", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setManualRenaming(false);
@@ -408,15 +452,25 @@ export function FileManagerPage() {
             const successCount = result.filter((r: backend.RenameResult) => r.success).length;
             const failCount = result.filter((r: backend.RenameResult) => !r.success).length;
             if (successCount > 0)
+<<<<<<< HEAD
                 toast.success("Переименование завершено", { description: `${successCount} файл(ов) переименовано${failCount > 0 ? `, ${failCount} с ошибкой` : ""}` });
             else
                 toast.error("Ошибка переименования", { description: `Все ${failCount} файл(ов) не удалось переименовать` });
+=======
+                toast.success("Rename Complete", { description: `${successCount} file(s) renamed${failCount > 0 ? `, ${failCount} failed` : ""}` });
+            else
+                toast.error("Rename Failed", { description: `All ${failCount} file(s) failed to rename` });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             setShowPreview(false);
             setSelectedFiles(new Set());
             loadFiles();
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка переименования", { description: err instanceof Error ? err.message : "Неизвестная ошибка" });
+=======
+            toast.error("Rename Failed", { description: err instanceof Error ? err.message : "Unknown error" });
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setRenaming(false);
@@ -510,11 +564,16 @@ export function FileManagerPage() {
     const allSelected = allAudioFiles.length > 0 && selectedFiles.size === allAudioFiles.length;
     return (<div className={`space-y-6 ${isFullscreen ? "h-full flex flex-col" : ""}`}>
     <div className="flex items-center justify-between shrink-0">
+<<<<<<< HEAD
       <h1 className="text-2xl font-bold">Файловый Менеджер</h1>
+=======
+      <h1 className="text-2xl font-bold">File Manager</h1>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     </div>
 
 
     <div className="flex items-center gap-2 shrink-0">
+<<<<<<< HEAD
       <InputWithContext value={rootPath} onChange={(e) => setRootPath(e.target.value)} placeholder="Выберите папку..." className="flex-1"/>
       <Button onClick={handleSelectFolder}>
         <FolderOpen className="h-4 w-4"/>
@@ -523,6 +582,16 @@ export function FileManagerPage() {
       <Button variant="outline" onClick={loadFiles} disabled={loading || !rootPath}>
         <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}/>
         Обновить
+=======
+      <InputWithContext value={rootPath} onChange={(e) => setRootPath(e.target.value)} placeholder="Select a folder..." className="flex-1"/>
+      <Button onClick={handleSelectFolder}>
+        <FolderOpen className="h-4 w-4"/>
+        Browse
+      </Button>
+      <Button variant="outline" onClick={loadFiles} disabled={loading || !rootPath}>
+        <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}/>
+        Refresh
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       </Button>
     </div>
 
@@ -530,6 +599,7 @@ export function FileManagerPage() {
     <div className="flex gap-2 border-b shrink-0">
       <Button variant={activeTab === "track" ? "default" : "ghost"} size="sm" onClick={() => setActiveTab("track")} className="rounded-b-none">
         <FileMusic className="h-4 w-4"/>
+<<<<<<< HEAD
         Трек ({allAudioFiles.length})
       </Button>
       <Button variant={activeTab === "lyric" ? "default" : "ghost"} size="sm" onClick={() => setActiveTab("lyric")} className="rounded-b-none">
@@ -539,19 +609,38 @@ export function FileManagerPage() {
       <Button variant={activeTab === "cover" ? "default" : "ghost"} size="sm" onClick={() => setActiveTab("cover")} className="rounded-b-none">
         <Image className="h-4 w-4"/>
         Обложка ({allCoverFiles.length})
+=======
+        Track ({allAudioFiles.length})
+      </Button>
+      <Button variant={activeTab === "lyric" ? "default" : "ghost"} size="sm" onClick={() => setActiveTab("lyric")} className="rounded-b-none">
+        <FileText className="h-4 w-4"/>
+        Lyric ({allLyricFiles.length})
+      </Button>
+      <Button variant={activeTab === "cover" ? "default" : "ghost"} size="sm" onClick={() => setActiveTab("cover")} className="rounded-b-none">
+        <Image className="h-4 w-4"/>
+        Cover ({allCoverFiles.length})
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       </Button>
     </div>
 
 
     {activeTab === "track" && (<div className="space-y-2 shrink-0">
       <div className="flex items-center gap-2">
+<<<<<<< HEAD
         <Label className="text-sm">Формат переименования</Label>
+=======
+        <Label className="text-sm">Rename Format</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         <Tooltip>
           <TooltipTrigger asChild>
             <Info className="h-3.5 w-3.5 text-muted-foreground cursor-help"/>
           </TooltipTrigger>
           <TooltipContent side="right">
+<<<<<<< HEAD
             <p className="text-xs whitespace-nowrap">Переменные: {"{title}"}, {"{artist}"}, {"{album}"}, {"{album_artist}"}, {"{track}"}, {"{disc}"}, {"{year}"}, {"{date}"}, {"{isrc}"}</p>
+=======
+            <p className="text-xs whitespace-nowrap">Variables: {"{title}"}, {"{artist}"}, {"{album}"}, {"{album_artist}"}, {"{track}"}, {"{disc}"}, {"{year}"}, {"{date}"}, {"{isrc}"}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           </TooltipContent>
         </Tooltip>
       </div>
@@ -569,11 +658,19 @@ export function FileManagerPage() {
               <RotateCcw className="h-4 w-4"/>
             </Button>
           </TooltipTrigger>
+<<<<<<< HEAD
           <TooltipContent>Сбросить по умолчанию</TooltipContent>
         </Tooltip>
       </div>
       <p className="text-xs text-muted-foreground">
         Предпросмотр: <span className="font-mono">{renameFormat.replace(/\{title\}/g, "All The Stars").replace(/\{artist\}/g, "Kendrick Lamar, SZA").replace(/\{album\}/g, "Black Panther").replace(/\{album_artist\}/g, "Kendrick Lamar").replace(/\{track\}/g, "01").replace(/\{disc\}/g, "1").replace(/\{year\}/g, "2018").replace(/\{date\}/g, "2018-02-09").replace(/\{isrc\}/g, "USUM71801234")}.flac</span>
+=======
+          <TooltipContent>Reset to Default</TooltipContent>
+        </Tooltip>
+      </div>
+      <p className="text-xs text-muted-foreground">
+        Preview: <span className="font-mono">{renameFormat.replace(/\{title\}/g, "All The Stars").replace(/\{artist\}/g, "Kendrick Lamar, SZA").replace(/\{album\}/g, "Black Panther").replace(/\{album_artist\}/g, "Kendrick Lamar").replace(/\{track\}/g, "01").replace(/\{disc\}/g, "1").replace(/\{year\}/g, "2018").replace(/\{date\}/g, "2018-02-09").replace(/\{isrc\}/g, "USUM71801234")}.flac</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       </p>
     </div>)}
 
@@ -582,25 +679,43 @@ export function FileManagerPage() {
       {activeTab === "track" && (<div className="flex items-center justify-between p-3 border-b bg-muted/30 shrink-0">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" onClick={allSelected ? deselectAll : selectAll}>
+<<<<<<< HEAD
             {allSelected ? "Отменить выбор" : "Выбрать всё"}
           </Button>
           <span className="text-sm text-muted-foreground">Выбрано {selectedFiles.size} из {allAudioFiles.length} файл(ов)</span>
+=======
+            {allSelected ? "Deselect All" : "Select All"}
+          </Button>
+          <span className="text-sm text-muted-foreground">{selectedFiles.size} of {allAudioFiles.length} file(s) selected</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={() => handlePreview(true)} disabled={selectedFiles.size === 0 || loading}>
             <Eye className="h-4 w-4"/>
+<<<<<<< HEAD
             Предпросмотр
           </Button>
           <Button size="sm" onClick={() => handlePreview(false)} disabled={selectedFiles.size === 0 || loading}>
             <Pencil className="h-4 w-4"/>
             Переименовать
+=======
+            Preview
+          </Button>
+          <Button size="sm" onClick={() => handlePreview(false)} disabled={selectedFiles.size === 0 || loading}>
+            <Pencil className="h-4 w-4"/>
+            Rename
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           </Button>
         </div>
       </div>)}
 
       <div className={`overflow-y-auto p-2 ${isFullscreen ? "flex-1 min-h-0" : "max-h-[400px]"}`}>
         {loading ? (<div className="flex items-center justify-center py-8"><Spinner className="h-6 w-6"/></div>) : filteredFiles.length === 0 ? (<div className="text-center py-8 text-muted-foreground">
+<<<<<<< HEAD
           {rootPath ? `Файлы типа ${activeTab} не найдены` : "Выберите папку для просмотра"}
+=======
+          {rootPath ? `No ${activeTab} files found` : "Select a folder to browse"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         </div>) : (activeTab === "track" ? renderTrackTree(filteredFiles) :
             activeTab === "lyric" ? renderLyricTree(filteredFiles) :
                 renderCoverTree(filteredFiles))}
@@ -611,12 +726,21 @@ export function FileManagerPage() {
     <Dialog open={showResetConfirm} onOpenChange={setShowResetConfirm}>
       <DialogContent className="max-w-md [&>button]:hidden">
         <DialogHeader>
+<<<<<<< HEAD
           <DialogTitle>Сбросить по умолчанию?</DialogTitle>
           <DialogDescription>Это сбросит формат переименования на "Title - Artist". Ваш пользовательский формат будет потерян.</DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" onClick={() => setShowResetConfirm(false)}>Отмена</Button>
           <Button onClick={resetToDefault}>Сбросить</Button>
+=======
+          <DialogTitle>Reset to Default?</DialogTitle>
+          <DialogDescription>This will reset the rename format to "Title - Artist". Your custom format will be lost.</DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="outline" onClick={() => setShowResetConfirm(false)}>Cancel</Button>
+          <Button onClick={resetToDefault}>Reset</Button>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -625,8 +749,13 @@ export function FileManagerPage() {
     <Dialog open={showPreview} onOpenChange={setShowPreview}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden flex flex-col [&>button]:hidden">
         <DialogHeader>
+<<<<<<< HEAD
           <DialogTitle>Предпросмотр переименования</DialogTitle>
           <DialogDescription>Просмотрите изменения перед переименованием. Файлы с ошибками будут пропущены.</DialogDescription>
+=======
+          <DialogTitle>Rename Preview</DialogTitle>
+          <DialogDescription>Review the changes before renaming. Files with errors will be skipped.</DialogDescription>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         </DialogHeader>
         <div className="flex-1 overflow-y-auto space-y-2 py-4">
           {previewData.map((item, index) => (<div key={index} className={`p-3 rounded-lg border ${item.error ? "border-destructive/50 bg-destructive/5" : "border-border"}`}>
@@ -637,10 +766,17 @@ export function FileManagerPage() {
           </div>))}
         </div>
         <DialogFooter>
+<<<<<<< HEAD
           {previewOnly ? (<Button onClick={() => setShowPreview(false)}>Закрыть</Button>) : (<>
             <Button variant="outline" onClick={() => setShowPreview(false)}>Отмена</Button>
             <Button onClick={handleRename} disabled={renaming}>
               {renaming ? <><Spinner className="h-4 w-4"/>Переименование...</> : <>Переименовать {previewData.filter((p) => !p.error).length} файл(ов)</>}
+=======
+          {previewOnly ? (<Button onClick={() => setShowPreview(false)}>Close</Button>) : (<>
+            <Button variant="outline" onClick={() => setShowPreview(false)}>Cancel</Button>
+            <Button onClick={handleRename} disabled={renaming}>
+              {renaming ? <><Spinner className="h-4 w-4"/>Renaming...</> : <>Rename {previewData.filter((p) => !p.error).length} File(s)</>}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </Button>
           </>)}
         </DialogFooter>
@@ -651,6 +787,7 @@ export function FileManagerPage() {
     <Dialog open={showMetadata} onOpenChange={setShowMetadata}>
       <DialogContent className="max-w-md [&>button]:hidden">
         <DialogHeader>
+<<<<<<< HEAD
           <DialogTitle>Метаданные файла</DialogTitle>
           <DialogDescription className="break-all">{metadataFile.split(/[/\\]/).pop()}</DialogDescription>
         </DialogHeader>
@@ -666,6 +803,23 @@ export function FileManagerPage() {
           <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">ISRC</span><span>{metadataInfo.isrc || "-"}</span></div>
         </div>) : (<div className="text-center py-4 text-muted-foreground">Метаданные недоступны</div>)}
         <DialogFooter><Button onClick={() => setShowMetadata(false)}>Закрыть</Button></DialogFooter>
+=======
+          <DialogTitle>File Metadata</DialogTitle>
+          <DialogDescription className="break-all">{metadataFile.split(/[/\\]/).pop()}</DialogDescription>
+        </DialogHeader>
+        {loadingMetadata ? (<div className="flex items-center justify-center py-8"><Spinner className="h-6 w-6"/></div>) : metadataInfo ? (<div className="space-y-3 py-2">
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Title</span><span>{metadataInfo.title || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Artist</span><span>{metadataInfo.artist || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Album</span><span>{metadataInfo.album || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Album Artist</span><span>{metadataInfo.album_artist || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Track</span><span>{metadataInfo.track_number || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Disc</span><span>{metadataInfo.disc_number || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">Year</span><span>{metadataInfo.year ? metadataInfo.year.substring(0, 4) : "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">UPC</span><span>{metadataInfo.upc || "-"}</span></div>
+          <div className="grid grid-cols-[100px_1fr] gap-2 text-sm"><span className="text-muted-foreground">ISRC</span><span>{metadataInfo.isrc || "-"}</span></div>
+        </div>) : (<div className="text-center py-4 text-muted-foreground">No metadata available</div>)}
+        <DialogFooter><Button onClick={() => setShowMetadata(false)}>Close</Button></DialogFooter>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       </DialogContent>
     </Dialog>
 
@@ -676,26 +830,45 @@ export function FileManagerPage() {
     <Dialog open={showLyricsPreview} onOpenChange={setShowLyricsPreview}>
       <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col [&>button]:hidden">
         <DialogHeader>
+<<<<<<< HEAD
           <DialogTitle>Предпросмотр текста песни</DialogTitle>
           <DialogDescription className="break-all">{lyricsFile.split(/[/\\]/).pop()}</DialogDescription>
         </DialogHeader>
         <div className="flex gap-2 border-b pb-2">
           <Button variant={lyricsTab === "synced" ? "default" : "ghost"} size="sm" onClick={() => setLyricsTab("synced")}>Синхронизированный</Button>
           <Button variant={lyricsTab === "plain" ? "default" : "ghost"} size="sm" onClick={() => setLyricsTab("plain")}>Простой</Button>
+=======
+          <DialogTitle>Lyrics Preview</DialogTitle>
+          <DialogDescription className="break-all">{lyricsFile.split(/[/\\]/).pop()}</DialogDescription>
+        </DialogHeader>
+        <div className="flex gap-2 border-b pb-2">
+          <Button variant={lyricsTab === "synced" ? "default" : "ghost"} size="sm" onClick={() => setLyricsTab("synced")}>Synced</Button>
+          <Button variant={lyricsTab === "plain" ? "default" : "ghost"} size="sm" onClick={() => setLyricsTab("plain")}>Plain</Button>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         </div>
         <div className="flex-1 overflow-y-auto py-4">
           {lyricsTab === "synced" ? (<div className="bg-muted/30 p-4 rounded-lg space-y-0">
             {renderSyncedLyrics(lyricsContent)}
           </div>) : (<pre className="text-sm whitespace-pre-wrap font-mono bg-muted/30 p-4 rounded-lg">
+<<<<<<< HEAD
             {getPlainLyrics(lyricsContent) || "Нет текста песни"}
+=======
+            {getPlainLyrics(lyricsContent) || "No lyrics content"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           </pre>)}
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={handleCopyLyrics} className="gap-1.5">
             {copySuccess ? <Check className="h-4 w-4"/> : <Copy className="h-4 w-4"/>}
+<<<<<<< HEAD
             Копировать
           </Button>
           <Button onClick={() => setShowLyricsPreview(false)}>Закрыть</Button>
+=======
+            Copy
+          </Button>
+          <Button onClick={() => setShowLyricsPreview(false)}>Close</Button>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -704,6 +877,7 @@ export function FileManagerPage() {
     <Dialog open={showCoverPreview} onOpenChange={setShowCoverPreview}>
       <DialogContent className="max-w-lg [&>button]:hidden">
         <DialogHeader>
+<<<<<<< HEAD
           <DialogTitle>Предпросмотр обложки</DialogTitle>
           <DialogDescription className="break-all">{coverFile.split(/[/\\]/).pop()}</DialogDescription>
         </DialogHeader>
@@ -711,6 +885,15 @@ export function FileManagerPage() {
           {coverData ? <img src={coverData} alt="Обложка" className="max-w-full max-h-[350px] rounded-lg object-contain"/> : <div className="text-muted-foreground">Загрузка...</div>}
         </div>
         <DialogFooter><Button onClick={() => setShowCoverPreview(false)}>Закрыть</Button></DialogFooter>
+=======
+          <DialogTitle>Cover Preview</DialogTitle>
+          <DialogDescription className="break-all">{coverFile.split(/[/\\]/).pop()}</DialogDescription>
+        </DialogHeader>
+        <div className="flex items-center justify-center p-4">
+          {coverData ? <img src={coverData} alt="Cover" className="max-w-full max-h-[350px] rounded-lg object-contain"/> : <div className="text-muted-foreground">Loading...</div>}
+        </div>
+        <DialogFooter><Button onClick={() => setShowCoverPreview(false)}>Close</Button></DialogFooter>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       </DialogContent>
     </Dialog>
 
@@ -718,6 +901,7 @@ export function FileManagerPage() {
     <Dialog open={showManualRename} onOpenChange={setShowManualRename}>
       <DialogContent className="max-w-2xl [&>button]:hidden">
         <DialogHeader>
+<<<<<<< HEAD
           <DialogTitle>Переименовать файл</DialogTitle>
           <DialogDescription className="break-all">{manualRenameFile.split(/[/\\]/).pop()}</DialogDescription>
         </DialogHeader>
@@ -725,6 +909,15 @@ export function FileManagerPage() {
           <Label htmlFor="newName" className="text-sm">Новое имя</Label>
           <div className="flex items-center gap-2 mt-2">
             <InputWithContext id="newName" value={manualRenameName} onChange={(e) => setManualRenameName(e.target.value)} placeholder="Введите новое имя" className="flex-1" onKeyDown={(e) => {
+=======
+          <DialogTitle>Rename File</DialogTitle>
+          <DialogDescription className="break-all">{manualRenameFile.split(/[/\\]/).pop()}</DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <Label htmlFor="newName" className="text-sm">New Name</Label>
+          <div className="flex items-center gap-2 mt-2">
+            <InputWithContext id="newName" value={manualRenameName} onChange={(e) => setManualRenameName(e.target.value)} placeholder="Enter new name" className="flex-1" onKeyDown={(e) => {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             if (e.key === "Enter" && !manualRenaming)
                 handleConfirmManualRename();
         }}/>
@@ -732,9 +925,15 @@ export function FileManagerPage() {
           </div>
         </div>
         <DialogFooter>
+<<<<<<< HEAD
           <Button variant="outline" onClick={() => setShowManualRename(false)} disabled={manualRenaming}>Отмена</Button>
           <Button onClick={handleConfirmManualRename} disabled={manualRenaming || !manualRenameName.trim()}>
             {manualRenaming ? <><Spinner className="h-4 w-4"/>Переименование...</> : "Переименовать"}
+=======
+          <Button variant="outline" onClick={() => setShowManualRename(false)} disabled={manualRenaming}>Cancel</Button>
+          <Button onClick={handleConfirmManualRename} disabled={manualRenaming || !manualRenameName.trim()}>
+            {manualRenaming ? <><Spinner className="h-4 w-4"/>Renaming...</> : "Rename"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           </Button>
         </DialogFooter>
       </DialogContent>

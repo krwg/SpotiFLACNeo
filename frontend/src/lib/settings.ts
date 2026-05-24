@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { GetDefaults, LoadSettings, SaveSettings as SaveToBackend, } from "../../wailsjs/go/main/App";
 export type BuiltInFontFamily = "apple-system" | "monocraft" | "google-sans" | "inter" | "poppins" | "roboto" | "dm-sans" | "plus-jakarta-sans" | "manrope" | "space-grotesk" | "noto-sans" | "nunito-sans" | "figtree" | "raleway" | "public-sans" | "outfit" | "jetbrains-mono" | "geist-sans" | "bricolage-grotesque";
+=======
+import { GetDefaults, LoadFonts as LoadFontsFromBackend, LoadSettings, SaveFonts as SaveFontsToBackend, SaveSettings as SaveToBackend, } from "../../wailsjs/go/main/App";
+export type BuiltInFontFamily = "google-sans" | "inter" | "poppins" | "roboto" | "dm-sans" | "plus-jakarta-sans" | "manrope" | "space-grotesk" | "noto-sans" | "nunito-sans" | "figtree" | "raleway" | "public-sans" | "outfit" | "jetbrains-mono" | "geist-sans" | "bricolage-grotesque";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 export type CustomFontFamily = `custom-${string}`;
 export type FontFamily = BuiltInFontFamily | CustomFontFamily;
 export interface CustomFontOption {
@@ -14,6 +19,7 @@ export type FontOption = {
     fontFamily: string;
     url?: string;
 };
+<<<<<<< HEAD
 export interface TemplateData {
     artist?: string;
     album?: string;
@@ -26,6 +32,8 @@ export interface TemplateData {
     album_artist?: string;
     playlist?: string;
 }
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 export type FolderPreset = "none" | "artist" | "album" | "year-album" | "year-artist-album" | "artist-album" | "artist-year-album" | "artist-year-nested-album" | "album-artist" | "album-artist-album" | "album-artist-year-album" | "album-artist-year-nested-album" | "year" | "year-artist" | "custom";
 export type FilenamePreset = "title" | "title-artist" | "artist-title" | "track-title" | "track-title-artist" | "track-artist-title" | "title-album-artist" | "track-title-album-artist" | "artist-album-title" | "track-dash-title" | "disc-track-title" | "disc-track-title-artist" | "custom";
 export type ExistingFileCheckMode = "filename" | "isrc";
@@ -72,6 +80,7 @@ export const FOLDER_PRESETS: Record<FolderPreset, {
     label: string;
     template: string;
 }> = {
+<<<<<<< HEAD
     "none": { label: "Без подпапок", template: "" },
     "artist": { label: "Исполнитель", template: "{artist}" },
     "album": { label: "Альбом", template: "{album}" },
@@ -87,11 +96,47 @@ export const FOLDER_PRESETS: Record<FolderPreset, {
     "year": { label: "Год", template: "{year}" },
     "year-artist": { label: "Год / Исполнитель", template: "{year}/{artist}" },
     "custom": { label: "Свой формат...", template: "{artist}/{album}" },
+=======
+    none: { label: "No Subfolder", template: "" },
+    artist: { label: "Artist", template: "{artist}" },
+    album: { label: "Album", template: "{album}" },
+    "year-album": { label: "[Year] Album", template: "[{year}] {album}" },
+    "year-artist-album": {
+        label: "[Year] Artist - Album",
+        template: "[{year}] {artist} - {album}",
+    },
+    "artist-album": { label: "Artist / Album", template: "{artist}/{album}" },
+    "artist-year-album": {
+        label: "Artist / [Year] Album",
+        template: "{artist}/[{year}] {album}",
+    },
+    "artist-year-nested-album": {
+        label: "Artist / Year / Album",
+        template: "{artist}/{year}/{album}",
+    },
+    "album-artist": { label: "Album Artist", template: "{album_artist}" },
+    "album-artist-album": {
+        label: "Album Artist / Album",
+        template: "{album_artist}/{album}",
+    },
+    "album-artist-year-album": {
+        label: "Album Artist / [Year] Album",
+        template: "{album_artist}/[{year}] {album}",
+    },
+    "album-artist-year-nested-album": {
+        label: "Album Artist / Year / Album",
+        template: "{album_artist}/{year}/{album}",
+    },
+    year: { label: "Year", template: "{year}" },
+    "year-artist": { label: "Year / Artist", template: "{year}/{artist}" },
+    custom: { label: "Custom...", template: "{artist}/{album}" },
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 };
 export const FILENAME_PRESETS: Record<FilenamePreset, {
     label: string;
     template: string;
 }> = {
+<<<<<<< HEAD
     "title": { label: "Название", template: "{title}" },
     "title-artist": { label: "Название - Исполнитель", template: "{title} - {artist}" },
     "artist-title": { label: "Исполнитель - Название", template: "{artist} - {title}" },
@@ -105,6 +150,42 @@ export const FILENAME_PRESETS: Record<FilenamePreset, {
     "disc-track-title": { label: "Диск-Трек. Название", template: "{disc}-{track}. {title}" },
     "disc-track-title-artist": { label: "Диск-Трек. Название - Исполнитель", template: "{disc}-{track}. {title} - {artist}" },
     "custom": { label: "Свой формат...", template: "{title} - {artist}" },
+=======
+    title: { label: "Title", template: "{title}" },
+    "title-artist": { label: "Title - Artist", template: "{title} - {artist}" },
+    "artist-title": { label: "Artist - Title", template: "{artist} - {title}" },
+    "track-title": { label: "Track. Title", template: "{track}. {title}" },
+    "track-title-artist": {
+        label: "Track. Title - Artist",
+        template: "{track}. {title} - {artist}",
+    },
+    "track-artist-title": {
+        label: "Track. Artist - Title",
+        template: "{track}. {artist} - {title}",
+    },
+    "title-album-artist": {
+        label: "Title - Album Artist",
+        template: "{title} - {album_artist}",
+    },
+    "track-title-album-artist": {
+        label: "Track. Title - Album Artist",
+        template: "{track}. {title} - {album_artist}",
+    },
+    "artist-album-title": {
+        label: "Artist - Album - Title",
+        template: "{artist} - {album} - {title}",
+    },
+    "track-dash-title": { label: "Track - Title", template: "{track} - {title}" },
+    "disc-track-title": {
+        label: "Disc-Track. Title",
+        template: "{disc}-{track}. {title}",
+    },
+    "disc-track-title-artist": {
+        label: "Disc-Track. Title - Artist",
+        template: "{disc}-{track}. {title} - {artist}",
+    },
+    custom: { label: "Custom...", template: "{title} - {artist}" },
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 };
 export const TEMPLATE_VARIABLES = [
     { key: "{title}", description: "Track title", example: "Shake It Off" },
@@ -136,6 +217,7 @@ function detectOS(): "Windows" | "linux/MacOS" {
     }
     return "linux/MacOS";
 }
+<<<<<<< HEAD
 export function parseTemplate(template: string, data: TemplateData): string {
     if (!template)
         return "";
@@ -148,15 +230,23 @@ export function parseTemplate(template: string, data: TemplateData): string {
     }
     return result;
 }
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 export const DEFAULT_SETTINGS: Settings = {
     downloadPath: "",
     downloader: "auto",
     customTidalApi: "",
     linkResolver: "songlink",
     allowResolverFallback: true,
+<<<<<<< HEAD
     theme: "sky",
     themeMode: "auto",
     fontFamily: "apple-system",
+=======
+    theme: "yellow",
+    themeMode: "auto",
+    fontFamily: "google-sans",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     customFonts: [],
     folderPreset: "none",
     folderTemplate: "",
@@ -170,7 +260,11 @@ export const DEFAULT_SETTINGS: Settings = {
     tidalQuality: "LOSSLESS",
     qobuzQuality: "6",
     amazonQuality: "original",
+<<<<<<< HEAD
     autoOrder: "tidal-qobuz-amazon",
+=======
+    autoOrder: "qobuz-amazon",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     autoQuality: "16",
     allowFallback: true,
     createPlaylistFolder: true,
@@ -186,6 +280,7 @@ export const DEFAULT_SETTINGS: Settings = {
 };
 export const FONT_OPTIONS: FontOption[] = [
     {
+<<<<<<< HEAD
         value: "apple-system",
         label: "Apple System (SF)",
         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable", system-ui, sans-serif',
@@ -196,6 +291,8 @@ export const FONT_OPTIONS: FontOption[] = [
         fontFamily: '"Monocraft", "Segoe UI", system-ui, sans-serif',
     },
     {
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         value: "bricolage-grotesque",
         label: "Bricolage Grotesque",
         fontFamily: '"Bricolage Grotesque", system-ui, sans-serif',
@@ -453,7 +550,11 @@ export function applyFont(fontFamily: FontFamily, customFonts: CustomFontOption[
 }
 async function persistCustomFontsInternal(customFonts: CustomFontOption[]): Promise<CustomFontOption[]> {
     const normalizedFonts = normalizeCustomFonts(customFonts);
+<<<<<<< HEAD
     // await SaveFontsToBackend(normalizedFonts as unknown as Array<Record<string, unknown>>);
+=======
+    await SaveFontsToBackend(normalizedFonts as unknown as Array<Record<string, unknown>>);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     if (cachedSettings) {
         cachedSettings = toNormalizedSettings({
             ...cachedSettings,
@@ -466,15 +567,34 @@ async function persistCustomFontsInternal(customFonts: CustomFontOption[]): Prom
 }
 async function loadStoredCustomFonts(fallbackFonts?: unknown): Promise<CustomFontOption[]> {
     try {
+<<<<<<< HEAD
         const storedSettings = await LoadSettings();
         if (storedSettings && storedSettings.customFonts) {
              return normalizeCustomFonts(storedSettings.customFonts);
+=======
+        const storedFonts = await LoadFontsFromBackend();
+        if (storedFonts !== null) {
+            return normalizeCustomFonts(storedFonts);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     }
     catch (error) {
         console.error("Failed to load custom fonts:", error);
     }
+<<<<<<< HEAD
     return normalizeCustomFonts(fallbackFonts);
+=======
+    const migratedFonts = normalizeCustomFonts(fallbackFonts);
+    if (migratedFonts.length > 0) {
+        try {
+            return await persistCustomFontsInternal(migratedFonts);
+        }
+        catch (error) {
+            console.error("Failed to migrate custom fonts:", error);
+        }
+    }
+    return migratedFonts;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 export async function loadCustomFonts(): Promise<CustomFontOption[]> {
     return loadStoredCustomFonts(getSettings().customFonts);
@@ -507,9 +627,43 @@ function normalizeCustomTidalApi(value: unknown): string {
         ? value.trim().replace(/\/+$/g, "")
         : "";
 }
+<<<<<<< HEAD
 function normalizeExistingFileCheckMode(mode: unknown): ExistingFileCheckMode {
     switch (typeof mode === "string" ? mode.trim().toLowerCase() : "") {
         case "isrc":
+=======
+export function hasConfiguredCustomTidalApi(value: unknown): boolean {
+    return normalizeCustomTidalApi(value).startsWith("https://");
+}
+export function sanitizeAutoOrder(order: unknown, allowTidal: boolean): string {
+    const allowedServices = allowTidal
+        ? new Set(["tidal", "qobuz", "amazon"])
+        : new Set(["qobuz", "amazon"]);
+    const fallbackOrder = allowTidal ? "tidal-qobuz-amazon" : "qobuz-amazon";
+    if (typeof order !== "string") {
+        return fallbackOrder;
+    }
+    const normalized = order
+        .split("-")
+        .map((part) => part.trim().toLowerCase())
+        .filter((part, index, parts) => part !== "" && allowedServices.has(part) && parts.indexOf(part) === index);
+    return normalized.length >= 2 ? normalized.join("-") : fallbackOrder;
+}
+function normalizeDownloader(value: unknown, allowTidal: boolean): Settings["downloader"] {
+    const normalized = typeof value === "string" ? value.trim().toLowerCase() : "";
+    if (normalized === "tidal") {
+        return allowTidal ? "tidal" : "auto";
+    }
+    if (normalized === "qobuz" || normalized === "amazon" || normalized === "auto") {
+        return normalized;
+    }
+    return DEFAULT_SETTINGS.downloader;
+}
+function normalizeExistingFileCheckMode(mode: unknown): ExistingFileCheckMode {
+    switch (typeof mode === "string" ? mode.trim().toLowerCase() : "") {
+        case "isrc":
+        case "upc":
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return "isrc";
         default:
             return "filename";
@@ -557,7 +711,30 @@ function normalizeSettingsPayload(settings: SettingsPayload): SettingsPayload {
             normalized.filenameTemplate = "{title}";
         }
     }
+<<<<<<< HEAD
     normalized.customTidalApi = normalizeCustomTidalApi(normalized.customTidalApi);
+=======
+    delete normalized.tidalVariant;
+    if (!("tidalQuality" in normalized)) {
+        normalized.tidalQuality = "LOSSLESS";
+    }
+    if (!("qobuzQuality" in normalized)) {
+        normalized.qobuzQuality = "6";
+    }
+    if (!("amazonQuality" in normalized)) {
+        normalized.amazonQuality = "original";
+    }
+    if (!("autoOrder" in normalized)) {
+        normalized.autoOrder = DEFAULT_SETTINGS.autoOrder;
+    }
+    if (!("autoQuality" in normalized)) {
+        normalized.autoQuality = "16";
+    }
+    normalized.customTidalApi = normalizeCustomTidalApi(normalized.customTidalApi);
+    const allowTidal = hasConfiguredCustomTidalApi(normalized.customTidalApi);
+    normalized.downloader = normalizeDownloader(normalized.downloader, allowTidal);
+    normalized.autoOrder = sanitizeAutoOrder(normalized.autoOrder, allowTidal);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     if (!("allowFallback" in normalized)) {
         normalized.allowFallback = true;
     }
@@ -599,10 +776,17 @@ function normalizeSettingsPayload(settings: SettingsPayload): SettingsPayload {
     normalized.fontFamily = normalizeFontFamily(normalized.fontFamily, normalizedCustomFonts);
     return normalized;
 }
+<<<<<<< HEAD
 function toNormalizedSettings(settings: any): Settings {
     return {
         ...DEFAULT_SETTINGS,
         ...keepKnownSettings(normalizeSettingsPayload(settings as SettingsPayload)),
+=======
+function toNormalizedSettings(settings: SettingsPayload): Settings {
+    return {
+        ...DEFAULT_SETTINGS,
+        ...keepKnownSettings(normalizeSettingsPayload(settings)),
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     } as Settings;
 }
 async function persistSettingsInternal(settings: Settings, notify = true): Promise<void> {
@@ -629,11 +813,19 @@ function getSettingsFromLocalStorage(): Settings {
     try {
         const stored = localStorage.getItem(SETTINGS_KEY);
         if (stored) {
+<<<<<<< HEAD
             return toNormalizedSettings(JSON.parse(stored));
         }
     }
     catch (error) {
         console.error("Failed to load settings from localStorage:", error);
+=======
+            return toNormalizedSettings(JSON.parse(stored) as SettingsPayload);
+        }
+    }
+    catch (error) {
+        console.error("Failed to load settings from local storage:", error);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     }
     return DEFAULT_SETTINGS;
 }
@@ -641,22 +833,40 @@ export function getSettings(): Settings {
     if (cachedSettings) {
         return cachedSettings;
     }
+<<<<<<< HEAD
     cachedSettings = getSettingsFromLocalStorage();
     return cachedSettings;
+=======
+    return getSettingsFromLocalStorage();
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 export async function loadSettings(): Promise<Settings> {
     try {
         const backendSettings = await LoadSettings();
         if (backendSettings) {
+<<<<<<< HEAD
             const normalized = toNormalizedSettings(backendSettings);
             cachedSettings = normalized;
             localStorage.setItem(SETTINGS_KEY, JSON.stringify(normalized));
             return normalized;
+=======
+            const parsed = backendSettings as SettingsPayload;
+            const customFonts = await loadStoredCustomFonts(parsed.customFonts);
+            cachedSettings = toNormalizedSettings({
+                ...parsed,
+                customFonts,
+            });
+            if ("customFonts" in parsed) {
+                await persistSettingsInternal(cachedSettings, false);
+            }
+            return cachedSettings;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     }
     catch (error) {
         console.error("Failed to load settings from backend:", error);
     }
+<<<<<<< HEAD
     return getSettings();
 }
 export async function getSettingsWithDefaults(): Promise<Settings> {
@@ -667,10 +877,64 @@ export async function getSettingsWithDefaults(): Promise<Settings> {
             settings.downloadPath = defaultPath;
             await persistSettingsInternal(settings, false);
         }
+=======
+    const local = getSettingsFromLocalStorage();
+    try {
+        const customFonts = await loadStoredCustomFonts(local.customFonts);
+        const localWithFonts = toNormalizedSettings({
+            ...local,
+            customFonts,
+        });
+        await persistSettingsInternal(localWithFonts, false);
+        cachedSettings = localWithFonts;
+        return localWithFonts;
+    }
+    catch (error) {
+        console.error("Failed to migrate settings to backend:", error);
+    }
+    cachedSettings = local;
+    return local;
+}
+export interface TemplateData {
+    artist?: string;
+    album?: string;
+    album_artist?: string;
+    title?: string;
+    isrc?: string;
+    track?: number;
+    disc?: number;
+    year?: string;
+    date?: string;
+    playlist?: string;
+}
+export function parseTemplate(template: string, data: TemplateData): string {
+    if (!template) {
+        return "";
+    }
+    let result = template;
+    result = result.replace(/\{title\}/g, data.title || "Unknown Title");
+    result = result.replace(/\{artist\}/g, data.artist || "Unknown Artist");
+    result = result.replace(/\{album\}/g, data.album || "Unknown Album");
+    result = result.replace(/\{album_artist\}/g, data.album_artist || data.artist || "Unknown Artist");
+    result = result.replace(/\{isrc\}/g, data.isrc || "");
+    result = result.replace(/\{track\}/g, data.track ? String(data.track).padStart(2, "0") : "00");
+    result = result.replace(/\{disc\}/g, data.disc ? String(data.disc) : "1");
+    result = result.replace(/\{year\}/g, data.year || "0000");
+    result = result.replace(/\{date\}/g, data.date || "0000-00-00");
+    result = result.replace(/\{playlist\}/g, data.playlist || "");
+    return result;
+}
+export async function getSettingsWithDefaults(): Promise<Settings> {
+    const settings = await loadSettings();
+    if (!settings.downloadPath) {
+        settings.downloadPath = await fetchDefaultPath();
+        await saveSettings(settings);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     }
     return settings;
 }
 export async function saveSettings(settings: Settings): Promise<void> {
+<<<<<<< HEAD
     await persistSettingsInternal(toNormalizedSettings(settings));
 }
 export async function resetToDefaultSettings(): Promise<Settings> {
@@ -707,3 +971,47 @@ export async function updateSettings(updates: Partial<Settings>): Promise<void> 
     const current = getSettings();
     await saveSettings({ ...current, ...updates } as Settings);
 }
+=======
+    try {
+        const normalizedSettings = toNormalizedSettings(settings as SettingsPayload);
+        await persistSettingsInternal(normalizedSettings);
+    }
+    catch (error) {
+        console.error("Failed to save settings:", error);
+    }
+}
+export async function updateSettings(partial: Partial<Settings>): Promise<Settings> {
+    const current = getSettings();
+    const updated = { ...current, ...partial };
+    await saveSettings(updated);
+    return updated;
+}
+export async function resetToDefaultSettings(): Promise<Settings> {
+    const defaultPath = await fetchDefaultPath();
+    const customFonts = await loadCustomFonts();
+    const defaultSettings = {
+        ...DEFAULT_SETTINGS,
+        downloadPath: defaultPath,
+        customFonts,
+    };
+    await saveSettings(defaultSettings);
+    return defaultSettings;
+}
+export function applyThemeMode(mode: "auto" | "light" | "dark"): void {
+    if (mode === "auto") {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (prefersDark) {
+            document.documentElement.classList.add("dark");
+        }
+        else {
+            document.documentElement.classList.remove("dark");
+        }
+    }
+    else if (mode === "dark") {
+        document.documentElement.classList.add("dark");
+    }
+    else {
+        document.documentElement.classList.remove("dark");
+    }
+}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea

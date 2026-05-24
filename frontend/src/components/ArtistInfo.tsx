@@ -109,12 +109,21 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
     const totalTrackCount = albumList.reduce((sum, album) => sum + (album.total_tracks || 0), 0);
     const fetchedTrackCount = trackList.length;
     const albumCountLabel = isMetadataLoading && totalAlbumCount > 0 && fetchedAlbumCount < totalAlbumCount
+<<<<<<< HEAD
         ? `${fetchedAlbumCount.toLocaleString()} / ${totalAlbumCount.toLocaleString()} альбомов`
         : `${displayedAlbumCount.toLocaleString()} альбомов`;
     const resolvedTrackCount = totalTrackCount > 0 ? totalTrackCount : fetchedTrackCount;
     const trackCountLabel = isMetadataLoading && totalTrackCount > 0 && fetchedTrackCount < totalTrackCount
         ? `${fetchedTrackCount.toLocaleString()} / ${totalTrackCount.toLocaleString()} треков`
         : `${resolvedTrackCount.toLocaleString()} треков`;
+=======
+        ? `${fetchedAlbumCount.toLocaleString()} / ${totalAlbumCount.toLocaleString()} albums`
+        : `${displayedAlbumCount.toLocaleString()} ${displayedAlbumCount === 1 ? "album" : "albums"}`;
+    const resolvedTrackCount = totalTrackCount > 0 ? totalTrackCount : fetchedTrackCount;
+    const trackCountLabel = isMetadataLoading && totalTrackCount > 0 && fetchedTrackCount < totalTrackCount
+        ? `${fetchedTrackCount.toLocaleString()} / ${totalTrackCount.toLocaleString()} tracks`
+        : `${resolvedTrackCount.toLocaleString()} ${resolvedTrackCount === 1 ? "track" : "tracks"}`;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     const albumFilterCounts = useMemo(() => {
         const counts = new Map<string, number>();
         counts.set("all", (albumList || []).length);
@@ -188,6 +197,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             });
             if (response.success) {
                 if (response.already_exists) {
+<<<<<<< HEAD
                     toast.info("Шапка уже существует");
                 }
                 else {
@@ -196,6 +206,16 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             }
             else {
                 toast.error(response.error || "Ошибка скачивания шапки");
+=======
+                    toast.info("Header already exists");
+                }
+                else {
+                    toast.success("Header downloaded successfully");
+                }
+            }
+            else {
+                toast.error(response.error || "Failed to download header");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
         }
         catch (error) {
@@ -218,6 +238,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             });
             if (response.success) {
                 if (response.already_exists) {
+<<<<<<< HEAD
                     toast.info("Аватар уже существует");
                 }
                 else {
@@ -226,6 +247,16 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             }
             else {
                 toast.error(response.error || "Ошибка скачивания аватара");
+=======
+                    toast.info("Avatar already exists");
+                }
+                else {
+                    toast.success("Avatar downloaded successfully");
+                }
+            }
+            else {
+                toast.error(response.error || "Failed to download avatar");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
         }
         catch (error) {
@@ -247,6 +278,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             });
             if (response.success) {
                 if (response.already_exists) {
+<<<<<<< HEAD
                     toast.info(`Изображение галереи ${index + 1} уже существует`);
                 }
                 else {
@@ -255,6 +287,16 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             }
             else {
                 toast.error(response.error || `Ошибка скачивания изображения ${index + 1}`);
+=======
+                    toast.info(`Gallery image ${index + 1} already exists`);
+                }
+                else {
+                    toast.success(`Gallery image ${index + 1} downloaded successfully`);
+                }
+            }
+            else {
+                toast.error(response.error || `Failed to download gallery image ${index + 1}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
         }
         catch (error) {
@@ -300,6 +342,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             }
             if (failCount === 0) {
                 if (existsCount > 0 && successCount > 0) {
+<<<<<<< HEAD
                     toast.success(`Скачано ${successCount} изображений, ${existsCount} уже существовало`);
                 }
                 else if (existsCount > 0) {
@@ -311,6 +354,19 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             }
             else {
                 toast.error(`Не удалось скачать ${failCount} изображений`);
+=======
+                    toast.success(`${successCount} images downloaded, ${existsCount} already existed`);
+                }
+                else if (existsCount > 0) {
+                    toast.info(`All ${existsCount} images already exist`);
+                }
+                else {
+                    toast.success(`All ${successCount} gallery images downloaded successfully`);
+                }
+            }
+            else {
+                toast.error(`${failCount} images failed to download`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
         }
         catch (error) {
@@ -340,7 +396,11 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
+<<<<<<< HEAD
                     <p>Скачать шапку</p>
+=======
+                    <p>Download Header</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </TooltipContent>
                 </Tooltip>
               </div>
@@ -356,13 +416,21 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
+<<<<<<< HEAD
                             <p>Скачать аватар</p>
+=======
+                            <p>Download Avatar</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                           </TooltipContent>
                         </Tooltip>
                       </div>
                     </div>)}
                   <div className="flex-1 space-y-2">
+<<<<<<< HEAD
                     <p className="text-sm font-medium text-white/80">Исполнитель</p>
+=======
+                    <p className="text-sm font-medium text-white/80">Artist</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     <div className="flex items-center gap-2">
                       <h2 className="text-4xl font-bold text-white">{artistInfo.name}</h2>
                       {artistInfo.verified && (<BadgeCheck className="h-6 w-6 text-white fill-blue-400 shrink-0"/>)}
@@ -370,6 +438,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                     {artistInfo.biography && (<p className="text-sm text-white/90 line-clamp-4">{artistInfo.biography}</p>)}
                     <div className="flex items-center gap-2 text-sm flex-wrap text-white/90">
                       {artistInfo.rank && (<>
+<<<<<<< HEAD
                           <span>#{artistInfo.rank} место</span>
                           <span>•</span>
                         </>)}
@@ -377,6 +446,15 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                       {artistInfo.listeners && (<>
                           <span>•</span>
                           <span>{artistInfo.listeners.toLocaleString()} слушателей</span>
+=======
+                          <span>#{artistInfo.rank} rank</span>
+                          <span>•</span>
+                        </>)}
+                      <span>{artistInfo.followers.toLocaleString()} {artistInfo.followers === 1 ? "follower" : "followers"}</span>
+                      {artistInfo.listeners && (<>
+                          <span>•</span>
+                          <span>{artistInfo.listeners.toLocaleString()} {artistInfo.listeners === 1 ? "listener" : "listeners"}</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </>)}
                     </div>
                     <div className="flex items-center gap-2 text-sm flex-wrap text-white/90">
@@ -409,13 +487,21 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent>
+<<<<<<< HEAD
                         <p>Скачать аватар</p>
+=======
+                        <p>Download Avatar</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       </TooltipContent>
                     </Tooltip>
                   </div>
                 </div>)}
               <div className="flex-1 space-y-2">
+<<<<<<< HEAD
                 <p className="text-sm font-medium">Исполнитель</p>
+=======
+                <p className="text-sm font-medium">Artist</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <div className="flex items-center gap-2">
                   <h2 className="text-4xl font-bold">{artistInfo.name}</h2>
                   {artistInfo.verified && (<BadgeCheck className="h-6 w-6 text-white fill-blue-500 shrink-0"/>)}
@@ -423,6 +509,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                 {artistInfo.biography && (<p className="text-sm text-muted-foreground line-clamp-4">{artistInfo.biography}</p>)}
                 <div className="flex items-center gap-2 text-sm flex-wrap">
                   {artistInfo.rank && (<>
+<<<<<<< HEAD
                       <span>#{artistInfo.rank} место</span>
                       <span>•</span>
                     </>)}
@@ -430,6 +517,15 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                   {artistInfo.listeners && (<>
                       <span>•</span>
                       <span>{artistInfo.listeners.toLocaleString()} слушателей</span>
+=======
+                      <span>#{artistInfo.rank} rank</span>
+                      <span>•</span>
+                    </>)}
+                  <span>{artistInfo.followers.toLocaleString()} {artistInfo.followers === 1 ? "follower" : "followers"}</span>
+                  {artistInfo.listeners && (<>
+                      <span>•</span>
+                      <span>{artistInfo.listeners.toLocaleString()} {artistInfo.listeners === 1 ? "listener" : "listeners"}</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </>)}
                 </div>
                 <div className="flex items-center gap-2 text-sm flex-wrap">
@@ -449,6 +545,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
       <div className="border-b">
         <div className="flex gap-6">
             <button onClick={() => setActiveTab("albums")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "albums" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
+<<<<<<< HEAD
                 Альбомы
             </button>
             <button onClick={() => setActiveTab("tracks")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "tracks" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
@@ -456,13 +553,26 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
             </button>
             {hasGallery && (<button onClick={() => setActiveTab("gallery")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "gallery" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
                     Галерея
+=======
+                Albums
+            </button>
+            <button onClick={() => setActiveTab("tracks")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "tracks" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
+                All Tracks
+            </button>
+            {hasGallery && (<button onClick={() => setActiveTab("gallery")} className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px hover:text-foreground ${activeTab === "gallery" ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>
+                    Gallery
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </button>)}
         </div>
       </div>
 
       {activeTab === "gallery" && hasGallery && (<div className="space-y-4">
           <div className="flex items-center justify-between">
+<<<<<<< HEAD
             <h3 className="text-2xl font-bold">Галерея ({artistInfo.gallery!.length.toLocaleString()})</h3>
+=======
+            <h3 className="text-2xl font-bold">Gallery ({artistInfo.gallery!.length.toLocaleString()})</h3>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button onClick={handleDownloadAllGallery} size="sm" variant="outline" disabled={downloadingAllGallery}>
@@ -470,7 +580,11 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
+<<<<<<< HEAD
                 <p>Скачать всю галерею</p>
+=======
+                <p>Download All Gallery</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </TooltipContent>
             </Tooltip>
           </div>
@@ -486,7 +600,11 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent>
+<<<<<<< HEAD
                         <p>Скачать изображение {index + 1}</p>
+=======
+                        <p>Download Image {index + 1}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       </TooltipContent>
                     </Tooltip>
                   </div>
@@ -497,6 +615,7 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
 
       {activeTab === "albums" && albumList.length > 0 && (<div className="space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
+<<<<<<< HEAD
             <h3 className="text-2xl font-bold">Дискография</h3>
             <div className="flex gap-2">
                 <Button onClick={onDownloadAll} size="sm" disabled={isDownloading}>
@@ -506,6 +625,17 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                 {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} size="sm" variant="secondary" disabled={isDownloading}>
                         {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
                         Скачать выбранные ({selectedTracks.length})
+=======
+            <h3 className="text-2xl font-bold">Discography</h3>
+            <div className="flex gap-2">
+                <Button onClick={onDownloadAll} size="sm" disabled={isDownloading}>
+                    {isDownloading && bulkDownloadType === "all" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+                    Download Discography
+                </Button>
+                {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} size="sm" variant="secondary" disabled={isDownloading}>
+                        {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+                        Download Selected ({selectedTracks.length})
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </Button>)}
             </div>
           </div>
@@ -542,7 +672,11 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                     <span>{album.release_date?.split("-")[0]}</span>
                     {album.total_tracks && (<>
                             <span>•</span>
+<<<<<<< HEAD
                             <span>{album.total_tracks} треков</span>
+=======
+                            <span>{album.total_tracks} {album.total_tracks === 1 ? "track" : "tracks"}</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </>)}
                 </div>
               </div>);
@@ -555,18 +689,30 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
 
       {activeTab === "tracks" && trackList.length > 0 && (<div className="space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
+<<<<<<< HEAD
             <h3 className="text-2xl font-bold">Все треки</h3>
+=======
+            <h3 className="text-2xl font-bold">All Tracks</h3>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             <div className="flex gap-2 flex-wrap">
               <Dialog>
                   <DialogTrigger asChild>
                       <Button variant="outline" size="sm">
                           <Filter className="h-4 w-4"/>
+<<<<<<< HEAD
                           Фильтр альбомов
+=======
+                          Filter Albums
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-125 h-[80vh] flex flex-col">
                       <DialogHeader>
+<<<<<<< HEAD
                           <DialogTitle>Выберите альбомы</DialogTitle>
+=======
+                          <DialogTitle>Select Albums</DialogTitle>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       </DialogHeader>
                       <ScrollArea className="flex-1 pr-4">
                           <div className="space-y-4">
@@ -584,7 +730,11 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
                                                       {data.type}
                                                   </span>
                                                   <span>•</span>
+<<<<<<< HEAD
                                                   <span>{data.count} треков</span>
+=======
+                                                  <span>{data.count} tracks</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                                   <span>•</span>
                                                   <span>{data.tracks[0]?.release_date?.split('-')[0] || 'Unknown Year'}</span>
                                               </div>
@@ -597,11 +747,19 @@ export function ArtistInfo({ artistInfo, albumList, trackList, searchQuery, sort
               </Dialog>
               <Button onClick={onDownloadAll} size="sm" disabled={isDownloading}>
                 {isDownloading && bulkDownloadType === "all" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+<<<<<<< HEAD
                 Скачать все
               </Button>
               {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} size="sm" variant="secondary" disabled={isDownloading}>
                   {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
                   Скачать выбранные ({selectedTracks.length.toLocaleString()})
+=======
+                Download All
+              </Button>
+              {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} size="sm" variant="secondary" disabled={isDownloading}>
+                  {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+                  Download Selected ({selectedTracks.length.toLocaleString()})
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </Button>)}
               {onDownloadAllLyrics && (<Tooltip>
                   <TooltipTrigger asChild>

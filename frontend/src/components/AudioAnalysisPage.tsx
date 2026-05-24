@@ -118,12 +118,21 @@ function itemMetaLine(item: BatchAnalysisItem): string {
     }
     switch (item.status) {
         case "analyzing":
+<<<<<<< HEAD
             return "Анализ качества звука...";
         case "error":
             return item.error || "Анализ не удался";
         case "pending":
         default:
             return "Ожидание анализа";
+=======
+            return "Analyzing audio quality...";
+        case "error":
+            return item.error || "Analysis failed";
+        case "pending":
+        default:
+            return "Waiting to be analyzed";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     }
 }
 function statusIcon(status: BatchItemStatus) {
@@ -250,7 +259,11 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                         ? {
                             ...item,
                             status: "error",
+<<<<<<< HEAD
                             error: outcome.error || "Анализ не удался",
+=======
+                            error: outcome.error || "Analysis failed",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         }
                         : item));
                     if (!activeItemIdRef.current) {
@@ -265,6 +278,7 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                     fileName: "",
                 });
                 if (successCount > 0) {
+<<<<<<< HEAD
                     toast.success("Пакетный анализ завершен", {
                         description: `Успешно проанализировано ${successCount} файл(ов)${failCount > 0 ? `, ${failCount} с ошибкой` : ""}`,
                     });
@@ -272,6 +286,15 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                 else if (failCount > 0) {
                     toast.error("Ошибка пакетного анализа", {
                         description: `Все ${failCount} файл(ов) завершились с ошибкой`,
+=======
+                    toast.success("Batch Analysis Complete", {
+                        description: `Successfully analyzed ${successCount} file(s)${failCount > 0 ? `, ${failCount} failed` : ""}`,
+                    });
+                }
+                else if (failCount > 0) {
+                    toast.error("Batch Analysis Failed", {
+                        description: `All ${failCount} file(s) failed to analyze`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     });
                 }
             }
@@ -286,8 +309,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         if (!isBatchRunning) {
             return true;
         }
+<<<<<<< HEAD
         toast.info("Выполняется анализ", {
             description: "Пожалуйста, дождитесь окончания текущего пакета или очистите его.",
+=======
+        toast.info("Analysis in progress", {
+            description: "Please wait for the current batch to finish or clear it first.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         });
         return false;
     }, [isBatchRunning]);
@@ -309,8 +337,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         const existingIds = new Set(itemsRef.current.map((item) => item.id));
         const newPaths = validPaths.filter((path) => !existingIds.has(path));
         if (newPaths.length === 0) {
+<<<<<<< HEAD
             toast.info("Новые файлы не добавлены", {
                 description: "Все выбранные файлы уже были в очереди пакета.",
+=======
+            toast.info("No new files added", {
+                description: "All selected files were already in the batch queue.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
@@ -324,8 +357,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
             status: "pending" as const,
         }));
         if (validPaths.length !== newPaths.length) {
+<<<<<<< HEAD
             toast.info("Некоторые файлы пропущены", {
                 description: `${validPaths.length - newPaths.length} файл(ов) уже стояли в очереди.`,
+=======
+            toast.info("Some files skipped", {
+                description: `${validPaths.length - newPaths.length} file(s) were already queued.`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
         setItems((prev) => [...prev, ...newItems]);
@@ -341,8 +379,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         const validFiles = files.filter(isSupportedAudioFile);
         const invalidCount = files.length - validFiles.length;
         if (invalidCount > 0) {
+<<<<<<< HEAD
             toast.error("Неподдерживаемый формат", {
                 description: `Только файлы ${SUPPORTED_AUDIO_LABEL} могут быть проанализированы.`,
+=======
+            toast.error("Unsupported format", {
+                description: `Only ${SUPPORTED_AUDIO_LABEL} files can be analyzed.`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
         if (validFiles.length === 0) {
@@ -361,14 +404,24 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         }))
             .filter((item) => !existingIds.has(item.id));
         if (newItems.length === 0) {
+<<<<<<< HEAD
             toast.info("Новые файлы не добавлены", {
                 description: "Все выбранные файлы уже были в очереди пакета.",
+=======
+            toast.info("No new files added", {
+                description: "All selected files were already in the batch queue.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
         if (validFiles.length !== newItems.length) {
+<<<<<<< HEAD
             toast.info("Некоторые файлы пропущены", {
                 description: `${validFiles.length - newItems.length} файл(ов) уже стояли в очереди.`,
+=======
+            toast.info("Some files skipped", {
+                description: `${validFiles.length - newItems.length} file(s) were already queued.`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
         setItems((prev) => [...prev, ...newItems]);
@@ -404,16 +457,26 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
             }
             const folderFiles = await ListAudioFilesInDir(selectedFolder);
             if (!folderFiles || folderFiles.length === 0) {
+<<<<<<< HEAD
                 toast.info("Аудиофайлы не найдены", {
                     description: `Файлы ${SUPPORTED_AUDIO_LABEL} не найдены в выбранной папке.`,
+=======
+                toast.info("No audio files found", {
+                    description: `No ${SUPPORTED_AUDIO_LABEL} files were found in the selected folder.`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
                 return;
             }
             await addPathItems(folderFiles.map((file) => file.path));
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error("Ошибка выбора папки", {
                 description: err instanceof Error ? err.message : "Не удалось выбрать папку",
+=======
+            toast.error("Folder Selection Failed", {
+                description: err instanceof Error ? err.message : "Failed to select folder",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
     }, [addPathItems, ensureIdleQueue]);
@@ -494,8 +557,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                 status: "pending",
             }
             : item));
+<<<<<<< HEAD
         toast.info("Пакетный анализ остановлен", {
             description: "Нажмите Анализировать для продолжения с оставшимися файлами.",
+=======
+        toast.info("Batch analysis stopped", {
+            description: "Click Analyze to continue the remaining files.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         });
     }, [cancelAnalysis, isBatchRunning]);
     const handleAnalyzePending = useCallback(() => {
@@ -514,8 +582,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         }
         const dataUrl = spectrumRef.current.getCanvasDataURL();
         if (!dataUrl) {
+<<<<<<< HEAD
             toast.error("Ошибка экспорта", {
                 description: "Не удается получить данные холста",
+=======
+            toast.error("Export Failed", {
+                description: "Cannot get canvas data",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
@@ -523,13 +596,19 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         try {
             if (activeItem.source === "path" && isAbsolutePath(activeItem.path)) {
                 const outPath = await SaveSpectrumImage(activeItem.path, dataUrl);
+<<<<<<< HEAD
                 toast.success("PNG Экспортирован", {
                     description: `Сохранено в: ${outPath}`,
+=======
+                toast.success("PNG Exported", {
+                    description: `Saved to: ${outPath}`,
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
                 return;
             }
             const baseName = activeItem.name.replace(/\.[^/.]+$/, "") || "spectrogram";
             downloadDataURL(dataUrl, `${baseName}_spectrogram.png`);
+<<<<<<< HEAD
             toast.success("PNG Экспортирован", {
                 description: "Изображение спектрограммы скачано",
             });
@@ -537,6 +616,15 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         catch (err) {
             toast.error("Ошибка экспорта", {
                 description: err instanceof Error ? err.message : "Не удалось экспортировать изображение",
+=======
+            toast.success("PNG Exported", {
+                description: "Spectrogram image downloaded",
+            });
+        }
+        catch (err) {
+            toast.error("Export Failed", {
+                description: err instanceof Error ? err.message : "Failed to export image",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
         }
         finally {
@@ -546,8 +634,13 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
     const handleBatchExport = useCallback(async () => {
         const exportableItems = itemsRef.current.filter((item) => item.status === "success" && item.result?.spectrum);
         if (exportableItems.length === 0) {
+<<<<<<< HEAD
             toast.error("Нечего экспортировать", {
                 description: "Успешно проанализируйте хотя бы один файл перед экспортом PNG.",
+=======
+            toast.error("Nothing to export", {
+                description: "Analyze at least one file successfully before exporting PNGs.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
@@ -602,6 +695,7 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                 fileName: "",
             });
             if (successCount > 0) {
+<<<<<<< HEAD
                 toast.success("Пакетный экспорт PNG завершен", {
                     description: `Экспортировано ${successCount} файлов PNG со спектрограммой${failCount > 0 ? `, ${failCount} с ошибкой` : ""}`,
                 });
@@ -609,6 +703,15 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
             else {
                 toast.error("Ошибка пакетного экспорта PNG", {
                     description: "Ни одного файла PNG со спектрограммой не было экспортировано.",
+=======
+                toast.success("Batch PNG Export Complete", {
+                    description: `Exported ${successCount} spectrogram PNG file(s)${failCount > 0 ? `, ${failCount} failed` : ""}`,
+                });
+            }
+            else {
+                toast.error("Batch PNG Export Failed", {
+                    description: "No spectrogram PNG files were exported.",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
             }
         }
@@ -636,7 +739,11 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
     const batchDetailContent = !activeItem ? (<Card>
             <CardContent className="flex min-h-[320px] items-center justify-center px-6 py-10">
                 <p className="text-sm text-muted-foreground">
+<<<<<<< HEAD
                     Выберите файл из очереди пакета для просмотра результата его анализа.
+=======
+                    Select a file from the batch queue to inspect its analysis result.
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </p>
             </CardContent>
         </Card>) : activeItem.status !== "success" || !activeItem.result ? (<Card>
@@ -648,16 +755,27 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                 {activeItem.status === "analyzing" && (<div className="space-y-3">
                         <div className="flex items-center gap-3">
                             <Spinner />
+<<<<<<< HEAD
                             <span className="text-sm text-muted-foreground">Анализ качества звука...</span>
+=======
+                            <span className="text-sm text-muted-foreground">Analyzing audio quality...</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </div>
                         <Progress value={analysisProgress.percent} className="h-2 w-full"/>
                         <p className="text-xs text-muted-foreground">{analysisProgress.message}</p>
                     </div>)}
                 {activeItem.status === "pending" && (<p className="text-sm text-muted-foreground">
+<<<<<<< HEAD
                         Этот файл в очереди и ожидает начала пакетного анализа.
                     </p>)}
                 {activeItem.status === "error" && (<div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">
                         {activeItem.error || "Анализ не удался"}
+=======
+                        This file is queued and waiting for batch analysis to start.
+                    </p>)}
+                {activeItem.status === "error" && (<div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">
+                        {activeItem.error || "Analysis failed"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </div>)}
             </CardContent>
         </Card>) : (<div className="space-y-4">
@@ -672,7 +790,11 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
         </div>) : activeItem.status === "analyzing" || activeItem.status === "pending" ? (<div className="flex h-[400px] items-center justify-center">
             <div className="w-full max-w-md space-y-2">
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
+<<<<<<< HEAD
                     <span>{activeItem.status === "pending" ? "Подготовка..." : "Обработка..."}</span>
+=======
+                    <span>{activeItem.status === "pending" ? "Preparing..." : "Processing..."}</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     <span className="tabular-nums">{analysisProgress.percent}%</span>
                 </div>
                 <Progress value={analysisProgress.percent} className="h-2 w-full"/>
@@ -680,7 +802,11 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
             </div>
         </div>) : (<div className="flex h-[400px] items-center justify-center">
             <div className="w-full max-w-md rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive">
+<<<<<<< HEAD
                 {activeItem.error || "Анализ не удался"}
+=======
+                {activeItem.error || "Analysis failed"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </div>
         </div>);
     const showSingleModeActions = isSingleMode && activeItem?.status === "success" && activeItem.result;
@@ -692,67 +818,115 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                     {onBack && (<Button variant="ghost" size="icon" onClick={onBack}>
                             <ArrowLeft className="h-5 w-5"/>
                         </Button>)}
+<<<<<<< HEAD
                     <h1 className="text-2xl font-bold">Анализатор Качества Звука</h1>
+=======
+                    <h1 className="text-2xl font-bold">Audio Quality Analyzer</h1>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                     {isBatchMode && isBatchRunning && (<Button onClick={handleStopBatch} variant="destructive" size="sm" disabled={isExportingBatch || isExportingSelected} className="gap-1.5">
                             <StopCircle className="h-4 w-4"/>
+<<<<<<< HEAD
                             Остановить
                         </Button>)}
                     {canResumeBatch && (<Button onClick={handleAnalyzePending} variant="outline" size="sm" disabled={isExportingBatch || isExportingSelected || spectrumLoading}>
                             <Play className="h-4 w-4"/>
                             Анализировать
+=======
+                            Stop
+                        </Button>)}
+                    {canResumeBatch && (<Button onClick={handleAnalyzePending} variant="outline" size="sm" disabled={isExportingBatch || isExportingSelected || spectrumLoading}>
+                            <Play className="h-4 w-4"/>
+                            Analyze
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>)}
                     {isBatchMode && (<DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" size="sm" disabled={isBatchRunning || isExportingBatch || isExportingSelected}>
                                     <Upload className="h-4 w-4 mr-1"/>
+<<<<<<< HEAD
                                     Добавить
+=======
+                                    Add
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                     <ChevronDown className="ml-1 h-4 w-4"/>
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="min-w-[180px]">
                                 <DropdownMenuItem onClick={handleSelectFiles} className="cursor-pointer">
                                     <Upload className="h-4 w-4"/>
+<<<<<<< HEAD
                                     Добавить файлы
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={handleSelectFolder} className="cursor-pointer">
                                     <FolderOpen className="h-4 w-4"/>
                                     Добавить папку
+=======
+                                    Add Files
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={handleSelectFolder} className="cursor-pointer">
+                                    <FolderOpen className="h-4 w-4"/>
+                                    Add Folder
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>)}
                     {showSingleModeActions && (<Button onClick={handleExportSelected} variant="outline" size="sm" disabled={isExportingSelected || spectrumLoading}>
                             <Download className="h-4 w-4 mr-1"/>
+<<<<<<< HEAD
                             {isExportingSelected ? "Экспорт..." : "Экспорт PNG"}
+=======
+                            {isExportingSelected ? "Exporting..." : "Export PNG"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>)}
                     {isBatchMode && (<DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" size="sm" disabled={successItems.length === 0 || isExportingBatch || isExportingSelected || isBatchRunning || spectrumLoading}>
                                     <Download className="h-4 w-4 mr-1"/>
+<<<<<<< HEAD
                                     {isExportingBatch ? "Экспорт..." : isExportingSelected ? "Экспорт..." : "Экспорт"}
+=======
+                                    {isExportingBatch ? "Exporting..." : isExportingSelected ? "Exporting..." : "Export"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                     <ChevronDown className="ml-1 h-4 w-4"/>
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="min-w-[200px]">
                                 <DropdownMenuItem onClick={handleExportSelected} className="cursor-pointer" disabled={!activeItem?.result?.spectrum}>
                                     <Download className="h-4 w-4"/>
+<<<<<<< HEAD
                                     Экспорт выбранного PNG
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={handleBatchExport} className="cursor-pointer" disabled={successItems.length === 0}>
                                     <Download className="h-4 w-4"/>
                                     Экспорт всех PNG
+=======
+                                    Export Selected PNG
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={handleBatchExport} className="cursor-pointer" disabled={successItems.length === 0}>
+                                    <Download className="h-4 w-4"/>
+                                    Export All PNG
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>)}
                     {showSingleModeActions && (<Button onClick={handleClearAll} variant="outline" size="sm" disabled={isExportingSelected}>
                             <Trash2 className="h-4 w-4 mr-1"/>
+<<<<<<< HEAD
                             Очистить
                         </Button>)}
                     {isBatchMode && (<Button onClick={handleClearAll} variant="outline" size="sm" disabled={isExportingBatch || isExportingSelected}>
                             <Trash2 className="h-4 w-4 mr-1"/>
                             Очистить
+=======
+                            Clear
+                        </Button>)}
+                    {isBatchMode && (<Button onClick={handleClearAll} variant="outline" size="sm" disabled={isExportingBatch || isExportingSelected}>
+                            <Trash2 className="h-4 w-4 mr-1"/>
+                            Clear
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </Button>)}
                 </div>
             </div>
@@ -769,12 +943,18 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                     </div>
                     <p className="text-sm text-muted-foreground mb-4 text-center">
                         {isDragging
+<<<<<<< HEAD
                 ? "Поместите сюда аудиофайлы"
                 : "Перетащите сюда аудиофайлы или нажмите кнопку ниже для выбора"}
+=======
+                ? "Drop your audio files here"
+                : "Drag and drop audio files here, or click the button below to select"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </p>
                     <div className="flex gap-3">
                         <Button onClick={handleSelectFiles} size="lg">
                             <Upload className="h-5 w-5"/>
+<<<<<<< HEAD
                             Выбрать файлы
                         </Button>
                         <Button onClick={handleSelectFolder} size="lg" variant="outline">
@@ -784,6 +964,17 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                     </div>
                     <p className="text-xs text-muted-foreground mt-4 text-center">
                         Поддерживаемые форматы: FLAC, MP3, M4A, AAC
+=======
+                            Select Files
+                        </Button>
+                        <Button onClick={handleSelectFolder} size="lg" variant="outline">
+                            <Upload className="h-5 w-5"/>
+                            Select Folder
+                        </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-4 text-center">
+                        Supported formats: FLAC, MP3, M4A, AAC
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </p>
                 </div>)}
 
@@ -796,14 +987,22 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                         {(isBatchRunning || isExportingBatch) && (<Card className="gap-2 py-4">
                                 <CardHeader className="px-4 pb-0">
                                     <CardTitle className="text-sm">
+<<<<<<< HEAD
                                         {isExportingBatch ? "Пакетный экспорт PNG" : "Пакетный анализ"}
+=======
+                                        {isExportingBatch ? "Batch PNG Export" : "Batch Analysis"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-2 px-4">
                                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                                         <span className="truncate pr-3">
                                             {isExportingBatch
+<<<<<<< HEAD
                     ? exportProgress.fileName || "Подготовка экспорта..."
+=======
+                    ? exportProgress.fileName || "Preparing export..."
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     : batchProgress.fileName || analysisProgress.message}
                                         </span>
                                         <span className="tabular-nums">
@@ -823,9 +1022,15 @@ export function AudioAnalysisPage({ onBack }: AudioAnalysisPageProps) {
                         <Card className="gap-2 overflow-hidden py-4">
                             <CardHeader className="px-4 pb-0">
                                 <div className="flex items-center justify-between gap-3">
+<<<<<<< HEAD
                                     <CardTitle className="text-sm">Пакетная Очередь</CardTitle>
                                     <p className="text-xs text-muted-foreground">
                                         {items.length} в очереди • {successItems.length} готово
+=======
+                                    <CardTitle className="text-sm">Batch Queue</CardTitle>
+                                    <p className="text-xs text-muted-foreground">
+                                        {items.length} queued • {successItems.length} ready
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                     </p>
                                 </div>
                             </CardHeader>

@@ -565,12 +565,21 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
         key: ResultTab;
         label: string;
     }[] = [
+<<<<<<< HEAD
         { key: "tracks", label: "Треки" },
         { key: "albums", label: "Альбомы" },
         { key: "artists", label: "Исполнители" },
         { key: "playlists", label: "Плейлисты" },
     ];
     return (<div className="space-y-4 surface-card p-4 md:p-5">
+=======
+        { key: "tracks", label: "Tracks" },
+        { key: "albums", label: "Albums" },
+        { key: "artists", label: "Artists" },
+        { key: "playlists", label: "Playlists" },
+    ];
+    return (<div className="space-y-4">
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       <div className="flex gap-2">
         <Tooltip>
           <TooltipTrigger asChild>
@@ -579,7 +588,11 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
             </Button>
           </TooltipTrigger>
           <TooltipContent>
+<<<<<<< HEAD
             <p>{searchMode ? "Режим ссылок" : "Режим поиска"}</p>
+=======
+            <p>{searchMode ? "Fetch Mode" : "Search Mode"}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
           </TooltipContent>
         </Tooltip>
 
@@ -605,7 +618,11 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
         {!searchMode && (<>
             {showRegionSelector && (<Select value={region} onValueChange={onRegionChange}>
                 <SelectTrigger className="w-[70px] shrink-0">
+<<<<<<< HEAD
                   <SelectValue placeholder="Регион"/>
+=======
+                  <SelectValue placeholder="Region"/>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px]">
                   {REGIONS.map((r) => (<SelectItem key={r} value={r} textValue={r}>
@@ -619,10 +636,17 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
             <Button onClick={handleFetchWithValidation} disabled={loading}>
               {loading ? (<>
                   <Spinner />
+<<<<<<< HEAD
                   Загрузка...
                 </>) : (<>
                   <CloudDownload className="h-4 w-4"/>
                   Получить
+=======
+                  Fetching...
+                </>) : (<>
+                  <CloudDownload className="h-4 w-4"/>
+                  Fetch
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </>)}
             </Button>
           </>)}
@@ -632,7 +656,11 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
 
       {searchMode && (<div className="space-y-4">
           {!searchQuery && !searchResults && recentSearches.length > 0 && (<div className="space-y-2">
+<<<<<<< HEAD
               <p className="text-sm text-muted-foreground">Недавние поиски</p>
+=======
+              <p className="text-sm text-muted-foreground">Recent Searches</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               <div className="flex flex-wrap gap-2">
                 {recentSearches.map((query) => (<div key={query} className="group relative flex items-center px-3 py-1.5 bg-muted hover:bg-accent rounded-full text-sm cursor-pointer transition-colors" onClick={() => setSearchQuery(query)}>
                     <span>{query}</span>
@@ -648,11 +676,19 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
 
           {isSearching && (<div className="flex items-center justify-center py-8">
               <Spinner />
+<<<<<<< HEAD
               <span className="ml-2 text-muted-foreground">Поиск...</span>
             </div>)}
 
           {!isSearching && searchQuery && !hasAnyResults && (<div className="text-center py-8 text-muted-foreground">
               Ничего не найдено по запросу "{searchQuery}"
+=======
+              <span className="ml-2 text-muted-foreground">Searching...</span>
+            </div>)}
+
+          {!isSearching && searchQuery && !hasAnyResults && (<div className="text-center py-8 text-muted-foreground">
+              No results found for "{searchQuery}"
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </div>)}
 
           {!isSearching && hasAnyResults && (<>
@@ -672,7 +708,11 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
               <div className="flex gap-2 mb-4">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
+<<<<<<< HEAD
                   <Input placeholder="Поиск..." value={resultFilter} onChange={(e) => setResultFilter(e.target.value)} className="pl-10 pr-8"/>
+=======
+                  <Input placeholder={`Search ${activeTab}...`} value={resultFilter} onChange={(e) => setResultFilter(e.target.value)} className="pl-10 pr-8"/>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   {resultFilter && (<button type="button" className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer" onClick={() => setResultFilter("")}>
                       <XCircle className="h-4 w-4"/>
                     </button>)}
@@ -680,6 +720,7 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
                 <Select value={sortOrders[activeTab]} onValueChange={(val) => setSortOrders(prev => ({ ...prev, [activeTab]: val }))}>
                   <SelectTrigger className="w-[170px] bg-background gap-1.5">
                     <ArrowUpDown className="h-4 w-4 text-muted-foreground"/>
+<<<<<<< HEAD
                     <SelectValue placeholder="Сортировка"/>
                   </SelectTrigger>
                     <SelectContent>
@@ -709,6 +750,37 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
                           <SelectItem value="title-desc">Название (Я-А)</SelectItem>
                           <SelectItem value="owner-asc">Владелец (А-Я)</SelectItem>
                           <SelectItem value="owner-desc">Владелец (Я-А)</SelectItem>
+=======
+                    <SelectValue placeholder="Sort by"/>
+                  </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="default">Default</SelectItem>
+                      {activeTab === 'tracks' && (<>
+                          <SelectItem value="title-asc">Title (A-Z)</SelectItem>
+                          <SelectItem value="title-desc">Title (Z-A)</SelectItem>
+                          <SelectItem value="artist-asc">Artist (A-Z)</SelectItem>
+                          <SelectItem value="artist-desc">Artist (Z-A)</SelectItem>
+                          <SelectItem value="duration-desc">Duration (Longest)</SelectItem>
+                          <SelectItem value="duration-asc">Duration (Shortest)</SelectItem>
+                        </>)}
+                      {activeTab === 'albums' && (<>
+                          <SelectItem value="title-asc">Title (A-Z)</SelectItem>
+                          <SelectItem value="title-desc">Title (Z-A)</SelectItem>
+                          <SelectItem value="artist-asc">Artist (A-Z)</SelectItem>
+                          <SelectItem value="artist-desc">Artist (Z-A)</SelectItem>
+                          <SelectItem value="year-desc">Year (Newest)</SelectItem>
+                          <SelectItem value="year-asc">Year (Oldest)</SelectItem>
+                        </>)}
+                      {activeTab === 'artists' && (<>
+                          <SelectItem value="name-asc">Name (A-Z)</SelectItem>
+                          <SelectItem value="name-desc">Name (Z-A)</SelectItem>
+                        </>)}
+                      {activeTab === 'playlists' && (<>
+                          <SelectItem value="title-asc">Title (A-Z)</SelectItem>
+                          <SelectItem value="title-desc">Title (Z-A)</SelectItem>
+                          <SelectItem value="owner-asc">Owner (A-Z)</SelectItem>
+                          <SelectItem value="owner-desc">Owner (Z-A)</SelectItem>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </>)}
                     </SelectContent>
                   </Select>
@@ -716,7 +788,11 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
 
               <div className="grid gap-2">
                 {activeTab === "tracks" &&
+<<<<<<< HEAD
                     sortedResults.tracks.map((track) => (<button key={track.id} type="button" className="flex items-center gap-3 p-3 rounded-xl bg-card/80 hover:bg-accent/80 border border-border/60 cursor-pointer text-left transition-all duration-200 hover:shadow-sm" onClick={() => handleResultClick(track.external_urls)}>
+=======
+                    sortedResults.tracks.map((track) => (<button key={track.id} type="button" className="flex items-center gap-3 p-3 rounded-lg bg-card hover:bg-accent border cursor-pointer text-left transition-colors" onClick={() => handleResultClick(track.external_urls)}>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       {track.images ? (<img src={track.images} alt="" className="w-12 h-12 rounded object-cover shrink-0"/>) : (<div className="w-12 h-12 rounded bg-muted shrink-0"/>)}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 min-w-0">
@@ -735,7 +811,11 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
                     </button>))}
 
                 {activeTab === "albums" &&
+<<<<<<< HEAD
                     sortedResults.albums.map((album) => (<button key={album.id} type="button" className="flex items-center gap-3 p-3 rounded-xl bg-card/80 hover:bg-accent/80 border border-border/60 cursor-pointer text-left transition-all duration-200 hover:shadow-sm" onClick={() => handleResultClick(album.external_urls)}>
+=======
+                    sortedResults.albums.map((album) => (<button key={album.id} type="button" className="flex items-center gap-3 p-3 rounded-lg bg-card hover:bg-accent border cursor-pointer text-left transition-colors" onClick={() => handleResultClick(album.external_urls)}>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       {album.images ? (<img src={album.images} alt="" className="w-12 h-12 rounded object-cover shrink-0"/>) : (<div className="w-12 h-12 rounded bg-muted shrink-0"/>)}
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{album.name}</p>
@@ -749,16 +829,28 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
                     </button>))}
 
                 {activeTab === "artists" &&
+<<<<<<< HEAD
                     sortedResults.artists.map((artist) => (<button key={artist.id} type="button" className="flex items-center gap-3 p-3 rounded-xl bg-card/80 hover:bg-accent/80 border border-border/60 cursor-pointer text-left transition-all duration-200 hover:shadow-sm" onClick={() => handleResultClick(artist.external_urls)}>
                       {artist.images ? (<img src={artist.images} alt="" className="w-12 h-12 rounded-full object-cover shrink-0"/>) : (<div className="w-12 h-12 rounded-full bg-muted shrink-0"/>)}
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{artist.name}</p>
                         <p className="text-sm text-muted-foreground">Исполнитель</p>
+=======
+                    sortedResults.artists.map((artist) => (<button key={artist.id} type="button" className="flex items-center gap-3 p-3 rounded-lg bg-card hover:bg-accent border cursor-pointer text-left transition-colors" onClick={() => handleResultClick(artist.external_urls)}>
+                      {artist.images ? (<img src={artist.images} alt="" className="w-12 h-12 rounded-full object-cover shrink-0"/>) : (<div className="w-12 h-12 rounded-full bg-muted shrink-0"/>)}
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium truncate">{artist.name}</p>
+                        <p className="text-sm text-muted-foreground">Artist</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       </div>
                     </button>))}
 
                 {activeTab === "playlists" &&
+<<<<<<< HEAD
                     sortedResults.playlists.map((playlist) => (<button key={playlist.id} type="button" className="flex items-center gap-3 p-3 rounded-xl bg-card/80 hover:bg-accent/80 border border-border/60 cursor-pointer text-left transition-all duration-200 hover:shadow-sm" onClick={() => handleResultClick(playlist.external_urls)}>
+=======
+                    sortedResults.playlists.map((playlist) => (<button key={playlist.id} type="button" className="flex items-center gap-3 p-3 rounded-lg bg-card hover:bg-accent border cursor-pointer text-left transition-colors" onClick={() => handleResultClick(playlist.external_urls)}>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       {playlist.images ? (<img src={playlist.images} alt="" className="w-12 h-12 rounded object-cover shrink-0"/>) : (<div className="w-12 h-12 rounded bg-muted shrink-0"/>)}
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{playlist.name}</p>
@@ -773,10 +865,17 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
                   <Button variant="outline" onClick={handleLoadMore} disabled={isLoadingMore}>
                     {isLoadingMore ? (<>
                         <Spinner />
+<<<<<<< HEAD
                         Загрузка...
                       </>) : (<>
                         <ChevronDown className="h-4 w-4"/>
                         Загрузить еще
+=======
+                        Loading...
+                      </>) : (<>
+                        <ChevronDown className="h-4 w-4"/>
+                        Load More
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                       </>)}
                   </Button>
                 </div>)}
@@ -786,9 +885,15 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
       <Dialog open={showInvalidUrlDialog} onOpenChange={setShowInvalidUrlDialog}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
+<<<<<<< HEAD
             <DialogTitle>Неверная ссылка</DialogTitle>
             <DialogDescription>
               В режиме ссылок поддерживаются только ссылки Spotify.
+=======
+            <DialogTitle>Invalid URL</DialogTitle>
+            <DialogDescription>
+              Only Spotify links are allowed in Fetch mode.
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </DialogDescription>
           </DialogHeader>
 
@@ -801,14 +906,22 @@ export function SearchBar({ url, loading, onUrlChange, onFetch, onFetchUrl, hist
             setShowInvalidUrlDialog(false);
             setInvalidUrl("");
         }}>
+<<<<<<< HEAD
               Отмена
+=======
+              Cancel
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </Button>
             <Button onClick={() => {
             onSearchModeChange(true);
             setShowInvalidUrlDialog(false);
             setInvalidUrl("");
         }}>
+<<<<<<< HEAD
               Переключить на поиск
+=======
+              Switch to Search
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -286,11 +286,19 @@ function addAxisLabels(ctx: CanvasRenderingContext2D, plotWidth: number, plotHei
     }
     ctx.textAlign = "center";
     ctx.font = "14px Segoe UI";
+<<<<<<< HEAD
     ctx.fillText("Время (секунды)", CANVAS_W / 2, CANVAS_H - 15);
     ctx.save();
     ctx.translate(25, CANVAS_H / 2);
     ctx.rotate(-Math.PI / 2);
     ctx.fillText("Частота (Гц)", 0, 0);
+=======
+    ctx.fillText("Time (seconds)", CANVAS_W / 2, CANVAS_H - 15);
+    ctx.save();
+    ctx.translate(25, CANVAS_H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText("Frequency (Hz)", 0, 0);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     ctx.restore();
     ctx.font = "12px Segoe UI";
     if (fileName) {
@@ -298,7 +306,11 @@ function addAxisLabels(ctx: CanvasRenderingContext2D, plotWidth: number, plotHei
         ctx.fillText(fileName, MARGIN.left + 15, 25);
     }
     ctx.textAlign = "right";
+<<<<<<< HEAD
     ctx.fillText(`ЧД: ${sampleRate} Гц`, CANVAS_W - 20, 25);
+=======
+    ctx.fillText(`Sample Rate: ${sampleRate} Hz`, CANVAS_W - 20, 25);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 function drawColorBar(ctx: CanvasRenderingContext2D, plotHeight: number, colorScheme: ColorScheme) {
     const colorBarWidth = 20;
@@ -317,8 +329,13 @@ function drawColorBar(ctx: CanvasRenderingContext2D, plotHeight: number, colorSc
     ctx.fillStyle = "#ffffff";
     ctx.font = "10px Segoe UI";
     ctx.textAlign = "left";
+<<<<<<< HEAD
     ctx.fillText("Высокая", colorBarX + colorBarWidth + 5, colorBarY + 12);
     ctx.fillText("Низкая", colorBarX + colorBarWidth + 5, colorBarY + plotHeight - 5);
+=======
+    ctx.fillText("High", colorBarX + colorBarWidth + 5, colorBarY + 12);
+    ctx.fillText("Low", colorBarX + colorBarWidth + 5, colorBarY + plotHeight - 5);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 async function renderSpectrogram(ctx: CanvasRenderingContext2D, spectrum: SpectrumData, sampleRate: number, duration: number, freqScale: FreqScale, colorScheme: ColorScheme, fileName: string | undefined, shouldCancel: () => boolean) {
     const plotWidth = CANVAS_W - MARGIN.left - MARGIN.right;
@@ -452,7 +469,11 @@ const COLOR_SCHEMES: {
     { value: "viridis", label: "Viridis", gradient: "linear-gradient(to right, #440154, #31688e, #35b779, #fde725)" },
     { value: "hot", label: "Hot", gradient: "linear-gradient(to right, #000000, #ff0000, #ffff00, #ffffff)" },
     { value: "cool", label: "Cool", gradient: "linear-gradient(to right, #000080, #0000ff, #00ffff, #ffffff)" },
+<<<<<<< HEAD
     { value: "grayscale", label: "Градации серого", gradient: "linear-gradient(to right, #000000, #ffffff)" },
+=======
+    { value: "grayscale", label: "Grayscale", gradient: "linear-gradient(to right, #000000, #ffffff)" },
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 ];
 export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, SpectrumVisualizationProps>(({ sampleRate, duration, spectrumData, fileName, onReAnalyze, isAnalyzingSpectrum, spectrumProgress, }, ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -507,7 +528,11 @@ export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, Spe
             ctx.fillStyle = "#444444";
             ctx.font = "16px Arial";
             ctx.textAlign = "center";
+<<<<<<< HEAD
             ctx.fillText("Нет данных спектрограммы", CANVAS_W / 2, CANVAS_H / 2);
+=======
+            ctx.fillText("No spectrum data", CANVAS_W / 2, CANVAS_H / 2);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         return () => {
             canceled = true;
@@ -524,7 +549,11 @@ export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, Spe
     return (<div className="space-y-4">
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 p-1">
                 <div className="flex items-center gap-2">
+<<<<<<< HEAD
                     <Label className="whitespace-nowrap text-sm font-medium">Цветовая схема:</Label>
+=======
+                    <Label className="whitespace-nowrap text-sm font-medium">Color Scheme:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     <Select value={colorScheme} onValueChange={(v) => setColorScheme(v as ColorScheme)} disabled={isAnalyzingSpectrum}>
                         <SelectTrigger className="h-8 w-[130px] text-sm">
                             <SelectValue />
@@ -543,20 +572,33 @@ export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, Spe
                 <div className="h-6 w-px bg-border hidden sm:block mx-1"></div>
 
                 <div className="flex items-center gap-2">
+<<<<<<< HEAD
                     <Label className="whitespace-nowrap text-sm font-medium">Ось частот:</Label>
+=======
+                    <Label className="whitespace-nowrap text-sm font-medium">Freq Scale:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     <Select value={freqScale} onValueChange={(v) => setFreqScale(v as FreqScale)} disabled={isAnalyzingSpectrum}>
                         <SelectTrigger className="h-8 w-[95px] text-sm">
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
+<<<<<<< HEAD
                             <SelectItem value="linear">Линейная</SelectItem>
                             <SelectItem value="log2">Логарифм</SelectItem>
+=======
+                            <SelectItem value="linear">Linear</SelectItem>
+                            <SelectItem value="log2">Log2</SelectItem>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </SelectContent>
                     </Select>
                 </div>
 
                 <div className="flex items-center gap-2">
+<<<<<<< HEAD
                     <Label className="whitespace-nowrap text-sm font-medium">Размер FFT:</Label>
+=======
+                    <Label className="whitespace-nowrap text-sm font-medium">FFT Size:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     <Select value={fftSize} onValueChange={(v) => handleReAnalyze(v, windowFunction)} disabled={isAnalyzingSpectrum}>
                         <SelectTrigger className="h-8 w-[90px] text-sm">
                             <SelectValue />
@@ -571,7 +613,11 @@ export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, Spe
                 </div>
 
                 <div className="flex items-center gap-2">
+<<<<<<< HEAD
                     <Label className="whitespace-nowrap text-sm font-medium">Окно:</Label>
+=======
+                    <Label className="whitespace-nowrap text-sm font-medium">Window:</Label>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     <Select value={windowFunction} onValueChange={(v) => handleReAnalyze(fftSize, v)} disabled={isAnalyzingSpectrum}>
                         <SelectTrigger className="h-8 w-[120px] text-sm capitalize">
                             <SelectValue />
@@ -580,7 +626,11 @@ export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, Spe
                             <SelectItem value="hann">Hann</SelectItem>
                             <SelectItem value="hamming">Hamming</SelectItem>
                             <SelectItem value="blackman">Blackman</SelectItem>
+<<<<<<< HEAD
                             <SelectItem value="rectangular">Прямоугольное</SelectItem>
+=======
+                            <SelectItem value="rectangular">Rectangular</SelectItem>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </SelectContent>
                     </Select>
                 </div>
@@ -590,7 +640,11 @@ export const SpectrumVisualization = forwardRef<SpectrumVisualizationHandle, Spe
                 {isAnalyzingSpectrum && (<div className="absolute inset-0 z-10 grid place-items-center bg-black/60 backdrop-blur-sm">
                         <div className="w-full max-w-xs space-y-2 px-4">
                             <div className="flex items-center justify-between text-sm text-foreground/90">
+<<<<<<< HEAD
                                 <span>Отрисовка...</span>
+=======
+                                <span>Processing...</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 <span className="tabular-nums">{spectrumPercent}%</span>
                             </div>
                             <Progress value={spectrumPercent} className="h-2 w-full"/>

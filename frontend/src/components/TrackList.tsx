@@ -202,6 +202,7 @@ export function TrackList({ tracks, searchQuery, sortBy, selectedTracks, downloa
                 #
               </th>
               <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+<<<<<<< HEAD
                 Название
               </th>
               {!hideAlbumColumn && (<th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell">
@@ -215,6 +216,21 @@ export function TrackList({ tracks, searchQuery, sortBy, selectedTracks, downloa
               </th>
               <th className="h-12 px-4 text-center align-middle font-medium text-muted-foreground w-32">
                 Действия
+=======
+                Title
+              </th>
+              {!hideAlbumColumn && (<th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden md:table-cell">
+                Album
+              </th>)}
+              <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden lg:table-cell w-24">
+                Duration
+              </th>
+              <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground hidden xl:table-cell w-32">
+                Plays
+              </th>
+              <th className="h-12 px-4 text-center align-middle font-medium text-muted-foreground w-32">
+                Actions
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </th>
             </tr>
           </thead>
@@ -294,7 +310,11 @@ export function TrackList({ tracks, searchQuery, sortBy, selectedTracks, downloa
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       {downloadingTrack === track.spotify_id ? (<p>Загрузка...</p>) : skippedTracks.has(track.spotify_id) ? (<p>Уже существует</p>) : downloadedTracks.has(track.spotify_id) ? (<p>Скачано</p>) : failedTracks.has(track.spotify_id) ? (<p>Ошибка</p>) : (<p>Скачать трек</p>)}
+=======
+                      {downloadingTrack === track.spotify_id ? (<p>Downloading...</p>) : skippedTracks.has(track.spotify_id) ? (<p>Already exists</p>) : downloadedTracks.has(track.spotify_id) ? (<p>Downloaded</p>) : failedTracks.has(track.spotify_id) ? (<p>Failed</p>) : (<p>Download Track</p>)}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                   {track.spotify_id && (<Tooltip>
@@ -304,7 +324,11 @@ export function TrackList({ tracks, searchQuery, sortBy, selectedTracks, downloa
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>{playingTrack === track.spotify_id ? "Остановить превью" : "Слушать превью"}</p>
+=======
+                      <p>{playingTrack === track.spotify_id ? "Stop Preview" : "Play Preview"}</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                   {track.spotify_id && onDownloadLyrics && (<Tooltip>
@@ -314,7 +338,11 @@ export function TrackList({ tracks, searchQuery, sortBy, selectedTracks, downloa
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Скачать отдельный текст</p>
+=======
+                      <p>Download Separate Lyric</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                   {track.images && onDownloadCover && (<Tooltip>
@@ -327,7 +355,11 @@ export function TrackList({ tracks, searchQuery, sortBy, selectedTracks, downloa
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Скачать отдельную обложку</p>
+=======
+                      <p>Download Separate Cover</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                   {track.spotify_id && onCheckAvailability && (<Tooltip>

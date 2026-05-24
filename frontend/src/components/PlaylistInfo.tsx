@@ -139,6 +139,7 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
             });
             if (response.success) {
                 if (response.already_exists)
+<<<<<<< HEAD
                     toast.info("Обложка уже существует");
                 else
                     toast.success("Отдельная обложка плейлиста скачана");
@@ -149,6 +150,18 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
         }
         catch (err) {
             toast.error(err instanceof Error ? err.message : "Ошибка скачивания обложки");
+=======
+                    toast.info("Cover already exists");
+                else
+                    toast.success("Separate playlist cover downloaded");
+            }
+            else {
+                toast.error(response.error || "Failed to download cover");
+            }
+        }
+        catch (err) {
+            toast.error(err instanceof Error ? err.message : "Failed to download cover");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setDownloadingPlaylistCover(false);
@@ -172,13 +185,21 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
                         {downloadingPlaylistCover ? <Spinner /> : <ImageDown className="h-4 w-4"/>}
                       </Button>
                     </TooltipTrigger>
+<<<<<<< HEAD
                     <TooltipContent><p>Скачать обложку плейлиста отдельно</p></TooltipContent>
+=======
+                    <TooltipContent><p>Download Separate Playlist Cover</p></TooltipContent>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </Tooltip>
                 </div>
               </div>)}
             <div className="flex-1 space-y-4">
               <div className="space-y-2">
+<<<<<<< HEAD
                 <p className="text-sm font-medium">Плейлист</p>
+=======
+                <p className="text-sm font-medium">Playlist</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <h2 className="text-4xl font-bold">{playlistName}</h2>
                 {playlistInfo.description && (<p className="text-sm text-muted-foreground">{playlistInfo.description}</p>)}
                 <div className="flex items-center gap-2 text-sm">
@@ -189,21 +210,37 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
                   <span>•</span>
                   <span>
                     {showStreamingProgress
+<<<<<<< HEAD
             ? `${fetchedTrackCount.toLocaleString()} / ${totalTrackCount.toLocaleString()} треков`
             : `${Math.max(totalTrackCount, fetchedTrackCount).toLocaleString()} треков`}
                   </span>
                   <span>•</span>
                   <span>{playlistInfo.followers.total.toLocaleString()} подписчиков</span>
+=======
+            ? `${fetchedTrackCount.toLocaleString()} / ${totalTrackCount.toLocaleString()} tracks`
+            : `${Math.max(totalTrackCount, fetchedTrackCount).toLocaleString()} ${Math.max(totalTrackCount, fetchedTrackCount) === 1 ? "track" : "tracks"}`}
+                  </span>
+                  <span>•</span>
+                  <span>{playlistInfo.followers.total.toLocaleString()} {playlistInfo.followers.total === 1 ? "follower" : "followers"}</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 </div>
               </div>
               <div className="flex gap-2 flex-wrap">
                 <Button onClick={onDownloadAll} disabled={isDownloading}>
                   {isDownloading && bulkDownloadType === "all" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+<<<<<<< HEAD
                   Скачать все
                 </Button>
                 {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} variant="secondary" disabled={isDownloading}>
                     {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
                     Скачать выбранные ({selectedTracks.length.toLocaleString()})
+=======
+                  Download All
+                </Button>
+                {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} variant="secondary" disabled={isDownloading}>
+                    {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+                    Download Selected ({selectedTracks.length.toLocaleString()})
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </Button>)}
                 {onDownloadAllLyrics && (<Tooltip>
                     <TooltipTrigger asChild>
@@ -212,7 +249,11 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Скачать все тексты песен</p>
+=======
+                      <p>Download All Lyrics</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                 {onDownloadAllCovers && (<Tooltip>
@@ -222,7 +263,11 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Скачать все обложки отдельно</p>
+=======
+                      <p>Download All Separate Covers</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                 {downloadedTracks.size > 0 && (<Tooltip>
@@ -232,7 +277,11 @@ export function PlaylistInfo({ playlistInfo, trackList, searchQuery, sortBy, sel
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Открыть папку</p>
+=======
+                      <p>Open Folder</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
               </div>

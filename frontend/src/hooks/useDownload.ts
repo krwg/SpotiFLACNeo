@@ -1,6 +1,10 @@
 import { useState, useRef } from "react";
 import { downloadTrack, fetchSpotifyMetadata } from "@/lib/api";
+<<<<<<< HEAD
 import { getSettings, parseTemplate, type TemplateData } from "@/lib/settings";
+=======
+import { getSettings, hasConfiguredCustomTidalApi, parseTemplate, sanitizeAutoOrder, type TemplateData } from "@/lib/settings";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 import { toastWithSound as toast } from "@/lib/toast-with-sound";
 import { joinPath, sanitizePath, getFirstArtist } from "@/lib/utils";
 import { logger } from "@/lib/logger";
@@ -86,10 +90,18 @@ export function useDownload(region: string) {
         setDownloadRemainingCount(Math.max(0, safeTotalCount - safeCompletedCount));
     };
     const downloadWithAutoFallback = async (id: string, settings: any, trackName?: string, artistName?: string, albumName?: string, playlistName?: string, position?: number, spotifyId?: string, durationMs?: number, releaseYear?: string, albumArtist?: string, releaseDate?: string, coverUrl?: string, spotifyTrackNumber?: number, spotifyDiscNumber?: number, spotifyTotalTracks?: number, spotifyTotalDiscs?: number, copyright?: string, publisher?: string) => {
+<<<<<<< HEAD
         const service = settings.downloader;
         const query = trackName && artistName ? `${trackName} ${artistName} ` : undefined;
         const os = settings.operatingSystem;
         const customTidalApi = typeof settings.customTidalApi === "string" && settings.customTidalApi.trim().startsWith("https://")
+=======
+        const allowTidal = hasConfiguredCustomTidalApi(settings.customTidalApi);
+        const service = settings.downloader === "tidal" && !allowTidal ? "auto" : settings.downloader;
+        const query = trackName && artistName ? `${trackName} ${artistName} ` : undefined;
+        const os = settings.operatingSystem;
+        const customTidalApi = allowTidal && typeof settings.customTidalApi === "string" && settings.customTidalApi.trim().startsWith("https://")
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             ? settings.customTidalApi.trim().replace(/\/+$/g, "")
             : undefined;
         let outputDir = settings.downloadPath;
@@ -177,7 +189,11 @@ export function useDownload(region: string) {
                     fileExists = true;
                     return {
                         success: true,
+<<<<<<< HEAD
                         message: "Файл уже существует",
+=======
+                        message: "File already exists",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         file: existenceResults[0].file_path || "",
                         already_exists: true,
                     };
@@ -193,7 +209,11 @@ export function useDownload(region: string) {
             itemID = await AddToDownloadQueue(id, trackName || "", displayArtist || "", albumName || "");
         }
         if (service === "auto") {
+<<<<<<< HEAD
             const order = (settings.autoOrder || "tidal-amazon-qobuz").split("-");
+=======
+            const order = sanitizeAutoOrder(settings.autoOrder, allowTidal).split("-");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             let streamingURLs: any = null;
             if (spotifyId && shouldFetchStreamingURLs(order)) {
                 try {
@@ -411,12 +431,21 @@ export function useDownload(region: string) {
         });
         if (!singleServiceResponse.success && itemID) {
             const { MarkDownloadItemFailed } = await import("../../wailsjs/go/main/App");
+<<<<<<< HEAD
             await MarkDownloadItemFailed(itemID, singleServiceResponse.error || "Ошибка скачивания");
+=======
+            await MarkDownloadItemFailed(itemID, singleServiceResponse.error || "Download failed");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         return singleServiceResponse;
     };
     const downloadWithItemID = async (settings: any, itemID: string, trackName?: string, artistName?: string, albumName?: string, folderName?: string, position?: number, spotifyId?: string, durationMs?: number, isAlbum?: boolean, releaseYear?: string, albumArtist?: string, releaseDate?: string, coverUrl?: string, spotifyTrackNumber?: number, spotifyDiscNumber?: number, spotifyTotalTracks?: number, spotifyTotalDiscs?: number, copyright?: string, publisher?: string) => {
+<<<<<<< HEAD
         const service = settings.downloader;
+=======
+        const allowTidal = hasConfiguredCustomTidalApi(settings.customTidalApi);
+        const service = settings.downloader === "tidal" && !allowTidal ? "auto" : settings.downloader;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         const query = trackName && artistName ? `${trackName} ${artistName}` : undefined;
         const os = settings.operatingSystem;
         let outputDir = settings.downloadPath;
@@ -477,7 +506,11 @@ export function useDownload(region: string) {
             }
         }
         if (service === "auto") {
+<<<<<<< HEAD
             const order = (settings.autoOrder || "tidal-amazon-qobuz").split("-");
+=======
+            const order = sanitizeAutoOrder(settings.autoOrder, allowTidal).split("-");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             let streamingURLs: any = null;
             if (spotifyId && shouldFetchStreamingURLs(order)) {
                 try {
@@ -692,13 +725,21 @@ export function useDownload(region: string) {
         });
         if (!singleServiceResponse.success && itemID) {
             const { MarkDownloadItemFailed } = await import("../../wailsjs/go/main/App");
+<<<<<<< HEAD
             await MarkDownloadItemFailed(itemID, singleServiceResponse.error || "Ошибка скачивания");
+=======
+            await MarkDownloadItemFailed(itemID, singleServiceResponse.error || "Download failed");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         return singleServiceResponse;
     };
     const handleDownloadTrack = async (id: string, trackName?: string, artistName?: string, albumName?: string, spotifyId?: string, playlistName?: string, durationMs?: number, position?: number, albumArtist?: string, releaseDate?: string, coverUrl?: string, spotifyTrackNumber?: number, spotifyDiscNumber?: number, spotifyTotalTracks?: number, spotifyTotalDiscs?: number, copyright?: string, publisher?: string) => {
         if (!id) {
+<<<<<<< HEAD
             toast.error("Не найден ID для этого трека");
+=======
+            toast.error("No ID found for this track");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         const settings = getSettings();
@@ -724,12 +765,20 @@ export function useDownload(region: string) {
                 });
             }
             else {
+<<<<<<< HEAD
                 toast.error(response.error || "Ошибка скачивания");
+=======
+                toast.error(response.error || "Download failed");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 setFailedTracks((prev) => new Set(prev).add(id));
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error(err instanceof Error ? err.message : "Ошибка скачивания");
+=======
+            toast.error(err instanceof Error ? err.message : "Download failed");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             setFailedTracks((prev) => new Set(prev).add(id));
         }
         finally {
@@ -738,7 +787,11 @@ export function useDownload(region: string) {
     };
     const handleDownloadSelected = async (selectedTracks: string[], allTracks: TrackMetadata[], folderName?: string, isAlbum?: boolean) => {
         if (selectedTracks.length === 0) {
+<<<<<<< HEAD
             toast.error("Треки не выбраны");
+=======
+            toast.error("No tracks selected");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         logger.info(`starting batch download: ${selectedTracks.length} selected tracks`);
@@ -819,7 +872,11 @@ export function useDownload(region: string) {
         updateBatchProgress(skippedCount, total);
         for (let i = 0; i < tracksToDownload.length; i++) {
             if (shouldStopDownloadRef.current) {
+<<<<<<< HEAD
                 toast.info(`Скачивание остановлено. ${successCount} треков скачано, ${tracksToDownload.length - i} осталось.`);
+=======
+                toast.info(`Download stopped. ${successCount} tracks downloaded, ${tracksToDownload.length - i} remaining.`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 break;
             }
             const track = tracksToDownload[i];
@@ -885,16 +942,25 @@ export function useDownload(region: string) {
                 try {
                     logger.info(`creating m3u8 playlist: ${folderName}`);
                     await CreateM3U8File(folderName, outputDir, paths);
+<<<<<<< HEAD
                     toast.success("Плейлист M3U8 создан");
                 }
                 catch (err) {
                     logger.error(`failed to create m3u8 playlist: ${err}`);
                     toast.error(`Ошибка создания плейлиста M3U8: ${err}`);
+=======
+                    toast.success("M3U8 playlist created");
+                }
+                catch (err) {
+                    logger.error(`failed to create m3u8 playlist: ${err}`);
+                    toast.error(`Failed to create M3U8 playlist: ${err}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 }
             }
         }
         logger.info(`batch complete: ${successCount} downloaded, ${skippedCount} skipped, ${errorCount} failed`);
         if (errorCount === 0 && skippedCount === 0) {
+<<<<<<< HEAD
             toast.success(`Успешно скачано ${successCount} треков`);
         }
         else if (errorCount === 0 && successCount === 0) {
@@ -902,21 +968,41 @@ export function useDownload(region: string) {
         }
         else if (errorCount === 0) {
             toast.info(`${successCount} скачано, ${skippedCount} пропущено`);
+=======
+            toast.success(`Downloaded ${successCount} tracks successfully`);
+        }
+        else if (errorCount === 0 && successCount === 0) {
+            toast.info(`${skippedCount} tracks already exist`);
+        }
+        else if (errorCount === 0) {
+            toast.info(`${successCount} downloaded, ${skippedCount} skipped`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         else {
             const parts = [];
             if (successCount > 0)
+<<<<<<< HEAD
                 parts.push(`${successCount} скачано`);
             if (skippedCount > 0)
                 parts.push(`${skippedCount} пропущено`);
             parts.push(`${errorCount} ошибок`);
+=======
+                parts.push(`${successCount} downloaded`);
+            if (skippedCount > 0)
+                parts.push(`${skippedCount} skipped`);
+            parts.push(`${errorCount} failed`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             toast.warning(parts.join(", "));
         }
     };
     const handleDownloadAll = async (tracks: TrackMetadata[], folderName?: string, isAlbum?: boolean) => {
         const tracksWithId = tracks.filter((track) => track.spotify_id);
         if (tracksWithId.length === 0) {
+<<<<<<< HEAD
             toast.error("Не найдены треки для скачивания");
+=======
+            toast.error("No tracks available for download");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         logger.info(`starting batch download: ${tracksWithId.length} tracks`);
@@ -992,7 +1078,11 @@ export function useDownload(region: string) {
         updateBatchProgress(skippedCount, total);
         for (let i = 0; i < tracksToDownload.length; i++) {
             if (shouldStopDownloadRef.current) {
+<<<<<<< HEAD
                 toast.info(`Скачивание остановлено. ${successCount} треков скачано, ${tracksToDownload.length - i} осталось.`);
+=======
+                toast.info(`Download stopped. ${successCount} tracks downloaded, ${tracksToDownload.length - i} remaining.`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 break;
             }
             const track = tracksToDownload[i];
@@ -1053,15 +1143,24 @@ export function useDownload(region: string) {
             try {
                 logger.info(`creating m3u8 playlist: ${folderName}`);
                 await CreateM3U8File(folderName, outputDir, finalFilePaths.filter(p => p !== ""));
+<<<<<<< HEAD
                 toast.success("Плейлист M3U8 создан");
             }
             catch (err) {
                 logger.error(`failed to create m3u8 playlist: ${err}`);
                 toast.error(`Ошибка создания плейлиста M3U8: ${err}`);
+=======
+                toast.success("M3U8 playlist created");
+            }
+            catch (err) {
+                logger.error(`failed to create m3u8 playlist: ${err}`);
+                toast.error(`Failed to create M3U8 playlist: ${err}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
         }
         logger.info(`batch complete: ${successCount} downloaded, ${skippedCount} skipped, ${errorCount} failed`);
         if (errorCount === 0 && skippedCount === 0) {
+<<<<<<< HEAD
             toast.success(`Успешно скачано ${successCount} треков`);
         }
         else if (errorCount === 0 && successCount === 0) {
@@ -1069,21 +1168,41 @@ export function useDownload(region: string) {
         }
         else if (errorCount === 0) {
             toast.info(`${successCount} скачано, ${skippedCount} пропущено`);
+=======
+            toast.success(`Downloaded ${successCount} tracks successfully`);
+        }
+        else if (errorCount === 0 && successCount === 0) {
+            toast.info(`${skippedCount} tracks already exist`);
+        }
+        else if (errorCount === 0) {
+            toast.info(`${successCount} downloaded, ${skippedCount} skipped`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         else {
             const parts = [];
             if (successCount > 0)
+<<<<<<< HEAD
                 parts.push(`${successCount} скачано`);
             if (skippedCount > 0)
                 parts.push(`${skippedCount} пропущено`);
             parts.push(`${errorCount} ошибок`);
+=======
+                parts.push(`${successCount} downloaded`);
+            if (skippedCount > 0)
+                parts.push(`${skippedCount} skipped`);
+            parts.push(`${errorCount} failed`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             toast.warning(parts.join(", "));
         }
     };
     const handleStopDownload = () => {
         logger.info("download stopped by user");
         shouldStopDownloadRef.current = true;
+<<<<<<< HEAD
         toast.info("Остановка скачивания...");
+=======
+        toast.info("Stopping download...");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     };
     const resetDownloadedTracks = () => {
         setDownloadedTracks(new Set());

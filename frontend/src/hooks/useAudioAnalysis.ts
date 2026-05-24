@@ -57,7 +57,11 @@ interface ProgressState {
 }
 const DEFAULT_PROGRESS_STATE: ProgressState = {
     percent: 0,
+<<<<<<< HEAD
     message: "Подготовка к анализу...",
+=======
+    message: "Preparing analysis...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 };
 interface CancelToken {
     cancelled: boolean;
@@ -189,7 +193,11 @@ export function useAudioAnalysis() {
         setAnalyzing(true);
         setAnalysisProgress({
             percent: 1,
+<<<<<<< HEAD
             message: "Подготовка файла...",
+=======
+            message: "Preparing file...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         });
         setErrorWithSession(null);
         setResultWithSession(null);
@@ -237,10 +245,17 @@ export function useAudioAnalysis() {
             setErrorWithSession(errorMessage);
             setAnalysisProgress({
                 percent: 0,
+<<<<<<< HEAD
                 message: "Ошибка анализа",
             });
             if (!options?.suppressToast) {
                 toast.error("Ошибка анализа аудио", {
+=======
+                message: "Analysis failed",
+            });
+            if (!options?.suppressToast) {
+                toast.error("Audio Analysis Failed", {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     description: errorMessage,
                 });
             }
@@ -274,7 +289,11 @@ export function useAudioAnalysis() {
         setAnalyzing(true);
         setAnalysisProgress({
             percent: 1,
+<<<<<<< HEAD
             message: "Чтение файла с диска...",
+=======
+            message: "Reading file from disk...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         });
         setErrorWithSession(null);
         setResultWithSession(null);
@@ -298,7 +317,11 @@ export function useAudioAnalysis() {
             }
             setAnalysisProgress({
                 percent: 10,
+<<<<<<< HEAD
                 message: "Файл загружен",
+=======
+                message: "File loaded",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             const arrayBuffer = await base64ToArrayBuffer(base64Data, () => token.cancelled);
             base64Data = "";
@@ -311,7 +334,11 @@ export function useAudioAnalysis() {
             }
             setAnalysisProgress({
                 percent: 15,
+<<<<<<< HEAD
                 message: "Подготовка аудиобуфера...",
+=======
+                message: "Preparing audio buffer...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             const fileName = fileNameFromPath(filePath);
             const input = {
@@ -348,7 +375,11 @@ export function useAudioAnalysis() {
                 logger.warning(`Browser decoder failed for ${fileName}; trying FFmpeg fallback`);
                 setAnalysisProgress({
                     percent: 18,
+<<<<<<< HEAD
                     message: "Ошибка браузерного декодера, попытка использовать FFmpeg...",
+=======
+                    message: "Browser decoder failed, trying FFmpeg fallback...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
                 const decoded = await decodeAudioForAnalysis(filePath);
                 if (token.cancelled) {
@@ -360,7 +391,11 @@ export function useAudioAnalysis() {
                 }
                 setAnalysisProgress({
                     percent: 24,
+<<<<<<< HEAD
                     message: "Декодирование аудио с помощью FFmpeg...",
+=======
+                    message: "Decoding audio with FFmpeg...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 });
                 const pcmBase64 = decoded.pcm_base64 || "";
                 if (!pcmBase64) {
@@ -408,10 +443,17 @@ export function useAudioAnalysis() {
             setErrorWithSession(errorMessage);
             setAnalysisProgress({
                 percent: 0,
+<<<<<<< HEAD
                 message: "Ошибка анализа",
             });
             if (!options?.suppressToast) {
                 toast.error("Ошибка анализа аудио", {
+=======
+                message: "Analysis failed",
+            });
+            if (!options?.suppressToast) {
+                toast.error("Audio Analysis Failed", {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     description: errorMessage,
                 });
             }
@@ -459,7 +501,11 @@ export function useAudioAnalysis() {
         setAnalysisProgress((prev) => prev.percent > 0
             ? {
                 percent: prev.percent,
+<<<<<<< HEAD
                 message: "Анализ остановлен",
+=======
+                message: "Analysis stopped",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             }
             : DEFAULT_PROGRESS_STATE);
     }, []);
@@ -471,7 +517,11 @@ export function useAudioAnalysis() {
         setSpectrumLoading(true);
         setSpectrumProgress({
             percent: 0,
+<<<<<<< HEAD
             message: "Подготовка БПФ...",
+=======
+            message: "Preparing FFT...",
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         });
         try {
             await new Promise<void>((resolve) => setTimeout(resolve, 0));
@@ -502,9 +552,15 @@ export function useAudioAnalysis() {
             logger.error(`Spectrum re-analysis error: ${errorMessage}`);
             setSpectrumProgress({
                 percent: 0,
+<<<<<<< HEAD
                 message: "Ошибка анализа спектра",
             });
             toast.error("Ошибка анализа спектра", {
+=======
+                message: "Spectrum analysis failed",
+            });
+            toast.error("Spectrum Analysis Failed", {
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 description: errorMessage,
             });
             return null;

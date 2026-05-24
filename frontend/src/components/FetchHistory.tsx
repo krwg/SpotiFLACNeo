@@ -19,6 +19,7 @@ export function FetchHistory({ history, onSelect, onRemove }: FetchHistoryProps)
     const getTypeLabel = (type: string) => {
         switch (type) {
             case "track":
+<<<<<<< HEAD
                 return "Трек";
             case "album":
                 return "Альбом";
@@ -26,6 +27,15 @@ export function FetchHistory({ history, onSelect, onRemove }: FetchHistoryProps)
                 return "Плейлист";
             case "artist":
                 return "Исполнитель";
+=======
+                return "Track";
+            case "album":
+                return "Album";
+            case "playlist":
+                return "Playlist";
+            case "artist":
+                return "Artist";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             default:
                 return type;
         }
@@ -59,7 +69,11 @@ export function FetchHistory({ history, onSelect, onRemove }: FetchHistoryProps)
         }
     };
     return (<div className="space-y-2">
+<<<<<<< HEAD
       <span className="text-sm text-muted-foreground">Недавние запросы</span>
+=======
+      <span className="text-sm text-muted-foreground">{history.length === 1 ? "Recent Fetch" : "Recent Fetches"}</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
       <div className="flex gap-2 overflow-x-auto pb-2 pt-2">
         {history.map((item) => (<div key={item.id} className="relative shrink-0 w-[130px] group cursor-pointer rounded-lg border bg-card hover:bg-accent transition-colors overflow-visible" onClick={() => onSelect(item)}>
             <button type="button" className="absolute -top-1.5 -right-1.5 z-10 w-5 h-5 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer shadow-sm" onClick={(e) => {

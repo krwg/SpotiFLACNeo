@@ -127,7 +127,11 @@ export function TitleBar() {
     const isSpotifyBlockedCountry = detectedCountryCode !== "" && SPOTIFY_BLOCKED_COUNTRY_CODES.has(detectedCountryCode);
     return (<>
 
+<<<<<<< HEAD
       <div className="fixed top-0 left-14 right-0 h-10 z-40 glass-panel border-b border-border/40" style={{ "--wails-draggable": "drag" } as React.CSSProperties} onDoubleClick={handleMaximize}/>
+=======
+      <div className="fixed top-0 left-14 right-0 h-10 z-40 bg-background/80 backdrop-blur-sm" style={{ "--wails-draggable": "drag" } as React.CSSProperties} onDoubleClick={handleMaximize}/>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
 
       <div className="fixed top-1.5 right-2 z-50 flex h-7 gap-0.5 items-center">
@@ -139,7 +143,11 @@ export function TitleBar() {
                 <MenubarContent align="end" className="min-w-70">
                     <div className="px-2 py-1.5 space-y-2">
                         <div className="flex items-center justify-between gap-3">
+<<<<<<< HEAD
                             <MenubarLabel className="p-0">Громкость превью</MenubarLabel>
+=======
+                            <MenubarLabel className="p-0">Preview Volume</MenubarLabel>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                             <span className="text-xs font-medium text-muted-foreground tabular-nums">
                                 {previewVolume}%
                             </span>
@@ -148,9 +156,15 @@ export function TitleBar() {
                     </div>
                     <MenubarSeparator />
                     <div className="flex items-center gap-1.5 px-2 py-1.5">
+<<<<<<< HEAD
                         <MenubarLabel className="p-0">Сеть</MenubarLabel>
                         {isSpotifyBlockedCountry && (<span className="text-xs font-medium text-destructive">
                             (Spotify заблокирован)
+=======
+                        <MenubarLabel className="p-0">Network</MenubarLabel>
+                        {isSpotifyBlockedCountry && (<span className="text-xs font-medium text-destructive">
+                            (Blocked by Spotify)
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         </span>)}
                     </div>
                     <div className="px-2 py-1.5 space-y-1">
@@ -164,7 +178,11 @@ export function TitleBar() {
                 ? showIPAddress
                     ? `${currentIPInfo.ip} - ${currentIPInfo.country}${detectedCountryCode ? ` (${detectedCountryCode})` : ""}`
                     : `${currentIPInfo.country}${detectedCountryCode ? ` (${detectedCountryCode})` : ""}`
+<<<<<<< HEAD
                 : "Недоступно"}
+=======
+                : "Unavailable"}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                                 </span>
                             </div>
                             {currentIPInfo && !isLoadingCurrentIPInfo && (<button type="button" onClick={() => setShowIPAddress((prev) => !prev)} className="inline-flex h-6 w-6 items-center justify-center rounded-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label={showIPAddress ? "Hide IP" : "Show IP"}>
@@ -176,9 +194,15 @@ export function TitleBar() {
                         </div>)}
                     </div>
                     <MenubarSeparator />
+<<<<<<< HEAD
                     <MenubarItem onClick={() => openExternal("https://afkarxyz.qzz.io")} className="gap-2">
                         <Globe className="w-4 h-4 opacity-70"/>
                         <span>Сайт</span>
+=======
+                    <MenubarItem onClick={() => openExternal("https://afkarxyz.fyi")} className="gap-2">
+                        <Globe className="w-4 h-4 opacity-70"/>
+                        <span>Website</span>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </MenubarItem>
                 </MenubarContent>
             </MenubarMenu>

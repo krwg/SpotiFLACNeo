@@ -41,9 +41,15 @@ export function useMetadata() {
         if (loading) {
             fetchedCount.current = 0;
             currentName.current = "";
+<<<<<<< HEAD
             loadingToastId.current = toast.silentInfo("Получение метаданных...", {
                 duration: Infinity,
                 description: "Пожалуйста, подождите, пока мы получаем информацию"
+=======
+            loadingToastId.current = toast.silentInfo("fetching metadata...", {
+                duration: Infinity,
+                description: "please wait while we retrieve the information"
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             });
             return;
         }
@@ -60,9 +66,15 @@ export function useMetadata() {
             if (Array.isArray(data)) {
                 fetchedCount.current += data.length;
                 if (loadingToastId.current && currentName.current) {
+<<<<<<< HEAD
                     toast.silentInfo(`Получение треков для ${currentName.current.toLowerCase()}...`, {
                         id: loadingToastId.current,
                         description: `Получено ${fetchedCount.current.toLocaleString()} треков`
+=======
+                    toast.silentInfo(`fetching tracks for ${currentName.current.toLowerCase()}...`, {
+                        id: loadingToastId.current,
+                        description: `${fetchedCount.current.toLocaleString()} tracks fetched`
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     });
                 }
             }
@@ -74,9 +86,15 @@ export function useMetadata() {
                 if (name) {
                     currentName.current = name;
                     if (loadingToastId.current) {
+<<<<<<< HEAD
                         toast.silentInfo(`Получение треков для ${name.toLowerCase()}...`, {
                             id: loadingToastId.current,
                             description: `Получено ${fetchedCount.current.toLocaleString()} треков`
+=======
+                        toast.silentInfo(`fetching tracks for ${name.toLowerCase()}...`, {
+                            id: loadingToastId.current,
+                            description: `${fetchedCount.current.toLocaleString()} tracks fetched`
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                         });
                     }
                 }
@@ -181,7 +199,11 @@ export function useMetadata() {
                 const playlistInfo = data.playlist_info;
                 if (!playlistInfo.owner.name && playlistInfo.tracks.total === 0 && data.track_list.length === 0) {
                     logger.warning("playlist appears to be empty or private");
+<<<<<<< HEAD
                     toast.error("Плейлист не найден или может быть приватным");
+=======
+                    toast.error("Playlist not found or may be private");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     setMetadata(null);
                     return;
                 }
@@ -190,7 +212,11 @@ export function useMetadata() {
                 const albumInfo = data.album_info;
                 if (!albumInfo.name && albumInfo.total_tracks === 0 && data.track_list.length === 0) {
                     logger.warning("album appears to be empty or not found");
+<<<<<<< HEAD
                     toast.error("Альбом не найден или может быть приватным");
+=======
+                    toast.error("Album not found or may be private");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     setMetadata(null);
                     return;
                 }
@@ -214,10 +240,17 @@ export function useMetadata() {
                 logger.debug(`${data.album_list.length} albums, ${data.track_list.length} tracks`);
             }
             logger.info(`fetch completed in ${elapsed}s`);
+<<<<<<< HEAD
             toast.success("Метаданные успешно получены");
         }
         catch (err) {
             const errorMsg = err instanceof Error ? err.message : "Не удалось получить метаданные";
+=======
+            toast.success("Metadata fetched successfully");
+        }
+        catch (err) {
+            const errorMsg = err instanceof Error ? err.message : "Failed to fetch metadata";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             logger.error(`fetch failed: ${errorMsg}`);
             toast.error(errorMsg);
             showFetchFailureAdvice(errorMsg);
@@ -230,17 +263,29 @@ export function useMetadata() {
         try {
             const data = JSON.parse(cachedData);
             setMetadata(data);
+<<<<<<< HEAD
             toast.success("Загружено из кэша");
         }
         catch (err) {
             console.error("Failed to load from cache:", err);
             toast.error("Не удалось загрузить из кэша");
+=======
+            toast.success("Loaded from cache");
+        }
+        catch (err) {
+            console.error("Failed to load from cache:", err);
+            toast.error("Failed to load from cache");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const handleFetchMetadata = async (url: string) => {
         if (!url.trim()) {
             logger.warning("empty url provided");
+<<<<<<< HEAD
             toast.error("Пожалуйста, введите ссылку Spotify");
+=======
+            toast.error("Please enter a Spotify URL");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         let urlToFetch = url.trim();
@@ -276,7 +321,11 @@ export function useMetadata() {
         logger.debug(`artist clicked: ${artist.name}`);
         const resolvedArtistUrl = artist.external_urls.trim() || (await resolveArtistUrlBySearch(artist.name)) || "";
         if (!resolvedArtistUrl) {
+<<<<<<< HEAD
             toast.error(`Исполнитель не найден: ${artist.name}`);
+=======
+            toast.error(`Artist not found: ${artist.name}`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return "";
         }
         const artistUrl = resolvedArtistUrl.includes("/discography")
@@ -303,7 +352,11 @@ export function useMetadata() {
                 const albumInfo = data.album_info;
                 if (!albumInfo.name && albumInfo.total_tracks === 0 && data.track_list.length === 0) {
                     logger.warning("album appears to be empty or not found");
+<<<<<<< HEAD
                     toast.error("Альбом не найден или может быть приватным");
+=======
+                    toast.error("Album not found or may be private");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     setMetadata(null);
                     setSelectedAlbum(null);
                     return albumUrl;
@@ -316,11 +369,19 @@ export function useMetadata() {
                 logger.debug(`${data.track_list.length} tracks, released: ${data.album_info.release_date}`);
             }
             logger.info(`fetch completed in ${elapsed}s`);
+<<<<<<< HEAD
             toast.success("Метаданные альбома успешно получены");
             return albumUrl;
         }
         catch (err) {
             const errorMsg = err instanceof Error ? err.message : "Не удалось получить метаданные альбома";
+=======
+            toast.success("Album metadata fetched successfully");
+            return albumUrl;
+        }
+        catch (err) {
+            const errorMsg = err instanceof Error ? err.message : "Failed to fetch album metadata";
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             logger.error(`fetch failed: ${errorMsg}`);
             toast.error(errorMsg);
             showFetchFailureAdvice(errorMsg);

@@ -50,6 +50,7 @@ type TidalBTSManifest struct {
 
 func getConfiguredTidalAPIAttemptList() ([]string, error) {
 	customAPI := GetCustomTidalAPISetting()
+<<<<<<< HEAD
 	apis, err := GetRotatedTidalAPIList()
 	if customAPI == "" {
 		return apis, err
@@ -70,6 +71,12 @@ func getConfiguredTidalAPIAttemptList() ([]string, error) {
 	}
 
 	return result, err
+=======
+	if customAPI == "" {
+		return nil, fmt.Errorf("no configured custom tidal api instance")
+	}
+	return []string{customAPI}, nil
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 func buildTidalOutputPath(outputDir, filenameFormat string, includeTrackNumber bool, position int, spotifyTrackName, spotifyArtistName, spotifyAlbumName, spotifyAlbumArtist, spotifyReleaseDate string, useAlbumTrackNumber bool, spotifyTrackNumber, spotifyDiscNumber int, isrcOverride string, useFirstArtistOnly bool) (string, bool, error) {
@@ -212,6 +219,7 @@ func finalizeTidalDownload(outputFilename, spotifyTrackName, spotifyArtistName, 
 
 func NewTidalDownloader(apiURL string) *TidalDownloader {
 	apiURL = strings.TrimRight(strings.TrimSpace(apiURL), "/")
+<<<<<<< HEAD
 	if apiURL == "" {
 		apis, err := getConfiguredTidalAPIAttemptList()
 		if err == nil && len(apis) > 0 {
@@ -219,6 +227,8 @@ func NewTidalDownloader(apiURL string) *TidalDownloader {
 		}
 	}
 
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 	return &TidalDownloader{
 		client: &http.Client{
 			Timeout: 5 * time.Second,
@@ -275,6 +285,12 @@ func (t *TidalDownloader) GetTrackIDFromURL(tidalURL string) (int64, error) {
 
 func (t *TidalDownloader) GetDownloadURL(trackID int64, quality string) (string, error) {
 	fmt.Println("Fetching URL...")
+<<<<<<< HEAD
+=======
+	if strings.TrimSpace(t.apiURL) == "" {
+		return "", fmt.Errorf("no configured custom tidal api instance")
+	}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
 	url := fmt.Sprintf("%s/track/?id=%d&quality=%s", t.apiURL, trackID, quality)
 	fmt.Printf("Tidal API URL: %s\n", url)
@@ -606,11 +622,14 @@ func (t *TidalDownloader) DownloadByURL(tidalURL, outputDir, quality, filenameFo
 		cleanupTidalDownloadArtifacts(outputFilename)
 		return outputFilename, err
 	}
+<<<<<<< HEAD
 	if t.apiURL != "" {
 		if err := RememberTidalAPIUsage(t.apiURL); err != nil {
 			fmt.Printf("Warning: failed to persist last used Tidal API: %v\n", err)
 		}
 	}
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
 	finalizeTidalDownload(outputFilename, spotifyTrackName, spotifyArtistName, spotifyAlbumName, spotifyAlbumArtist, spotifyReleaseDate, spotifyCoverURL, embedMaxQualityCover, spotifyTrackNumber, spotifyDiscNumber, spotifyTotalTracks, spotifyTotalDiscs, spotifyCopyright, spotifyPublisher, spotifyComposer, metadataSeparator, isrcOverride, spotifyURL, useSingleGenre, embedGenre)
 
@@ -662,11 +681,18 @@ func (t *TidalDownloader) Download(spotifyTrackID, outputDir, quality, filenameF
 		return "", fmt.Errorf("songlink/songstats couldn't find Tidal URL: %w", err)
 	}
 
+<<<<<<< HEAD
 	if t.apiURL != "" {
 		return t.DownloadByURL(tidalURL, outputDir, quality, filenameFormat, includeTrackNumber, position, spotifyTrackName, spotifyArtistName, spotifyAlbumName, spotifyAlbumArtist, spotifyReleaseDate, useAlbumTrackNumber, spotifyCoverURL, embedMaxQualityCover, spotifyTrackNumber, spotifyDiscNumber, spotifyTotalTracks, spotifyTotalDiscs, spotifyCopyright, spotifyPublisher, spotifyComposer, metadataSeparator, isrcOverride, spotifyURL, allowFallback, useFirstArtistOnly, useSingleGenre, embedGenre)
 	}
 
 	return t.DownloadByURLWithFallback(tidalURL, outputDir, quality, filenameFormat, includeTrackNumber, position, spotifyTrackName, spotifyArtistName, spotifyAlbumName, spotifyAlbumArtist, spotifyReleaseDate, useAlbumTrackNumber, spotifyCoverURL, embedMaxQualityCover, spotifyTrackNumber, spotifyDiscNumber, spotifyTotalTracks, spotifyTotalDiscs, spotifyCopyright, spotifyPublisher, spotifyComposer, metadataSeparator, isrcOverride, spotifyURL, allowFallback, useFirstArtistOnly, useSingleGenre, embedGenre)
+=======
+	if t.apiURL == "" {
+		return "", fmt.Errorf("no configured custom tidal api instance")
+	}
+	return t.DownloadByURL(tidalURL, outputDir, quality, filenameFormat, includeTrackNumber, position, spotifyTrackName, spotifyArtistName, spotifyAlbumName, spotifyAlbumArtist, spotifyReleaseDate, useAlbumTrackNumber, spotifyCoverURL, embedMaxQualityCover, spotifyTrackNumber, spotifyDiscNumber, spotifyTotalTracks, spotifyTotalDiscs, spotifyCopyright, spotifyPublisher, spotifyComposer, metadataSeparator, isrcOverride, spotifyURL, allowFallback, useFirstArtistOnly, useSingleGenre, embedGenre)
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 type SegmentTemplate struct {
@@ -892,6 +918,7 @@ func (t *TidalDownloader) tryDownloadAcrossTidalAPIs(trackID int64, outputFilena
 			continue
 		}
 
+<<<<<<< HEAD
 		if err := RememberTidalAPIUsage(apiURL); err != nil {
 			fmt.Printf("Warning: failed to persist last used Tidal API: %v\n", err)
 		}
@@ -908,6 +935,11 @@ func (t *TidalDownloader) tryDownloadAcrossTidalAPIs(trackID int64, outputFilena
 		}
 	}
 
+=======
+		return apiURL, nil
+	}
+
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 	if lastErr == nil {
 		lastErr = fmt.Errorf("all tidal apis failed")
 	}

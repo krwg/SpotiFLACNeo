@@ -18,10 +18,17 @@ export function DownloadProgressToast({ onClick }: DownloadProgressToastProps) {
           <Download className={`h-4 w-4 text-blue-600 dark:text-blue-400 ${progress.is_downloading ? 'animate-bounce' : ''}`}/>
           <div className="flex flex-col min-w-[80px]">
             <p className="text-sm font-medium font-mono tabular-nums">
+<<<<<<< HEAD
               {progress.mb_downloaded.toFixed(2)} МБ
             </p>
             {progress.speed_mbps > 0 && (<p className="text-xs font-mono tabular-nums text-muted-foreground dark:text-blue-300">
                 {progress.speed_mbps.toFixed(2)} МБ/с
+=======
+              {progress.mb_downloaded.toFixed(2)} MB
+            </p>
+            {progress.speed_mbps > 0 && (<p className="text-xs font-mono tabular-nums text-muted-foreground dark:text-blue-300">
+                {progress.speed_mbps.toFixed(2)} MB/s
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
               </p>)}
           </div>
           <ChevronRight className="ml-1 h-4 w-4 text-muted-foreground dark:text-blue-300"/>

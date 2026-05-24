@@ -167,6 +167,7 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
             });
             if (response.success) {
                 if (response.already_exists)
+<<<<<<< HEAD
                     toast.info("Обложка уже существует");
                 else
                     toast.success("Отдельная обложка альбома скачана");
@@ -177,6 +178,18 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
         }
         catch (err) {
             toast.error(err instanceof Error ? err.message : "Не удалось скачать обложку");
+=======
+                    toast.info("Cover already exists");
+                else
+                    toast.success("Separate album cover downloaded");
+            }
+            else {
+                toast.error(response.error || "Failed to download cover");
+            }
+        }
+        catch (err) {
+            toast.error(err instanceof Error ? err.message : "Failed to download cover");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
         finally {
             setDownloadingAlbumCover(false);
@@ -200,13 +213,21 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
                         {downloadingAlbumCover ? <Spinner /> : <ImageDown className="h-4 w-4"/>}
                       </Button>
                     </TooltipTrigger>
+<<<<<<< HEAD
                     <TooltipContent><p>Скачать обложку альбома отдельно</p></TooltipContent>
+=======
+                    <TooltipContent><p>Download Separate Album Cover</p></TooltipContent>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </Tooltip>
                 </div>
               </div>)}
             <div className="flex-1 space-y-4">
               <div className="space-y-2">
+<<<<<<< HEAD
                 <p className="text-sm font-medium">Альбом</p>
+=======
+                <p className="text-sm font-medium">Album</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 <h2 className="text-4xl font-bold">{albumInfo.name}</h2>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="font-medium">
@@ -226,19 +247,32 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
                   <span>•</span>
                   <span>
                     {showStreamingProgress
+<<<<<<< HEAD
             ? `${fetchedTrackCount.toLocaleString()} / ${totalTrackCount.toLocaleString()} треков`
             : `${Math.max(totalTrackCount, fetchedTrackCount).toLocaleString()} трек(ов)`}
+=======
+            ? `${fetchedTrackCount.toLocaleString()} / ${totalTrackCount.toLocaleString()} tracks`
+            : `${Math.max(totalTrackCount, fetchedTrackCount).toLocaleString()} ${Math.max(totalTrackCount, fetchedTrackCount) === 1 ? "track" : "tracks"}`}
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </span>
                 </div>
               </div>
               <div className="flex gap-2 flex-wrap">
                 <Button onClick={onDownloadAll} disabled={isDownloading}>
                   {isDownloading && bulkDownloadType === "all" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+<<<<<<< HEAD
                   Скачать все
                 </Button>
                 {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} variant="secondary" disabled={isDownloading}>
                     {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
                     Скачать выбранные ({selectedTracks.length.toLocaleString()})
+=======
+                  Download All
+                </Button>
+                {selectedTracks.length > 0 && (<Button onClick={onDownloadSelected} variant="secondary" disabled={isDownloading}>
+                    {isDownloading && bulkDownloadType === "selected" ? (<Spinner />) : (<Download className="h-4 w-4"/>)}
+                    Download Selected ({selectedTracks.length.toLocaleString()})
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                   </Button>)}
                 {onDownloadAllLyrics && (<Tooltip>
                     <TooltipTrigger asChild>
@@ -247,7 +281,11 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Скачать все тексты</p>
+=======
+                      <p>Download All Lyrics</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                 {onDownloadAllCovers && (<Tooltip>
@@ -257,7 +295,11 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Скачать все отдельные обложки</p>
+=======
+                      <p>Download All Separate Covers</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
                 {downloadedTracks.size > 0 && (<Tooltip>
@@ -267,7 +309,11 @@ export function AlbumInfo({ albumInfo, trackList, searchQuery, sortBy, selectedT
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
+<<<<<<< HEAD
                       <p>Открыть папку</p>
+=======
+                      <p>Open Folder</p>
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </TooltipContent>
                   </Tooltip>)}
               </div>

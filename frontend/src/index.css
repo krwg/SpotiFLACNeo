@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+<<<<<<< HEAD
 @import "./fonts.css";
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 
 @custom-variant dark (&:is(.dark *));
 
@@ -8,7 +11,11 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+<<<<<<< HEAD
   --radius-xl: calc(var(--radius) + 6px);
+=======
+  --radius-xl: calc(var(--radius) + 4px);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -27,6 +34,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+<<<<<<< HEAD
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI Variable", system-ui, sans-serif;
   --font-display: "Monocraft", var(--font-sans);
 }
@@ -80,6 +88,52 @@
   --glass-border: oklch(1 0 0 / 10%);
   --shadow-soft: 0 16px 48px -20px oklch(0 0 0 / 0.55);
   --shadow-card: 0 1px 0 oklch(1 0 0 / 0.06), 0 18px 40px -22px oklch(0 0 0 / 0.65);
+=======
+  --font-sans: "Bricolage Grotesque", "Google Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 @layer base {
@@ -95,6 +149,7 @@
   }
 
   body {
+<<<<<<< HEAD
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
     letter-spacing: -0.01em;
@@ -107,11 +162,16 @@
     background-image:
       radial-gradient(ellipse 70% 45% at 50% -15%, oklch(0.45 0.12 252 / 0.22), transparent 55%),
       radial-gradient(ellipse 50% 35% at 100% 0%, oklch(0.4 0.1 290 / 0.12), transparent 45%);
+=======
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
   }
 
   code,
   pre,
   .font-mono {
+<<<<<<< HEAD
     font-family: "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
   }
 
@@ -186,20 +246,35 @@
     box-shadow:
       0 1px 0 oklch(0.85 0.08 280 / 0.25) inset,
       0 10px 28px oklch(0.35 0.18 285 / 0.55);
+=======
+    font-family: "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
   }
 }
 
 @theme inline {
+<<<<<<< HEAD
   --font-mono: "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+=======
+  --font-mono: "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 /* Sonner Toast Styling */
 [data-sonner-toast] {
+<<<<<<< HEAD
   @apply rounded-xl shadow-lg border backdrop-blur-md;
 }
 
 [data-sonner-toast][data-type="success"] {
   @apply bg-green-50/95 border-green-200 text-green-900;
+=======
+  @apply rounded-lg shadow-lg border;
+}
+
+[data-sonner-toast][data-type="success"] {
+  @apply bg-green-50 border-green-200 text-green-900;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="success"] [data-icon] {
@@ -207,7 +282,11 @@
 }
 
 [data-sonner-toast][data-type="error"] {
+<<<<<<< HEAD
   @apply bg-red-50/95 border-red-200 text-red-900;
+=======
+  @apply bg-red-50 border-red-200 text-red-900;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="error"] [data-icon] {
@@ -215,7 +294,11 @@
 }
 
 [data-sonner-toast][data-type="warning"] {
+<<<<<<< HEAD
   @apply bg-yellow-50/95 border-yellow-200 text-yellow-900;
+=======
+  @apply bg-yellow-50 border-yellow-200 text-yellow-900;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="warning"] [data-icon] {
@@ -223,60 +306,112 @@
 }
 
 [data-sonner-toast][data-type="info"] {
+<<<<<<< HEAD
   @apply bg-blue-50/95 border-blue-200 text-blue-900;
+=======
+  @apply bg-blue-50 border-blue-200 text-blue-900;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="info"] [data-icon] {
   @apply text-blue-600;
 }
 
+<<<<<<< HEAD
+=======
+/* Ensure description text uses same color as title */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 [data-sonner-toast] [data-description],
 [data-sonner-toast] [data-description] * {
   opacity: 1 !important;
 }
 
+<<<<<<< HEAD
 [data-sonner-toast][data-type="success"] [data-description],
 [data-sonner-toast][data-type="success"] [data-description] * {
   color: rgb(22 163 74) !important;
+=======
+/* Specific color for each toast type - match icon color */
+[data-sonner-toast][data-type="success"] [data-description],
+[data-sonner-toast][data-type="success"] [data-description] * {
+  color: rgb(22 163 74) !important;
+  /* green-600 - same as icon */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="error"] [data-description],
 [data-sonner-toast][data-type="error"] [data-description] * {
   color: rgb(220 38 38) !important;
+<<<<<<< HEAD
+=======
+  /* red-600 - same as icon */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="warning"] [data-description],
 [data-sonner-toast][data-type="warning"] [data-description] * {
   color: rgb(202 138 4) !important;
+<<<<<<< HEAD
+=======
+  /* yellow-600 - same as icon */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 [data-sonner-toast][data-type="info"] [data-description],
 [data-sonner-toast][data-type="info"] [data-description] * {
   color: rgb(37 99 235) !important;
+<<<<<<< HEAD
 }
 
 .dark [data-sonner-toast][data-type="success"] [data-description],
 .dark [data-sonner-toast][data-type="success"] [data-description] * {
   color: rgb(22 163 74) !important;
+=======
+  /* blue-600 - same as icon */
+}
+
+/* Dark mode - use same icon colors */
+.dark [data-sonner-toast][data-type="success"] [data-description],
+.dark [data-sonner-toast][data-type="success"] [data-description] * {
+  color: rgb(22 163 74) !important;
+  /* green-600 */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="error"] [data-description],
 .dark [data-sonner-toast][data-type="error"] [data-description] * {
   color: rgb(220 38 38) !important;
+<<<<<<< HEAD
+=======
+  /* red-600 */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="warning"] [data-description],
 .dark [data-sonner-toast][data-type="warning"] [data-description] * {
   color: rgb(202 138 4) !important;
+<<<<<<< HEAD
+=======
+  /* yellow-600 */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="info"] [data-description],
 .dark [data-sonner-toast][data-type="info"] [data-description] * {
   color: rgb(37 99 235) !important;
+<<<<<<< HEAD
 }
 
 .dark [data-sonner-toast][data-type="success"] {
   @apply bg-green-950/90 border-green-800 text-green-100;
+=======
+  /* blue-600 */
+}
+
+/* Dark mode toast styling */
+.dark [data-sonner-toast][data-type="success"] {
+  @apply bg-green-950 border-green-800 text-green-100;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="success"] [data-icon] {
@@ -284,7 +419,11 @@
 }
 
 .dark [data-sonner-toast][data-type="error"] {
+<<<<<<< HEAD
   @apply bg-red-950/90 border-red-800 text-red-100;
+=======
+  @apply bg-red-950 border-red-800 text-red-100;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="error"] [data-icon] {
@@ -292,7 +431,11 @@
 }
 
 .dark [data-sonner-toast][data-type="warning"] {
+<<<<<<< HEAD
   @apply bg-yellow-950/90 border-yellow-800 text-yellow-100;
+=======
+  @apply bg-yellow-950 border-yellow-800 text-yellow-100;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="warning"] [data-icon] {
@@ -300,24 +443,38 @@
 }
 
 .dark [data-sonner-toast][data-type="info"] {
+<<<<<<< HEAD
   @apply bg-blue-950/90 border-blue-800 text-blue-100;
+=======
+  @apply bg-blue-950 border-blue-800 text-blue-100;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 .dark [data-sonner-toast][data-type="info"] [data-icon] {
   @apply text-blue-400;
 }
 
+<<<<<<< HEAD
+=======
+/* Custom Scrollbar - mengikuti primary color theme */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
+<<<<<<< HEAD
   background: transparent;
+=======
+  background: var(--secondary);
+  border-radius: 4px;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
+<<<<<<< HEAD
   border-radius: 999px;
   opacity: 0.55;
 }
@@ -331,12 +488,45 @@
   scrollbar-color: var(--primary) transparent;
 }
 
+=======
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  filter: brightness(1.2);
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--secondary);
+}
+
+/* Custom scrollbar class untuk komponen tertentu */
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
+<<<<<<< HEAD
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 999px;
+=======
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 }

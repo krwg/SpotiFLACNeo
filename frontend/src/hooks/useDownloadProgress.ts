@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
 import { useState, useEffect, useRef } from "react";
 import { GetDownloadProgress } from "../../wailsjs/go/main/App";
 export interface DownloadProgressInfo {

@@ -43,7 +43,11 @@ export function AvailabilityLinks({ availability }: {
     availability?: TrackAvailability;
 }) {
     if (!availability) {
+<<<<<<< HEAD
         return <p>Проверить доступность</p>;
+=======
+        return <p>Check Availability</p>;
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     }
     const entries = getAvailabilityLinkEntries(availability);
     return (<div className="flex flex-col gap-1.5 w-[260px] max-w-[260px] pointer-events-auto">
@@ -55,7 +59,11 @@ export function AvailabilityLinks({ availability }: {
                 </button>) : (<div key={entry.id} className="flex items-center gap-2 text-left text-xs min-w-0">
                     {entry.icon}
                     <span className="truncate whitespace-nowrap leading-5 min-w-0 text-red-500">
+<<<<<<< HEAD
                         Не найдено
+=======
+                        Not Found
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     </span>
                 </div>))}
         </div>);

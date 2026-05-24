@@ -39,7 +39,11 @@ export function useLyrics() {
     const stopBulkDownloadRef = useRef(false);
     const handleDownloadLyrics = async (spotifyId: string, trackName: string, artistName: string, albumName?: string, playlistName?: string, position?: number, albumArtist?: string, releaseDate?: string, discNumber?: number, isAlbum?: boolean) => {
         if (!spotifyId) {
+<<<<<<< HEAD
             toast.error("Не найден Spotify ID для этого трека");
+=======
+            toast.error("No Spotify ID found for this track");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         logger.info(`downloading lyrics: ${trackName} - ${artistName}`);
@@ -97,11 +101,19 @@ export function useLyrics() {
             });
             if (response.success) {
                 if (response.already_exists) {
+<<<<<<< HEAD
                     toast.info("Файл с текстом песни уже существует");
                     setSkippedLyrics((prev) => new Set(prev).add(spotifyId));
                 }
                 else {
                     toast.success("Текст песни успешно скачан");
+=======
+                    toast.info("Lyrics file already exists");
+                    setSkippedLyrics((prev) => new Set(prev).add(spotifyId));
+                }
+                else {
+                    toast.success("Lyrics downloaded successfully");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                     setDownloadedLyrics((prev) => new Set(prev).add(spotifyId));
                 }
                 setFailedLyrics((prev) => {
@@ -111,12 +123,20 @@ export function useLyrics() {
                 });
             }
             else {
+<<<<<<< HEAD
                 toast.error(response.error || "Ошибка скачивания текста песни");
+=======
+                toast.error(response.error || "Failed to download lyrics");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 setFailedLyrics((prev) => new Set(prev).add(spotifyId));
             }
         }
         catch (err) {
+<<<<<<< HEAD
             toast.error(err instanceof Error ? err.message : "Ошибка скачивания текста песни");
+=======
+            toast.error(err instanceof Error ? err.message : "Failed to download lyrics");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             setFailedLyrics((prev) => new Set(prev).add(spotifyId));
         }
         finally {
@@ -126,7 +146,11 @@ export function useLyrics() {
     const handleDownloadAllLyrics = async (tracks: TrackMetadata[], playlistName?: string, _isArtistDiscography?: boolean, isAlbum?: boolean) => {
         const tracksWithSpotifyId = tracks.filter((track) => track.spotify_id);
         if (tracksWithSpotifyId.length === 0) {
+<<<<<<< HEAD
             toast.error("Нет треков с Spotify ID для скачивания текстов");
+=======
+            toast.error("No tracks with Spotify ID available for lyrics download");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
             return;
         }
         const settings = getSettings();
@@ -141,7 +165,11 @@ export function useLyrics() {
         for (let i = 0; i < tracksWithSpotifyId.length; i++) {
             const track = tracksWithSpotifyId[i];
             if (stopBulkDownloadRef.current) {
+<<<<<<< HEAD
                 toast.info("Скачивание текстов остановлено");
+=======
+                toast.info("Lyrics download stopped by user");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
                 break;
             }
             const id = track.spotify_id!;
@@ -229,13 +257,21 @@ export function useLyrics() {
         setIsBulkDownloadingLyrics(false);
         setLyricsDownloadProgress(0);
         if (!stopBulkDownloadRef.current) {
+<<<<<<< HEAD
             toast.success(`Тексты: ${success} скачано, ${skipped} пропущено, ${failed} ошибок`);
+=======
+            toast.success(`Lyrics: ${success} downloaded, ${skipped} skipped, ${failed} failed`);
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
         }
     };
     const handleStopLyricsDownload = () => {
         logger.info("lyrics download stopped by user");
         stopBulkDownloadRef.current = true;
+<<<<<<< HEAD
         toast.info("Остановка скачивания текстов...");
+=======
+        toast.info("Stopping lyrics download...");
+>>>>>>> 0c3a7b70afc89d776b23941087a0a19a741988ea
     };
     const resetLyricsState = () => {
         setDownloadedLyrics(new Set());
