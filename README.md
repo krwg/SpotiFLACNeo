@@ -11,8 +11,6 @@
 | **Платформы** | Windows |
 
 ![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6?style=flat-square)
-![macOS](https://img.shields.io/badge/macOS-10.13%2B-000000?style=flat-square)
-![Linux](https://img.shields.io/badge/Linux-Any-FCC624?style=flat-square)
 [![Релизы](https://img.shields.io/github/v/release/krwg/SpotiFLACNeo?style=flat-square&label=релиз)](https://github.com/krwg/SpotiFLACNeo/releases)
 
 ---
