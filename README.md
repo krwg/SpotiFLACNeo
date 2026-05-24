@@ -29,7 +29,8 @@
 
 ## Скриншот
 
-![Интерфейс SpotiFLACNeo](https://github.com/user-attachments/assets/c2624ca5-8569-49f0-950e-4410b523cea1)
+<img width="1152" height="689" alt="image" src="https://github.com/user-attachments/assets/7a0db452-90ba-4162-b80c-cb571059737e" />
+
 
 ---
 
