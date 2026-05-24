@@ -1,0 +1,4 @@
+Monocraft — SIL Open Font License 1.1
+https://github.com/IdreesInc/Monocraft
+
+Bundled for SpotiFLACNeo UI (Cyrillic supported).
